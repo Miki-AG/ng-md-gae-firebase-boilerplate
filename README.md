@@ -4,8 +4,8 @@
 This project utilizes:
 - Angular 6
 - Angular Material
-- Backend in Google App Engine using REST Endpoints
-- Firebase for authentication
+- Backend in Google App Engine using REST Endpoints (TBC)
+- Firebase for authentication (TBC)
 - Gulp scripts to automate deployment in GAE
 
 ## Requirements
