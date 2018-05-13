@@ -25,7 +25,7 @@ Run `ng serve` for a dev server.
 
 ## Build and run
 
-Run `ng build` to rebuild the /dist directory
+Run `ng build` to rebuild the /dist directory.
 
-Run `gulp run` to launch the app on GAE
+Run `gulp run` to launch the app on GAE.
 
