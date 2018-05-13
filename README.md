@@ -4,7 +4,7 @@
 Adaptation of the popular angular demo app [Tour of Heroes](https://angular.io/tutorial) to Material Design.
 
 
-![Screenshot](https://raw.githubusercontent.com/Miki-AG/md-tour-of-heroes/master/static/img/screenshot1.png)
+![Screenshot](https://raw.githubusercontent.com/Miki-AG/md-tour-of-heroes/master/static/img/screenshot2.png)
 
 This project utilizes:
 - Angular 6
