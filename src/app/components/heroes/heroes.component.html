@@ -1,0 +1,46 @@
+<div fxLayout='column'>
+  <div fxFlex="90%" fxLayout='row'>
+    <div fxLayout='column' fxFlex="50">
+      <mat-list class="margin-24">
+        <mat-list-item *ngFor="let hero of heroes" (click)="onSelect(hero)" [class.selected]="hero === selectedHero">
+          <img matListAvatar src="https://source.unsplash.com/random/200x200">
+          <h3 matLine>{{hero.id}} {{hero.name}}</h3>
+          <p matLine>
+            <span>An awesome description</span>
+          </p>
+          <button mat-icon-button (click)="deleteHero(hero, $event)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-list-item>
+      </mat-list>
+      <div class="error" *ngIf="error">{{error}}</div>
+    </div>
+    <div fxLayout='column' fxFlex="50">
+      <div *ngIf="addingHero">
+        <my-hero-detail (close)="close($event)"></my-hero-detail>
+      </div>
+      <mat-card *ngIf="selectedHero" class="margin-24">
+        <mat-card-header>
+          <img mat-card-avatar src="https://source.unsplash.com/random/200x200">
+          <mat-card-title>{{selectedHero.name}}</mat-card-title>
+          <mat-card-subtitle>Really, they are!</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src="https://source.unsplash.com/random/800x600">
+        <mat-card-content>
+          <p>Something pretty...</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button color="accent" (click)="gotoDetail(hero)">See detail</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+  <div fxFlex="10%">
+    <my-hero-search></my-hero-search>
+  </div>
+</div>
+<span class="fab-button-fixed">
+  <button mat-fab (click)="addHero()">
+      <mat-icon>add</mat-icon>
+  </button>
+</span>

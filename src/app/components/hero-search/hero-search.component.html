@@ -1,0 +1,12 @@
+<div id="search-component">
+  <!-- <input #searchBox id="search-box" (keyup)="search(searchBox.value)" /> -->
+
+  <input #searchBox  matInput placeholder="Search" (keyup)="search(searchBox.value)" name="something">
+
+
+  <div class="search-result-container">
+    <div *ngFor="let hero of heroes | async" (click)="gotoDetail(hero)" class="search-result">
+      {{hero.name}}
+    </div>
+  </div>
+</div>

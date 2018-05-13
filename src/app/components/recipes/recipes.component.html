@@ -1,0 +1,15 @@
+<div fxFlex fxLayout='column'>
+  <div class="grid grid-pad">
+    <mat-card>
+      <mat-list>
+        <mat-list-item *ngFor="let recipe of recipes.items">
+          <h3 matLine> {{recipe.main_ingredient}} </h3>
+          <p matLine>
+            <span> {{recipe.sauce}} </span>
+            <span class="demo-2"> -- {{recipe.created}} </span>
+          </p>
+        </mat-list-item>
+      </mat-list>
+    </mat-card>
+  </div>
+</div>

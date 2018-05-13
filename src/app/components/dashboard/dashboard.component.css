@@ -1,0 +1,38 @@
+[class*='col-'] {
+  float: left;
+}
+
+*,
+*:after,
+*:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+[class*='col-'] {
+  padding-right: 20px;
+  padding-bottom: 20px;
+}
+
+[class*='col-']:last-of-type {
+  padding-right: 0;
+}
+
+.grid {
+  margin: 0;
+  display: inline-block;
+}
+
+.col-1-4 {
+  width: 25%;
+}
+
+
+.grid-pad {
+  padding: 10px 0;
+}
+
+.grid-pad>[class*='col-']:last-of-type {
+  padding-right: 20px;
+}
