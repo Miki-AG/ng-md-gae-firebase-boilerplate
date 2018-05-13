@@ -11,10 +11,10 @@ This project utilizes:
 - Gulp scripts to automate deployment in GAE
 
 ## Requirements
-Google Cloud SDK 200.0.0
-Node v8.9.4
-Npm 5.6.0
-gulp 4.0.0-alpha.3
+- Google Cloud SDK 200.0.0
+- Node v8.9.4
+- Npm 5.6.0
+- gulp 4.0.0-alpha.3
 
 ## Development server
 
