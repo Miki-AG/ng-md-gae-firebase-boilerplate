@@ -22,16 +22,14 @@ This project utilizes:
 
 ## Development server (no GAE)
 
-Run `ng serve` for a simple dev server.
-
-Data will be pulled from a Json file in disk (see [Angular in-memory-web-api](https://github.com/angular/in-memory-web-api))
+- Run `ng serve` for a simple dev server.
+- Data will be pulled from a Json file in disk (see [Angular in-memory-web-api](https://github.com/angular/in-memory-web-api))
 
 ## Build and run GAE local
 
-Run `ng build --prod` to rebuild the /dist directory.
-Run `gulp run` to launch the app and GAE.
-
-Data will be pulled from the GAE Datastore.
+- Run `ng build --prod` to rebuild the /dist directory.
+- Run `gulp run` to launch the app and GAE.
+- Data will be pulled from the GAE Datastore.
 
 ## Deploy on Google App Engine
 - Build for prod
