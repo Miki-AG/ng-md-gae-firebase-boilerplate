@@ -17,7 +17,7 @@ This project utilizes:
 - Google Cloud SDK 200.0.0
 - Node v8.9.4
 - Npm 5.6.0
-- gulp 4.0.0-alpha.3
+- Gulp 4.0.0-alpha.3
 
 ## Development server
 
@@ -25,7 +25,7 @@ Run `ng serve` for a dev server.
 
 ## Build and run
 
-Run `ng build` to rebuild the /dist directorygulp -v 4
+Run `ng build` to rebuild the /dist directory
 
 Run `gulp run` to launch the app on GAE
 
