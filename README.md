@@ -30,3 +30,9 @@ Run `ng build` to rebuild the /dist directory.
 
 Run `gulp run` to launch the app on GAE.
 
+## Deploy on Goolge App Engine
+### Make sure you are on miguel.a.garcia@ocecat.com `gcloud auth list`
+### Make sure gcloud points to your project`gcloud config set project <project-id>`
+You can check current project with `gcloud config get-value project`
+Use project ID, it must exists in your console (https://console.cloud.google.com), if it does not exists, create it beforehand.
+### To deploy the app `gcloud app deploy`
