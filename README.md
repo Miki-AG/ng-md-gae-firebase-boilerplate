@@ -3,6 +3,7 @@
 
 Adaptation of the popular angular demo app [Tour of Heroes](https://angular.io/tutorial) to Material Design.
 
+See the [demo](https://gae-boilerplate-203602.appspot.com).
 
 ![Screenshot](https://raw.githubusercontent.com/Miki-AG/md-tour-of-heroes/master/static/img/screenshot2.png)
 
