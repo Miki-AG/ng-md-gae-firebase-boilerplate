@@ -2,7 +2,7 @@
     <div class="grid grid-pad">
         <mat-card>
             <mat-list>
-                <mat-list-item *ngFor="let recipe of recipes.items">
+                <mat-list-item *ngFor="let recipe of recipes['items']">
                     <h3 matLine> {{recipe.main_ingredient}} </h3>
                     <p matLine>
                         <span> {{recipe.sauce}} </span>

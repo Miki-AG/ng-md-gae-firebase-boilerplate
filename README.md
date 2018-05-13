@@ -20,17 +20,22 @@ This project utilizes:
 - Npm 5.6.0
 - Gulp 4.0.0-alpha.3
 
-## Development server
+## Development server (no GAE)
 
-Run `ng serve` for a dev server.
+Run `ng serve` for a simple dev server.
 
-## Build and run
+Data will be pulled from a Json file in disk (see [Angular in-memory-web-api](https://github.com/angular/in-memory-web-api))
 
-Run `ng build` to rebuild the /dist directory.
+## Build and run GAE local
 
-Run `gulp run` to launch the app on GAE.
+Run `ng build --prod` to rebuild the /dist directory.
+Run `gulp run` to launch the app and GAE.
+
+Data will be pulled from the GAE Datastore.
 
 ## Deploy on Google App Engine
+- Build for prod
+    `ng build --prod`
 - Make sure you are on your Google account
     `gcloud auth list`
 - Make sure gcloud points to your project
