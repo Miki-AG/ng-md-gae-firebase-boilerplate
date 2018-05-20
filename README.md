@@ -33,7 +33,7 @@ This project utilizes:
 
 ## Deploy on Google App Engine
 - Build for prod
-    `ng build --prod`
+    `ng build --prod` [aot](https://angular.io/guide/aot-compiler) compilation + browser cache busting, etc...
 - Make sure you are on your Google account
     `gcloud auth list`
 - Make sure gcloud points to your project
