@@ -16,9 +16,6 @@
             <div class="error" *ngIf="error">{{error}}</div>
         </div>
         <div fxLayout='column' fxFlex="50">
-            <div *ngIf="addingHero">
-                <my-hero-detail (close)="close($event)"></my-hero-detail>
-            </div>
             <mat-card *ngIf="selectedHero" class="margin-24">
                 <mat-card-header>
                     <img mat-card-avatar src="https://source.unsplash.com/random/200x200">

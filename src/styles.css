@@ -7,8 +7,6 @@
 
 
 
-
-
 /*@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';*/
 
 
@@ -37,4 +35,17 @@ body {
 
 .margin-24 {
     margin: 24px;
+}
+
+.mat-dialog-container {
+    padding: 0!important;
+    margin: 0!important;
+}
+
+.mat-dialog-container .mat-card {
+    margin: 0!important;
+}
+
+.mat-dialog-container .mat-card .mat-card-header {
+    margin-bottom: 8px;
 }

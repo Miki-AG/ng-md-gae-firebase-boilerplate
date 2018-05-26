@@ -15,7 +15,6 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 export class HeroesComponent implements OnInit {
     heroes: Hero[];
     selectedHero: Hero;
-    addingHero = false;
     error: any;
     showNgFor = false;
     dataSource = [];
@@ -39,24 +38,17 @@ export class HeroesComponent implements OnInit {
     openDialog(): void {
         let dialogRef = this.dialog.open(DialogAddHero, {
             width: '400px',
-            data: { name: this.name, animal: this.animal }
+            data: { title: 'Add a new hero' }
         });
-
         dialogRef.afterClosed().subscribe(result => {
-            console.log(result);
-            this.animal = result;
-                        this.getHeroes();
-
+            this.getHeroes();
         });
     }
     addHero(): void {
-        this.addingHero = true;
-        this.selectedHero = null;
         this.openDialog();
     }
 
     close(savedHero: Hero): void {
-        this.addingHero = false;
         if (savedHero) {
             this.getHeroes();
         }

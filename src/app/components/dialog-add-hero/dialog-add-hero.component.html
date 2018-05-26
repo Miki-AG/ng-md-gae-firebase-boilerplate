@@ -1,17 +1,19 @@
-<h1 mat-dialog-title>Add new hero</h1>
-<mat-dialog-content>
-    <img mat-card-avatar src="https://source.unsplash.com/random/200x200">
-    <h3>{{hero.name}}</h3>
-    <p>Really, they are!</p>
+<mat-card *ngIf="hero" class="margin-24">
+    <mat-card-header>
+        <img mat-card-avatar src="https://source.unsplash.com/random/200x200">
+        <mat-card-title>New Hero</mat-card-title>
+        <mat-card-subtitle>Really, they are!</mat-card-subtitle>
+    </mat-card-header>
     <img mat-card-image src="https://source.unsplash.com/random/800x600">
-    <p>ID: {{hero.id}} Something pretty...</p>
-    <form>
-        <mat-form-field>
-            <input matInput placeholder="Favorite hero" [(ngModel)]="hero.name" name="something">
-        </mat-form-field>
-    </form>
-</mat-dialog-content>
-<mat-dialog-actions>
-    <button mat-button mat-dialog-close>Cancel</button>
-    <button mat-button [mat-dialog-close]="hero" cdkFocusInitial color="accent" (click)="save()">Save</button>
-</mat-dialog-actions>
+    <mat-card-content>
+        <form>
+            <mat-form-field>
+                <input matInput placeholder="Favorite hero" [(ngModel)]="hero.name" name="something">
+            </mat-form-field>
+        </form>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-button mat-dialog-close>Cancel</button>
+        <button mat-button color="accent" (click)="save()">Save</button>
+    </mat-card-actions>
+</mat-card>
