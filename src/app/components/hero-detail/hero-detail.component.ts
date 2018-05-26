@@ -31,9 +31,8 @@ export class HeroDetailComponent implements OnInit {
             }
         });
     }
-
     save(): void {
-        this.heroService.save(this.hero).subscribe(hero => {
+        this.heroService.save(this.hero).subscribe((hero: Hero) => {
             this.hero = hero; // saved hero, w/ id if new
             this.goBack(hero);
         }, error => (this.error = error)); // TODO: Display error message

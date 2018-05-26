@@ -52,6 +52,7 @@ export class HeroSearchComponent implements OnInit {
 
   gotoDetail(hero: Hero): void {
     const link = ['/detail', hero.id];
+    this.heroes = of<Hero[]>([]);
     this.router.navigate(link);
   }
 }
