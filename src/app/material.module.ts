@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { DialogAddHero } from './components/dialog-add-hero/dialog-add-hero.component';
 
 import {
     MatButtonModule,
@@ -10,7 +11,8 @@ import {
     MatSidenavModule,
     MatCheckboxModule,
     MatTableModule,
-    MatInputModule
+    MatInputModule,
+    MatDialogModule
 } from '@angular/material';
 
 @NgModule({
@@ -24,8 +26,10 @@ import {
         MatSidenavModule,
         MatCheckboxModule,
         MatTableModule,
-        MatInputModule
+        MatInputModule,
+        MatDialogModule
     ],
+    entryComponents: [DialogAddHero],
     exports: [
         MatButtonModule,
         MatMenuModule,
@@ -36,7 +40,8 @@ import {
         MatSidenavModule,
         MatCheckboxModule,
         MatTableModule,
-        MatInputModule
+        MatInputModule,
+        MatDialogModule
     ]
 })
 export class MaterialModule { }

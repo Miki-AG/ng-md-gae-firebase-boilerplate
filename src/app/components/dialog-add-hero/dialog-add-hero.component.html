@@ -1,0 +1,17 @@
+<h1 mat-dialog-title>Add new hero</h1>
+<mat-dialog-content>
+    <img mat-card-avatar src="https://source.unsplash.com/random/200x200">
+    <h3>{{hero.name}}</h3>
+    <p>Really, they are!</p>
+    <img mat-card-image src="https://source.unsplash.com/random/800x600">
+    <p>ID: {{hero.id}} Something pretty...</p>
+    <form>
+        <mat-form-field>
+            <input matInput placeholder="Favorite hero" [(ngModel)]="hero.name" name="something">
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button color="accent" (click)="goBack()">Back</button>
+    <button mat-button color="accent" (click)="save()">Save</button>
+</mat-dialog-actions>

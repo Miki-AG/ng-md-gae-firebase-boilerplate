@@ -22,6 +22,7 @@ import { HeroDetailComponent } from './components/hero-detail/hero-detail.compon
 import { HeroSearchComponent } from './components/hero-search/hero-search.component';
 import { SideNavComponent } from './components/side-nav/side-nav.component';
 import { RecipesComponent } from './components/recipes/recipes.component';
+import { DialogAddHero } from './components/dialog-add-hero/dialog-add-hero.component';
 
 @NgModule({
     imports: [
@@ -46,7 +47,8 @@ import { RecipesComponent } from './components/recipes/recipes.component';
         HeroesTableComponent,
         HeroDetailComponent,
         SideNavComponent,
-        RecipesComponent
+        RecipesComponent,
+        DialogAddHero
     ],
     providers: [HeroService, DummieService],
     bootstrap: [AppComponent]
