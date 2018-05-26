@@ -12,7 +12,8 @@ import {
     MatCheckboxModule,
     MatTableModule,
     MatInputModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSnackBarModule
 } from '@angular/material';
 
 @NgModule({
@@ -27,7 +28,8 @@ import {
         MatCheckboxModule,
         MatTableModule,
         MatInputModule,
-        MatDialogModule
+        MatDialogModule,
+        MatSnackBarModule
     ],
     entryComponents: [DialogAddHero],
     exports: [
@@ -41,7 +43,8 @@ import {
         MatCheckboxModule,
         MatTableModule,
         MatInputModule,
-        MatDialogModule
+        MatDialogModule,
+        MatSnackBarModule
     ]
 })
 export class MaterialModule { }

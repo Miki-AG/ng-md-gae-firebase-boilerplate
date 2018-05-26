@@ -24,10 +24,17 @@ export class HeroService {
   }
 
   save(hero: Hero) {
-    if (hero.id) {
-      return this.put(hero);
+    if (!hero.name) {
+      return new Observable(subscriber => {
+        subscriber.error('You have to provide a name!');
+      })
     }
-    return this.post(hero);
+    else {
+      if (hero.id) {
+        return this.put(hero);
+      }
+      return this.post(hero);
+    }
   }
 
   delete(hero: Hero) {

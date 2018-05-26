@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MatDialogRef, MatSnackBar, MAT_DIALOG_DATA } from '@angular/material';
 import { Hero } from '../hero';
 import { HeroService } from '../../services/hero.service';
 
@@ -12,7 +12,6 @@ import { HeroService } from '../../services/hero.service';
   styleUrls: ['./dialog-add-hero.component.css'],
 })
 
-
 export class DialogAddHero {
   private hero: Hero;
   private error: any;
@@ -20,22 +19,21 @@ export class DialogAddHero {
   constructor(
     public dialogRef: MatDialogRef<DialogAddHero>,
     private heroService: HeroService,
-    @Inject(MAT_DIALOG_DATA) public data: any) {
+    public snackBar: MatSnackBar,
+    @Inject(MAT_DIALOG_DATA) public data: any, ) {
     this.hero = new Hero();
   }
 
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
   save(): void {
     this.heroService.save(this.hero).subscribe(hero => {
-      console.log(hero)
+      // this.hero = hero;
       this.dialogRef.close();
       return hero;
     }, error => {
-      console.log(error)
       this.error = error;
-      return error;
-    }); // TODO: Display error message
+      this.snackBar.open(error, 'OK', {
+        duration: 2000,
+      });
+    });
   }
 }

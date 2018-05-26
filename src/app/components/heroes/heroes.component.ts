@@ -16,12 +16,8 @@ export class HeroesComponent implements OnInit {
     heroes: Hero[];
     selectedHero: Hero;
     error: any;
-    showNgFor = false;
     dataSource = [];
     displayedColumns = ['id', 'name'];
-
-    animal: string;
-    name: string;
 
     constructor(private router: Router,
         private heroService: HeroService,
@@ -38,7 +34,10 @@ export class HeroesComponent implements OnInit {
     openDialog(): void {
         let dialogRef = this.dialog.open(DialogAddHero, {
             width: '400px',
-            data: { title: 'Add a new hero' }
+            data: {
+                title: 'New hero',
+                description: 'Add a new hero using this dialog'
+            }
         });
         dialogRef.afterClosed().subscribe(result => {
             this.getHeroes();
