@@ -11,8 +11,9 @@
     </button>
   </mat-toolbar>
   <mat-menu x-position="before" #menu="matMenu">
-    <button mat-menu-item>Option 1</button>
-    <button mat-menu-item>Option 2</button>
+    <button mat-menu-item routerLink="/dashboard">Dashboard</button>
+    <button mat-menu-item routerLink="/heroes">Heroes</button>
+    <button mat-menu-item routerLink="/heroes-table">Table of heroes</button>
   </mat-menu>
   <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
     <mat-sidenav #snav [mode]="'over'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
