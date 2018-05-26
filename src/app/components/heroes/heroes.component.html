@@ -3,7 +3,7 @@
         <div fxLayout='column' fxFlex="50">
             <mat-list class="margin-24">
                 <mat-list-item *ngFor="let hero of heroes" (click)="onSelect(hero)" [class.selected]="hero === selectedHero">
-                    <img matListAvatar src="https://source.unsplash.com/random/200x200">
+                    <img matListAvatar src="https://source.unsplash.com/user/erondu/200x200?username={{hero.name}}">
                     <h3 matLine>{{hero.id}} {{hero.name}}</h3>
                     <p matLine>
                         <span>An awesome description</span>
@@ -18,11 +18,11 @@
         <div fxLayout='column' fxFlex="50">
             <mat-card *ngIf="selectedHero" class="margin-24">
                 <mat-card-header>
-                    <img mat-card-avatar src="https://source.unsplash.com/random/200x200">
+                    <img mat-card-avatar src="https://source.unsplash.com/user/erondu/200x200?username={{selectedHero.name}}">
                     <mat-card-title>{{selectedHero.name}}</mat-card-title>
                     <mat-card-subtitle>Really, they are!</mat-card-subtitle>
                 </mat-card-header>
-                <img mat-card-image src="https://source.unsplash.com/random/800x600">
+                <img mat-card-image src="https://source.unsplash.com/user/erondu/800x600?username={{selectedHero.name}}">
                 <mat-card-content>
                     <p>Something pretty...</p>
                 </mat-card-content>
