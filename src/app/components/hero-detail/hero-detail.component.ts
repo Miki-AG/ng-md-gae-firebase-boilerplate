@@ -40,7 +40,7 @@ export class HeroDetailComponent implements OnInit {
     }
 
     goBack(savedHero: Hero = null): void {
-        this.close.emit(savedHero);
+        //this.close.emit(savedHero);
         if (this.navigated) {
             window.history.back();
         }

@@ -39,6 +39,7 @@ export class HeroService {
   }
 
   save(hero: Hero) {
+    console.log('HeroService.save (2)')
     if (!hero.name) {
       return new Observable(subscriber => {
         subscriber.error('You have to provide a name!');
@@ -59,6 +60,11 @@ export class HeroService {
   }
 
   private post(hero: Hero) {
+    console.log('HeroService.post (3)')
+    const headers = new Headers({
+      'Content-Type': 'application/json'
+    });
+
     let obs = this.http
       .post<Hero>(this.heroesUrl, hero)
       .pipe(catchError(this.handleError));
@@ -70,6 +76,11 @@ export class HeroService {
   }
 
   private put(hero: Hero) {
+    console.log('HeroService.put (3)')
+    const headers = new Headers({
+      'Content-Type': 'application/json'
+    });
+
     const url = `${this.heroesUrl}/${hero.id}`;
     let obs = this.http
       .put<Hero>(url, hero)
