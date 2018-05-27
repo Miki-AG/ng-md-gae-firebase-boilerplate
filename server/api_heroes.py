@@ -3,12 +3,16 @@ import endpoints
 from google.appengine.ext import ndb
 from protorpc import remote
 from endpoints_proto_datastore.ndb import EndpointsModel
+from endpoints_proto_datastore.ndb import EndpointsAliasProperty
 import logging
 
 
 class Hero(EndpointsModel):
+    _message_fields_schema = ('id', 'name', 'created')
+
     name = ndb.StringProperty()
     created = ndb.DateTimeProperty(auto_now_add=True)
+
 
 @endpoints.api(
     name='heroes_api',
@@ -33,3 +37,4 @@ class HeroesApi(remote.Service):
     def HeroInsert(self, hero):
         heroes.put()
         return hero
+
