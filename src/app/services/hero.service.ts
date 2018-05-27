@@ -5,16 +5,22 @@ import { catchError, map } from 'rxjs/operators';
 
 import { Hero } from '../components/hero';
 
+class HeroData {
+    items: Hero[];
+}
+
 @Injectable()
 export class HeroService {
-  private heroesUrl = 'app/heroes'; // URL to web api
+  // http://localhost:8081/_ah/api/heroes_api/v1/heroes
+  // private heroesUrl = 'app/heroes'; // URL to web api
+  private heroesUrl = '_ah/api/heroes_api/v1/heroes';
 
   constructor(private http: HttpClient) { }
 
   getHeroes() {
     return this.http
-      .get<Hero[]>(this.heroesUrl)
-      .pipe(map(data => data), catchError(this.handleError));
+      .get<HeroData>(this.heroesUrl)
+      .pipe(map(data => data.items), catchError(this.handleError));
   }
 
   getHero(id: number): Observable<Hero> {

@@ -29,7 +29,7 @@ class HeroesApi(remote.Service):
             raise endpoints.NotFoundException('Hero not found.')
         return hero
 
-    @Recipe.method(path='heroes', http_method='POST', name='heroes.insert')
+    @Hero.method(path='heroes', http_method='POST', name='heroes.insert')
     def HeroInsert(self, hero):
         heroes.put()
         return hero
