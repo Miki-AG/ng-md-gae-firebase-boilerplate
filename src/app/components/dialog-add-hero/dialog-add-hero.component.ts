@@ -13,7 +13,7 @@ import { HeroService } from '../../services/hero.service';
 })
 
 export class DialogAddHero {
-  private hero: Hero;
+  public hero: Hero;
   private error: any;
 
   constructor(
