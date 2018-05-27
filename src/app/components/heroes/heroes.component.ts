@@ -21,7 +21,15 @@ export class HeroesComponent implements OnInit {
 
     constructor(private router: Router,
         private heroService: HeroService,
-        public dialog: MatDialog) { }
+        public dialog: MatDialog) {
+
+        this.heroService.data.subscribe(heroes => {
+            console.log('data - Data updated!', heroes)
+            if (heroes) {
+                this.heroes = heroes.items;
+            }
+        });
+    }
 
     getHeroes(): void {
         this.heroService
@@ -39,9 +47,7 @@ export class HeroesComponent implements OnInit {
                 description: 'Add a new hero using this dialog'
             }
         });
-        dialogRef.afterClosed().subscribe(result => {
-            this.getHeroes();
-        });
+        dialogRef.afterClosed().subscribe(result => { });
     }
     addHero(): void {
         this.openDialog();

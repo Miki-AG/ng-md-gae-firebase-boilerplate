@@ -35,6 +35,10 @@ class HeroesApi(remote.Service):
 
     @Hero.method(path='heroes', http_method='POST', name='heroes.insert')
     def HeroInsert(self, hero):
-        heroes.put()
+        hero.put()
         return hero
 
+    @Hero.method(path='heroes/{id}', http_method='PUT', name='heroes.update')
+    def HeroUpdate(self, hero):
+        hero.put()
+        return hero

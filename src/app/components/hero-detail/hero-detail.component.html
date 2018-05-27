@@ -2,11 +2,11 @@
   <div fxFlex="60" fxLayout="column" fxLayoutGap="10px">
     <mat-card *ngIf="hero" class="margin-24">
       <mat-card-header>
-        <img mat-card-avatar src="https://source.unsplash.com/user/erondu/200x200?username={{hero.name}}">
+        <img mat-card-avatar src="https://source.unsplash.com/user/erondu/200x200?username={{hero.id || 'new'}}">
         <mat-card-title>{{hero.name}}</mat-card-title>
         <mat-card-subtitle>Really, they are!</mat-card-subtitle>
       </mat-card-header>
-      <img mat-card-image src="https://source.unsplash.com/user/erondu/800x600?username={{hero.name}}">
+      <img mat-card-image src="https://source.unsplash.com/user/erondu/800x600?username={{hero.id || 'new'}}">
       <mat-card-content>
         <p>ID: {{hero.id}} Something pretty...</p>
         <form>

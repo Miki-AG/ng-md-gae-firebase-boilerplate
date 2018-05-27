@@ -4,9 +4,9 @@
             <mat-list class="margin-24">
                 <mat-list-item *ngFor="let hero of heroes" (click)="onSelect(hero)" [class.selected]="hero === selectedHero">
                     <img matListAvatar src="https://source.unsplash.com/user/erondu/200x200?username={{hero.name}}">
-                    <h3 matLine>{{hero.id}} {{hero.name}}</h3>
+                    <h3 matLine>{{hero.name}}</h3>
                     <p matLine>
-                        <span>An awesome description</span>
+                        <span>{{hero.id}}</span>
                     </p>
                     <button mat-icon-button (click)="deleteHero(hero, $event)">
                         <mat-icon>delete</mat-icon>
