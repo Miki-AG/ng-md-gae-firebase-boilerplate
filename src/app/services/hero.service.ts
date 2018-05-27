@@ -23,7 +23,7 @@ export class HeroService {
       .pipe(map(data => data.items), catchError(this.handleError));
   }
 
-  getHero(id: number): Observable<Hero> {
+  getHero(id: string): Observable<Hero> {
     return this.getHeroes().pipe(
       map(heroes => heroes.find(hero => hero.id === id))
     );
