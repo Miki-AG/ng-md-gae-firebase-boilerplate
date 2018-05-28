@@ -20,7 +20,7 @@ export class HeroesTableComponent implements OnInit {
 
   getHeroes(): void {
     this.heroService
-      .getHeroes()
+      .fetchHeroes()
       .subscribe(
         heroes => (this.heroes = heroes),
         error => (this.error = error)

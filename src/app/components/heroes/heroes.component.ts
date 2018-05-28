@@ -23,22 +23,22 @@ export class HeroesComponent implements OnInit {
         private heroService: HeroService,
         public dialog: MatDialog) {
 
-        this.heroService.data.subscribe(heroes => {
-            console.log('data - Data updated!', heroes)
-            if (heroes) {
-                this.heroes = heroes.items;
-            }
-        });
+        // this.heroService.data.subscribe(heroes => {
+        //     console.log('data - Data updated!', heroes)
+        //     if (heroes) {
+        //         this.heroes = heroes.items;
+        //     }
+        // });
     }
-
-    getHeroes(): void {
+    ngOnInit(): void {
         this.heroService
-            .getHeroes()
+            .fetchHeroes()
             .subscribe(
                 heroes => (this.heroes = heroes),
                 error => (this.error = error)
             )
     }
+
     openDialog(): void {
         let dialogRef = this.dialog.open(DialogAddHero, {
             width: '400px',
@@ -47,7 +47,7 @@ export class HeroesComponent implements OnInit {
                 description: 'Add a new hero using this dialog'
             }
         });
-        dialogRef.afterClosed().subscribe(result => { });
+        //dialogRef.afterClosed().subscribe(result => { });
     }
     addHero(): void {
         this.openDialog();
@@ -55,7 +55,6 @@ export class HeroesComponent implements OnInit {
 
     close(savedHero: Hero): void {
         if (savedHero) {
-            this.getHeroes();
         }
     }
 
@@ -67,10 +66,6 @@ export class HeroesComponent implements OnInit {
                 this.selectedHero = null;
             }
         }, error => (this.error = error));
-    }
-
-    ngOnInit(): void {
-        this.getHeroes();
     }
 
     onSelect(hero: Hero): void {
