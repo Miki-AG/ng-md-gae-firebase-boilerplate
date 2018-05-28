@@ -31,12 +31,19 @@ export class HeroesComponent implements OnInit {
         // });
     }
     ngOnInit(): void {
-        this.heroService
-            .fetchHeroes()
-            .subscribe(
-                heroes => (this.heroes = heroes),
-                error => (this.error = error)
-            )
+        // this.heroService
+        //     .fetchHeroes()
+        //     .subscribe(
+        //         heroes => (this.heroes = heroes),
+        //         error => (this.error = error)
+        //     )
+        this.heroService.subject.subscribe(heroes => {
+            console.log(heroes)
+            if (heroes) {
+                this.heroes = heroes.items;
+            }
+        });
+
     }
 
     openDialog(): void {

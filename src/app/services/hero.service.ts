@@ -22,7 +22,10 @@ export class HeroService {
   // private heroesUrl = 'app/heroes'; // URL to web api
   private heroesUrl = '_ah/api/heroes_api/v1/heroes';
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient) { }
+
+  ngOnInit() {
+    this.fetchHeroes();
   }
 
   getHeroes() {
@@ -32,11 +35,14 @@ export class HeroService {
   fetchHeroes() {
     return this.http
       .get<HeroData>(this.heroesUrl)
-      .pipe(map(data => {
-        this._heroes = data;
-        this.subject.next(this._heroes);
-        return data.items || [];
-      }), catchError(this.handleError));
+      .pipe(
+        map(data => {
+          this._heroes = data || { items: [] };
+          this.subject.next(this._heroes);
+          return this._heroes.items || [];
+        }),
+        catchError(this.handleError),
+        share());
   }
 
   getHero(id: string): Observable<Hero> {
@@ -67,17 +73,15 @@ export class HeroService {
   }
 
   private post(hero: Hero) {
-    let obs = this.http
+    return this.http
       .post<Hero>(this.heroesUrl, hero)
       .pipe(
-        map(data => data),
+        map(data => {
+          this.updateHeroInList(data);
+          return data;
+        }),
         catchError(this.handleError),
         share());
-
-    obs.subscribe(hero => {
-      this.updateData(hero)
-    })
-    return obs;
   }
 
   private put(hero: Hero) {
@@ -85,28 +89,28 @@ export class HeroService {
     let obs = this.http
       .put<Hero>(url, hero)
       .pipe(
-        map(data => data),
+        map(data => {
+          this.updateHeroInList(data);
+          return data;
+        }),
         catchError(this.handleError),
         share());
-
-    obs.subscribe(hero => {
-      this.updateData(hero)
-    })
     return obs;
   }
 
-  private updateData(hero: Hero) {
+  private updateHeroInList(hero: Hero) {
     let index = this._heroes.items.findIndex(item => item.id === hero.id);
     if (this._heroes.items[index]) {
+      console.log('HeroService.save (3 update)')
       this._heroes.items[index] = hero;
     } else {
+      console.log('HeroService.save (3) create')
       this._heroes.items.push(hero);
     };
     this.subject.next(this._heroes);
   }
 
   private handleError(res: HttpErrorResponse | any) {
-    console.error(res.error || res.body.error);
-    return observableThrowError(res.error || 'Server error');
+    return observableThrowError(res.error || res.body.error || 'Server error');
   }
 }
