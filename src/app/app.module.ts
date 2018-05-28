@@ -6,7 +6,6 @@ import { MaterialModule } from './material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { DummieService } from './services/dummie.service';   // our custom service, see below
 
 import { HttpClientInMemoryWebApiModule, InMemoryDbService } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './services/in-memory-data.service';
@@ -21,7 +20,6 @@ import { HeroesTableComponent } from './components/heroes-table/heroes-table.com
 import { HeroDetailComponent } from './components/hero-detail/hero-detail.component';
 import { HeroSearchComponent } from './components/hero-search/hero-search.component';
 import { SideNavComponent } from './components/side-nav/side-nav.component';
-import { RecipesComponent } from './components/recipes/recipes.component';
 import { DialogAddHero } from './components/dialog-add-hero/dialog-add-hero.component';
 
 @NgModule({
@@ -48,10 +46,9 @@ import { DialogAddHero } from './components/dialog-add-hero/dialog-add-hero.comp
         HeroesTableComponent,
         HeroDetailComponent,
         SideNavComponent,
-        RecipesComponent,
         DialogAddHero
     ],
-    providers: [HeroService, DummieService],
+    providers: [HeroService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

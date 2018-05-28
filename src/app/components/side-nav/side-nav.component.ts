@@ -9,7 +9,6 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 export class SideNavComponent implements OnInit {
 
     mobileQuery: MediaQueryList;
-    public recipes = {};
 
     private _mobileQueryListener: () => void;
 
