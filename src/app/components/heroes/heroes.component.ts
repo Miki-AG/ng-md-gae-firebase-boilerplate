@@ -8,6 +8,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 @Component({
     selector: 'my-heroes',
     templateUrl: './heroes.component.html',
+    // providers: [HeroService],
     styleUrls: ['./heroes.component.css']
 })
 
@@ -20,7 +21,7 @@ export class HeroesComponent implements OnInit {
     displayedColumns = ['id', 'name'];
 
     constructor(private router: Router,
-        private heroService: HeroService,
+        public heroService: HeroService,
         public dialog: MatDialog) {
 
         // this.heroService.data.subscribe(heroes => {
@@ -37,12 +38,14 @@ export class HeroesComponent implements OnInit {
         //         heroes => (this.heroes = heroes),
         //         error => (this.error = error)
         //     )
-        this.heroService.subject.subscribe(heroes => {
-            console.log(heroes)
-            if (heroes) {
-                this.heroes = heroes.items;
-            }
-        });
+        this.heroService.subject.subscribe(
+            heroes => {
+                console.log(heroes)
+                if (heroes) {
+                    this.heroes = heroes.items;
+                }
+            },
+            error => (this.error = error));
 
     }
 
