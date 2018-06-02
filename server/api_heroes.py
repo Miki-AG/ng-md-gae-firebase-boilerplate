@@ -3,8 +3,6 @@ import endpoints
 from google.appengine.ext import ndb
 from protorpc import remote
 from endpoints_proto_datastore.ndb import EndpointsModel
-from endpoints_proto_datastore.ndb import EndpointsAliasProperty
-import logging
 
 class Hero(EndpointsModel):
     """Hero model."""
@@ -24,6 +22,7 @@ class HeroesApi(remote.Service):
     @Hero.query_method(path='heroes',
                        name='heroes.list')
     def hero_list(self, query):
+        """Get list."""
         return query
 
     # /_ah/api/heroes_api/v1/hero/5222955109842944
@@ -32,6 +31,7 @@ class HeroesApi(remote.Service):
                  http_method='GET',
                  name='heroes.get')
     def hero_get(self, hero):
+        """Get single."""
         if not hero.from_datastore:
             raise endpoints.NotFoundException('Hero not found.')
         return hero
@@ -41,6 +41,7 @@ class HeroesApi(remote.Service):
                  http_method='POST',
                  name='heroes.insert')
     def hero_insert(self, hero):
+        """Insert."""
         hero.put()
         return hero
 
@@ -49,5 +50,6 @@ class HeroesApi(remote.Service):
                  http_method='PUT',
                  name='heroes.update')
     def hero_update(self, hero):
+        """Update."""
         hero.put()
         return hero
