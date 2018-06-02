@@ -16,8 +16,6 @@ import requests_toolbelt.adapters.appengine
 import google.auth.iam
 import google.auth.transport.requests
 
-from endpoint_generator import EndpointRestBuilder
-
 
 env = jinja2_module.jinja2.Environment(
     loader=jinja2_module.jinja2.FileSystemLoader('dist'))
