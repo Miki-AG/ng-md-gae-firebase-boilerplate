@@ -18,14 +18,14 @@ class Hero(EndpointsModel):
 class HeroesApi(remote.Service):
     """Def of endpoints."""
 
-    # /_ah/api/heroes_api/v1/heroes
+    # GET /_ah/api/heroes_api/v1/heroes
     @Hero.query_method(path='heroes',
                        name='heroes.list')
     def hero_list(self, query):
         """Get list."""
         return query
 
-    # /_ah/api/heroes_api/v1/hero/5222955109842944
+    # GET /_ah/api/heroes_api/v1/hero/5222955109842944
     @Hero.method(request_fields=('id',),
                  path='hero/{id}',
                  http_method='GET',
@@ -36,7 +36,7 @@ class HeroesApi(remote.Service):
             raise endpoints.NotFoundException('Hero not found.')
         return hero
 
-    # /_ah/api/heroes_api/v1/heroes
+    # POST /_ah/api/heroes_api/v1/heroes
     @Hero.method(path='heroes',
                  http_method='POST',
                  name='heroes.insert')
@@ -45,7 +45,7 @@ class HeroesApi(remote.Service):
         hero.put()
         return hero
 
-    # /_ah/api/heroes_api/v1/heroes
+    # PUT /_ah/api/heroes_api/v1/heroes
     @Hero.method(path='heroes/{id}',
                  http_method='PUT',
                  name='heroes.update')
