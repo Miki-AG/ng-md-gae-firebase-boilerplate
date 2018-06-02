@@ -16,6 +16,9 @@ export class HeroService {
   // public readonly data: Observable<HeroData> = this._heroes.asObservable();
 
   subject: BehaviorSubject<HeroData> = new BehaviorSubject<HeroData>(null);
+
+
+  _castHeroes: Observable<any> = this.subject.asObservable();
   _heroes: HeroData = { items: [] };
 
   // http://localhost:8081/_ah/api/heroes_api/v1/heroes
