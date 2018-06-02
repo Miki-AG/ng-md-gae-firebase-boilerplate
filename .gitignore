@@ -5,6 +5,7 @@
 /dist-server
 /tmp
 /out-tsc
+*.pyc
 
 # dependencies
 /node_modules
