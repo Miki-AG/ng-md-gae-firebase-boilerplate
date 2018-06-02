@@ -20,9 +20,11 @@ export class HeroService {
 
   // http://localhost:8081/_ah/api/heroes_api/v1/heroes
   // private heroesUrl = 'app/heroes'; // URL to web api
-  private heroesUrl = '_ah/api/heroes_api/v1/heroes';
+  private rootUrl = '_ah/api/heroes_api/v1';
+  private heroesUrl = `${this.rootUrl}/heroes`;
+  private heroUrl = `${this.rootUrl}/hero`;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { } s
 
   ngOnInit() {
     this.fetchHeroes();
@@ -68,7 +70,7 @@ export class HeroService {
   }
 
   delete(hero: Hero) {
-    const url = `${this.heroesUrl}/${hero.id}`;
+    const url = this.heroUrl + '/' + hero.id;
     return this.http.delete<Hero>(url).pipe(catchError(this.handleError));
   }
 
@@ -85,7 +87,7 @@ export class HeroService {
   }
 
   private put(hero: Hero) {
-    const url = `${this.heroesUrl}/${hero.id}`;
+    const url = this.heroUrl + '/' + hero.id;
     let obs = this.http
       .put<Hero>(url, hero)
       .pipe(

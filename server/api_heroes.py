@@ -21,15 +21,15 @@ class HeroesApi(remote.Service):
     # GET /_ah/api/heroes_api/v1/heroes
     @Hero.query_method(path='heroes',
                        name='heroes.list')
-    def hero_list(self, query):
+    def hero_list(self, hero_list):
         """Get list."""
-        return query
+        return hero_list
 
     # GET /_ah/api/heroes_api/v1/hero/5222955109842944
     @Hero.method(request_fields=('id',),
                  path='hero/{id}',
                  http_method='GET',
-                 name='heroes.get')
+                 name='hero.get')
     def hero_get(self, hero):
         """Get single."""
         if not hero.from_datastore:
@@ -46,9 +46,9 @@ class HeroesApi(remote.Service):
         return hero
 
     # PUT /_ah/api/heroes_api/v1/heroes
-    @Hero.method(path='heroes/{id}',
+    @Hero.method(path='hero/{id}',
                  http_method='PUT',
-                 name='heroes.update')
+                 name='hero.update')
     def hero_update(self, hero):
         """Update."""
         hero.put()
