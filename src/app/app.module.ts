@@ -31,12 +31,13 @@ import { DialogAddHero } from './components/dialog-add-hero/dialog-add-hero.comp
         FormsModule,
         AppRoutingModule,
         HttpClientModule
-        // ,
-        // HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {
-        //     dataEncapsulation: false,
-        //     delay: 300,
-        //     passThruUnknownUrl: true
-        // })
+        ,
+        HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {
+            dataEncapsulation: false,
+            delay: 300,
+            passThruUnknownUrl: false,
+            apiBase: '_ah/api/heroes_api/v1'
+        })
     ],
     declarations: [
         AppComponent,
