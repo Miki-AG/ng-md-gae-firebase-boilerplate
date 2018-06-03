@@ -53,3 +53,12 @@ class HeroesApi(remote.Service):
         """Update."""
         hero.put()
         return hero
+
+    # DELETE /_ah/api/heroes_api/v1/heroes
+    @Hero.method(path='hero/{id}',
+                 http_method='DELETE',
+                 name='hero.delete')
+    def hero_delete(self, hero):
+        """Delete."""
+        hero.key.delete()
+        return hero
