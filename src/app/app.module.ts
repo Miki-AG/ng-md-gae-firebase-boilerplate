@@ -8,8 +8,6 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { HttpClientInMemoryWebApiModule, InMemoryDbService } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './services/in-memory-data.service';
-// import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 import { AppComponent } from './components/app/app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -31,13 +29,6 @@ import { DialogAddHero } from './components/dialog-add-hero/dialog-add-hero.comp
         FormsModule,
         AppRoutingModule,
         HttpClientModule
-        ,
-        HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {
-            dataEncapsulation: false,
-            delay: 300,
-            passThruUnknownUrl: false,
-            apiBase: '_ah/api/heroes_api/v1'
-        })
     ],
     declarations: [
         AppComponent,

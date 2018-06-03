@@ -10,6 +10,8 @@ import { HeroData } from '../components/hero';
 
 @Injectable()
 export class HeroService {
+  // https://stackoverflow.com/questions/35219713/how-to-create-an-observable-from-static-data-similar-to-http-one-in-angular
+  // https://medium.com/@OlegVaraksin/set-up-a-http-service-for-backendless-development-in-angular-2-83172970949b
 
   // private  = new BehaviorSubject<HeroData>(null);
   // public readonly data: Observable<HeroData> = this._heroes.asObservable();
@@ -32,10 +34,6 @@ export class HeroService {
     this.fetchHeroes();
   }
 
-  getHeroes() {
-    return this.subject.asObservable();
-  }
-
   fetchHeroes() {
     return this.http
       .get<HeroData>(this.heroesUrl)
@@ -50,7 +48,7 @@ export class HeroService {
   }
 
   getHero(id: string): Observable<Hero> {
-    return this.getHeroes().pipe(
+    return this._castHeroes.pipe(
       map(heroes => heroes.items.find(hero => hero.id === id))
     );
   }
