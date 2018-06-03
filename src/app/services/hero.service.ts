@@ -4,10 +4,9 @@ import { Observable, BehaviorSubject, throwError as observableThrowError } from 
 import { catchError, map, share } from 'rxjs/operators';
 
 import { Hero } from '../components/hero';
+import { HeroData } from '../components/hero';
 
-class HeroData {
-  items: Hero[];
-}
+
 
 @Injectable()
 export class HeroService {
@@ -27,7 +26,7 @@ export class HeroService {
   private heroesUrl = `${this.rootUrl}/heroes`;
   private heroUrl = `${this.rootUrl}/hero`;
 
-  constructor(private http: HttpClient) { } s
+  constructor(private http: HttpClient) { }
 
   ngOnInit() {
     this.fetchHeroes();
@@ -57,7 +56,6 @@ export class HeroService {
   }
 
   save(hero: Hero) {
-    console.log('HeroService.save (2)')
     if (!hero.name) {
       return new Observable(subscriber => {
         subscriber.error('You have to provide a name!');
@@ -78,11 +76,14 @@ export class HeroService {
   }
 
   private post(hero: Hero) {
+    console.log('HeroService.post (2)')
+
     return this.http
       .post<Hero>(this.heroesUrl, hero)
       .pipe(
         map(data => {
           this.updateHeroInList(data);
+          console.log(data)
           return data;
         }),
         catchError(this.handleError),
@@ -90,6 +91,8 @@ export class HeroService {
   }
 
   private put(hero: Hero) {
+    console.log('HeroService.put (2)')
+
     const url = this.heroUrl + '/' + hero.id;
     let obs = this.http
       .put<Hero>(url, hero)
