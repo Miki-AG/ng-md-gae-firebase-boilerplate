@@ -4,15 +4,17 @@ import { of, Observable } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
 import { HeroData } from '../components/hero';
 
+const mask = 10000000000000000;
+
 @Injectable()
 export class DevBackendInterceptor implements HttpInterceptor {
 
     private heroData: HeroData = {
         items: [
-            { id: '10000000000000000', name: 'sadasd' },
-            { id: '10000000000000001', name: 'sadasd' },
-            { id: '10000000000000002', name: 'sadasd' },
-            { id: '10000000000000003', name: 'sadasd' },
+            { id: mask.toString(), name: 'sadasd' },
+            { id: (mask + 1).toString(), name: 'sadasd' },
+            { id: (mask + 2).toString(), name: 'sadasd' },
+            { id: (mask + 3).toString(), name: 'sadasd' },
         ]
     };
 
@@ -28,7 +30,7 @@ export class DevBackendInterceptor implements HttpInterceptor {
             }
             if (request.url.endsWith(heroesUrl) && request.method === 'POST') {
                 let newHero = request.body;
-                newHero.id = (10000000000000000 + (Math.random() * 10000000000000000)).toString();
+                newHero.id = (mask + (Math.random() * mask)).toString();
                 this.heroData.items.push(newHero);
                 return of(new HttpResponse({ status: 200, body: newHero }));
             }
