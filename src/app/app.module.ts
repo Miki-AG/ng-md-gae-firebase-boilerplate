@@ -14,7 +14,7 @@ import { DialogAddHero } from './components/dialog-add-hero/dialog-add-hero.comp
 import { HeroDetailComponent } from './components/hero-detail/hero-detail.component';
 import { HeroesComponent } from './components/heroes/heroes.component';
 import { HeroesTableComponent } from './components/heroes-table/heroes-table.component';
-import { FakeBackendInterceptor } from './services/hero-mock.service';
+import { DevBackendInterceptor } from './services/hero-dev-backend';
 import { HeroSearchComponent } from './components/hero-search/hero-search.component';
 import { HeroService } from './services/hero.service';
 import { SideNavComponent } from './components/side-nav/side-nav.component';
@@ -43,9 +43,9 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
     providers: [
         HeroService,
         {
-            // use fake backend in place of Http service for backend-less development
+            // use dev backend in place of Http service for development
             provide: HTTP_INTERCEPTORS,
-            useClass: FakeBackendInterceptor,
+            useClass: DevBackendInterceptor,
             multi: true
         }
     ],
