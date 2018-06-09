@@ -44,34 +44,16 @@ export class HeroService {
   }
 
   fetchHeroes() {
-    let isProd = true;
-    if (isProd) {
-      return this.http
-        .get<HeroData>(this.heroesUrl)
-        .pipe(
-          map(data => {
-            this._heroes = data || { items: [] };
-            this.subject.next(this._heroes);
-            return this._heroes.items || [];
-          }),
-          catchError(this.handleError),
-          share());
-    }
-    else {
-      return of(this.test).pipe(map(data => {
-        this._heroes = data || { items: [] };
-        this.subject.next(this._heroes);
-        return this._heroes.items || [];
-      }),
+    return this.http
+      .get<HeroData>(this.heroesUrl)
+      .pipe(
+        map(data => {
+          this._heroes = data || { items: [] };
+          this.subject.next(this._heroes);
+          return this._heroes.items || [];
+        }),
         catchError(this.handleError),
         share());
-    }
-  }
-
-  process(data) {
-    this._heroes = data || { items: [] };
-    this.subject.next(this._heroes);
-    return this._heroes.items || [];
   }
 
   getHero(id: string): Observable<Hero> {

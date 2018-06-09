@@ -25,7 +25,7 @@ class HeroesApi(remote.Service):
         """Get list."""
         return hero_list
 
-    # GET /_ah/api/heroes_api/v1/hero/5222955109842944
+    # GET /_ah/api/heroes_api/v1/hero/{id}
     @Hero.method(request_fields=('id',),
                  path='hero/{id}',
                  http_method='GET',
@@ -45,7 +45,7 @@ class HeroesApi(remote.Service):
         hero.put()
         return hero
 
-    # PUT /_ah/api/heroes_api/v1/heroes
+    # PUT /_ah/api/heroes_api/v1/hero/{id}
     @Hero.method(path='hero/{id}',
                  http_method='PUT',
                  name='hero.update')
@@ -54,7 +54,7 @@ class HeroesApi(remote.Service):
         hero.put()
         return hero
 
-    # DELETE /_ah/api/heroes_api/v1/heroes
+    # DELETE /_ah/api/heroes_api/v1/hero/{id}
     @Hero.method(path='hero/{id}',
                  http_method='DELETE',
                  name='hero.delete')
