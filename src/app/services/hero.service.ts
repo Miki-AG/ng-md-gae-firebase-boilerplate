@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject, throwError as observableThrowError } from 'rxjs';
+import { of, Observable, BehaviorSubject, throwError as observableThrowError } from 'rxjs';
 import { catchError, map, share } from 'rxjs/operators';
 
 import { Hero } from '../components/hero';
@@ -28,6 +28,15 @@ export class HeroService {
   private heroesUrl = `${this.rootUrl}/heroes`;
   private heroUrl = `${this.rootUrl}/hero`;
 
+  private test: HeroData = {
+    items: [
+      { id: '1111', name: 'sadasd' },
+      { id: '2222', name: 'sadasd' },
+      { id: '3333', name: 'sadasd' },
+      { id: '4444', name: 'sadasd' },
+    ]
+  };
+
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
@@ -35,16 +44,34 @@ export class HeroService {
   }
 
   fetchHeroes() {
-    return this.http
-      .get<HeroData>(this.heroesUrl)
-      .pipe(
-        map(data => {
-          this._heroes = data || { items: [] };
-          this.subject.next(this._heroes);
-          return this._heroes.items || [];
-        }),
+    let isProd = true;
+    if (isProd) {
+      return this.http
+        .get<HeroData>(this.heroesUrl)
+        .pipe(
+          map(data => {
+            this._heroes = data || { items: [] };
+            this.subject.next(this._heroes);
+            return this._heroes.items || [];
+          }),
+          catchError(this.handleError),
+          share());
+    }
+    else {
+      return of(this.test).pipe(map(data => {
+        this._heroes = data || { items: [] };
+        this.subject.next(this._heroes);
+        return this._heroes.items || [];
+      }),
         catchError(this.handleError),
         share());
+    }
+  }
+
+  process(data) {
+    this._heroes = data || { items: [] };
+    this.subject.next(this._heroes);
+    return this._heroes.items || [];
   }
 
   getHero(id: string): Observable<Hero> {
