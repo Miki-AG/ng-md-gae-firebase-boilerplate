@@ -23,7 +23,6 @@ import { environment } from '../environments/environment';
 
 
 let interceptor = {
-    // use dev backend in place of Http service for development
     provide: HTTP_INTERCEPTORS,
     useClass: DevBackendInterceptor,
     multi: true
@@ -51,6 +50,7 @@ console.log(environment)
     ],
     providers: [
         HeroService,
+        // use dev backend in place of Http service for development
         environment.gae ? [] : interceptor
     ],
     bootstrap: [AppComponent]
