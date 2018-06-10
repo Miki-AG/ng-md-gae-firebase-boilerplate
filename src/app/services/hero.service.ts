@@ -66,8 +66,6 @@ export class HeroService {
   }
 
   private post(hero: Hero) {
-    console.log('HeroService.post (2)')
-
     return this.http
       .post<Hero>(this.heroesUrl, hero)
       .pipe(
@@ -81,8 +79,6 @@ export class HeroService {
   }
 
   private put(hero: Hero) {
-    console.log('HeroService.put (2)')
-
     const url = this.heroUrl + '/' + hero.id;
     let obs = this.http
       .put<Hero>(url, hero)
@@ -99,10 +95,8 @@ export class HeroService {
   private updateHeroInList(hero: Hero) {
     let index = this._heroes.items.findIndex(item => item.id === hero.id);
     if (this._heroes.items[index]) {
-      console.log('HeroService.save (3 update)')
       this._heroes.items[index] = hero;
     } else {
-      console.log('HeroService.save (3) create')
       this._heroes.items.push(hero);
     };
     this.subject.next(this._heroes);

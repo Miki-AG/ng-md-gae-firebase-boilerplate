@@ -8,7 +8,6 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 @Component({
     selector: 'my-heroes',
     templateUrl: './heroes.component.html',
-    // providers: [HeroService],
     styleUrls: ['./heroes.component.css']
 })
 
@@ -24,6 +23,7 @@ export class HeroesComponent implements OnInit {
         public heroService: HeroService,
         public dialog: MatDialog) {
     }
+
     ngOnInit(): void {
         this.heroService.subject.subscribe(
             heroes => {
@@ -46,12 +46,9 @@ export class HeroesComponent implements OnInit {
     addHero(): void {
         this.openDialog();
     }
-
     close(savedHero: Hero): void {
-        if (savedHero) {
-        }
+        if (savedHero) { }
     }
-
     deleteHero(hero: Hero, event: any): void {
         event.stopPropagation();
         this.heroService.delete(hero).subscribe(res => {
@@ -61,11 +58,9 @@ export class HeroesComponent implements OnInit {
             }
         }, error => (this.error = error));
     }
-
     onSelect(hero: Hero): void {
         this.selectedHero = hero;
     }
-
     gotoDetail(): void {
         this.router.navigate(['/detail', this.selectedHero.id]);
     }

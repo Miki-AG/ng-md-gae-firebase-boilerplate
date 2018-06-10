@@ -20,10 +20,9 @@ export class SideNavComponent implements OnInit {
         this.mobileQuery.addListener(this._mobileQueryListener);
     }
 
+    ngOnInit() { }
+
     ngOnDestroy(): void {
         this.mobileQuery.removeListener(this._mobileQueryListener);
-    }
-
-    ngOnInit() {
     }
 }

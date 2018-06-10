@@ -7,16 +7,16 @@ import { Hero } from '../components/hero';
 
 @Injectable()
 export class HeroSearchService {
-  constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient) { }
 
-  search(term: string): Observable<Hero[]> {
-    return this.http
-      .get<Hero[]>(`app/heroes/?name=${term}`)
-      .pipe(catchError(this.handleError));
-  }
+    search(term: string): Observable<Hero[]> {
+        return this.http
+            .get<Hero[]>(`app/heroes/?name=${term}`)
+            .pipe(catchError(this.handleError));
+    }
 
-  private handleError(res: HttpErrorResponse) {
-    console.error(res.error);
-    return observableThrowError(res.error || 'Server error');
-  }
+    private handleError(res: HttpErrorResponse) {
+        console.error(res.error);
+        return observableThrowError(res.error || 'Server error');
+    }
 }

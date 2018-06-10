@@ -1,12 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, Subject, of } from 'rxjs';
-import {
-  catchError,
-  debounceTime,
-  distinctUntilChanged,
-  switchMap
-} from 'rxjs/operators';
+import { catchError, debounceTime, distinctUntilChanged, switchMap }
+  from 'rxjs/operators';
 import { Hero } from '../hero';
 import { HeroSearchService } from '../../services/hero-search.service';
 
@@ -17,18 +13,15 @@ import { HeroSearchService } from '../../services/hero-search.service';
   providers: [HeroSearchService]
 })
 export class HeroSearchComponent implements OnInit {
+
   heroes: Observable<Hero[]>;
+
   private searchTerms = new Subject<string>();
 
   constructor(
     private heroSearchService: HeroSearchService,
     private router: Router
   ) { }
-
-  search(term: string): void {
-    // Push a search term into the observable stream.
-    this.searchTerms.next(term);
-  }
 
   ngOnInit(): void {
     this.heroes = this.searchTerms.pipe(
@@ -49,7 +42,10 @@ export class HeroSearchComponent implements OnInit {
       })
     );
   }
-
+  search(term: string): void {
+    // Push a search term into the observable stream.
+    this.searchTerms.next(term);
+  }
   gotoDetail(hero: Hero): void {
     const link = ['/detail', hero.id];
     this.heroes = of<Hero[]>([]);

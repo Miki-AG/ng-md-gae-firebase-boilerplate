@@ -18,6 +18,10 @@ export class HeroesTableComponent implements OnInit {
 
   constructor(private router: Router, private heroService: HeroService) { }
 
+  ngOnInit(): void {
+    this.getHeroes();
+  }
+
   getHeroes(): void {
     this.heroService
       .fetchHeroes()
@@ -26,9 +30,4 @@ export class HeroesTableComponent implements OnInit {
         error => (this.error = error)
       )
   }
-
-  ngOnInit(): void {
-    this.getHeroes();
-  }
-
 }
