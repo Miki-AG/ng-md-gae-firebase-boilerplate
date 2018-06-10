@@ -23,18 +23,18 @@ This project utilizes:
 ## Development server (no GAE)
 
 - Run `ng serve` for a simple dev server. (it will use `ng build --configuration devmem`)
-- Data will be pulled from a Json file in disk (see [Angular in-memory-web-api](https://github.com/angular/in-memory-web-api))
+- API data calls will be intercepted and data will be served from a mock backend (app/services/hero-dev-backend.ts)
 
 ## Build and run GAE local
 
 - Run `ng build --configuration devgae` to rebuild the /dist directory.
 - Run `gulp run` to launch the app and GAE.
-- Data will be pulled from the GAE Datastore.
+- Data will be pulled from the local GAE Datastore.
 
 ## Deploy on Google App Engine
 - Build for prod
     `ng build --configuration production` [aot](https://angular.io/guide/aot-compiler) compilation + browser cache busting, etc...
-- Make sure you are on your Google account
+- Make sure your Google account is setup locally
     `gcloud auth list`
 - Make sure gcloud points to your project
     `gcloud config set project <project-id>`

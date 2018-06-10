@@ -19,7 +19,16 @@ import { HeroSearchComponent } from './components/hero-search/hero-search.compon
 import { HeroService } from './services/hero.service';
 import { SideNavComponent } from './components/side-nav/side-nav.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { environment } from '../environments/environment';
 
+
+let interceptor = {
+    // use dev backend in place of Http service for development
+    provide: HTTP_INTERCEPTORS,
+    useClass: DevBackendInterceptor,
+    multi: true
+};
+console.log(environment)
 @NgModule({
     imports: [
         BrowserModule,
@@ -42,12 +51,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
     ],
     providers: [
         HeroService,
-        {
-            // use dev backend in place of Http service for development
-            provide: HTTP_INTERCEPTORS,
-            useClass: DevBackendInterceptor,
-            multi: true
-        }
+        environment.gae ? [] : interceptor
     ],
     bootstrap: [AppComponent]
 })
