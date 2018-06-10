@@ -12,7 +12,6 @@ export class HeroDetailComponent implements OnInit {
     @Input() hero: Hero;
     @Output() close = new EventEmitter();
     error: any;
-    navigated = false; // true if navigated here
 
     constructor(
         private heroService: HeroService,
@@ -23,24 +22,16 @@ export class HeroDetailComponent implements OnInit {
         this.route.params.forEach((params: Params) => {
             if (params['id'] !== undefined) {
                 let id: string = params['id'];
-                this.navigated = true;
                 this.heroService.getHero(id).subscribe(hero => (this.hero = hero));
             } else {
-                this.navigated = false;
                 this.hero = new Hero();
             }
         });
     }
     save(): void {
         this.heroService.save(this.hero).subscribe((hero: Hero) => {
-            console.log('received: ', hero)
-            this.hero = hero; // saved hero, w/ id if new
-            this.goBack(hero);
-        }, error => (this.error = error)); // TODO: Display error message
-    }
-    goBack(savedHero: Hero = null): void {
-        if (this.navigated) {
+            this.hero = hero;
             window.history.back();
-        }
+        }, error => (this.error = error));
     }
 }

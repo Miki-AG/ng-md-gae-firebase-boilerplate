@@ -25,9 +25,7 @@ export class DialogAddHero {
     }
 
     save(): void {
-        console.log('DialogAddHero.save (1)')
         this.heroService.save(this.hero).subscribe(hero => {
-            console.log('DialogAddHero.save (4)')
             this.dialogRef.close();
             return hero;
         }, errorResponse => {
