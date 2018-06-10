@@ -44,3 +44,7 @@ This project utilizes:
     - Use project ID, it must exists in your console (https://console.cloud.google.com), if it does not exists, create it beforehand.
 - To deploy the app
     `gcloud app deploy`
+
+## Google Analytics
+Google Analytics works out of the box. Just simply add your GA Tracking ID to your production environment file.
+
