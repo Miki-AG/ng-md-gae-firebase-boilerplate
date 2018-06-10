@@ -19,7 +19,7 @@ This project utilizes:
 - Node v8.9.4
 - Npm 5.6.0
 - Gulp 4.0.0-alpha.3
-- Make sure to rename files under src/environments (i.e. sample.environment.ts -> environment.ts). The reason for this is that .gitignore will make git to ignore env files to avoid exposing sensitive attributes in the repo.
+- Make sure to rename all files under src/environments (i.e. sample.environment.ts -> environment.ts). The reason for this is that .gitignore will exclude those files in order to avoid exposing sensitive attributes in the repo.
 
 ## Development server (no GAE)
 
