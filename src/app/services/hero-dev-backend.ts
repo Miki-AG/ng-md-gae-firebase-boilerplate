@@ -11,10 +11,10 @@ export class DevBackendInterceptor implements HttpInterceptor {
 
     private heroData: HeroData = {
         items: [
-            { id: mask.toString(), name: 'sadasd' },
-            { id: (mask + 1).toString(), name: 'sadasd' },
-            { id: (mask + 2).toString(), name: 'sadasd' },
-            { id: (mask + 3).toString(), name: 'sadasd' },
+            { id: mask.toString(), name: 'Hero one' },
+            { id: (mask + 1).toString(), name: 'Hero two' },
+            { id: (mask + 2).toString(), name: 'Hero three' },
+            { id: (mask + 3).toString(), name: 'Hero four' },
         ]
     };
 
