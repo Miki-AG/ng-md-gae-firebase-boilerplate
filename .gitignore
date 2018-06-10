@@ -45,4 +45,6 @@ testem.log
 Thumbs.db
 
 # Envs properties
-/src/environments/*.ts
+/src/environments/environment.ts
+/src/environments/environment.devgae.ts
+/src/environments/environment.prod.ts
