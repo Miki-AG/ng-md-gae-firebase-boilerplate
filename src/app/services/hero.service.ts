@@ -10,32 +10,15 @@ import { HeroData } from '../components/hero';
 
 @Injectable()
 export class HeroService {
-  // https://stackoverflow.com/questions/35219713/how-to-create-an-observable-from-static-data-similar-to-http-one-in-angular
-  // https://medium.com/@OlegVaraksin/set-up-a-http-service-for-backendless-development-in-angular-2-83172970949b
-
-  // private  = new BehaviorSubject<HeroData>(null);
-  // public readonly data: Observable<HeroData> = this._heroes.asObservable();
-
   subject: BehaviorSubject<HeroData> = new BehaviorSubject<HeroData>(null);
-
 
   _castHeroes: Observable<any> = this.subject.asObservable();
   _heroes: HeroData = { items: [] };
 
   // http://localhost:8081/_ah/api/heroes_api/v1/heroes
-  // private heroesUrl = 'app/heroes'; // URL to web api
   private rootUrl = '_ah/api/heroes_api/v1';
   private heroesUrl = `${this.rootUrl}/heroes`;
   private heroUrl = `${this.rootUrl}/hero`;
-
-  private test: HeroData = {
-    items: [
-      { id: '1111', name: 'sadasd' },
-      { id: '2222', name: 'sadasd' },
-      { id: '3333', name: 'sadasd' },
-      { id: '4444', name: 'sadasd' },
-    ]
-  };
 
   constructor(private http: HttpClient) { }
 
