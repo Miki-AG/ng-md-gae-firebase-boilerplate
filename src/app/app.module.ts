@@ -11,6 +11,7 @@ import { AppComponent } from './components/app/app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { DialogAddHero } from './components/dialog-add-hero/dialog-add-hero.component';
+import { DialogAuth } from './components/dialog-auth/dialog-auth.component';
 import { HeroDetailComponent } from './components/hero-detail/hero-detail.component';
 import { HeroesComponent } from './components/heroes/heroes.component';
 import { HeroesTableComponent } from './components/heroes-table/heroes-table.component';
@@ -20,6 +21,8 @@ import { HeroService } from './services/hero.service';
 import { SideNavComponent } from './components/side-nav/side-nav.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { environment } from '../environments/environment';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 
 
 let interceptor = {
@@ -36,7 +39,9 @@ console.log(environment)
         BrowserAnimationsModule,
         FormsModule,
         AppRoutingModule,
-        HttpClientModule
+        HttpClientModule,
+        AngularFireModule.initializeApp(environment.firebase),
+        AngularFireAuthModule
     ],
     declarations: [
         AppComponent,
@@ -46,7 +51,8 @@ console.log(environment)
         HeroesTableComponent,
         HeroDetailComponent,
         SideNavComponent,
-        DialogAddHero
+        DialogAddHero,
+        DialogAuth
     ],
     providers: [
         HeroService,

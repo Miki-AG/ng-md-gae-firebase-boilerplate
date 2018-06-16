@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
 import { of, Observable } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
-import { HeroData } from '../components/hero';
+import { HeroData } from '../components/types';
 
 const mask = 10000000000000000;
 

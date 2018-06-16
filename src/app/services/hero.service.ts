@@ -3,9 +3,7 @@ import { Injectable } from '@angular/core';
 import { of, Observable, BehaviorSubject, throwError as observableThrowError } from 'rxjs';
 import { catchError, map, share } from 'rxjs/operators';
 
-import { Hero } from '../components/hero';
-import { HeroData } from '../components/hero';
-
+import { Hero, HeroData } from '../components/types';
 
 
 @Injectable()

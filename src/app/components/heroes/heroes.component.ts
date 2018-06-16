@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Hero } from '../hero';
+import { Hero } from '../types';
 import { HeroService } from '../../services/hero.service';
 import { DialogAddHero } from '../dialog-add-hero/dialog-add-hero.component';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';

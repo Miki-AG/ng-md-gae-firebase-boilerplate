@@ -1,5 +1,7 @@
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { DialogAuth } from '../dialog-auth/dialog-auth.component';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
     selector: 'app-side-nav',
@@ -14,13 +16,25 @@ export class SideNavComponent implements OnInit {
 
     constructor(
         private changeDetectorRef: ChangeDetectorRef,
-        private media: MediaMatcher) {
+        private media: MediaMatcher,
+        public dialog: MatDialog) {
         this.mobileQuery = media.matchMedia('(max-width: 600px)');
         this._mobileQueryListener = () => changeDetectorRef.detectChanges();
         this.mobileQuery.addListener(this._mobileQueryListener);
     }
 
     ngOnInit() { }
+
+    openDialog(): void {
+        let dialogRef = this.dialog.open(DialogAuth, {
+            width: '400px',
+            data: {
+                title: 'New hero',
+                description: 'Add a new hero using this dialog'
+            }
+        });
+        dialogRef.afterClosed().subscribe(result => { });
+    }
 
     ngOnDestroy(): void {
         this.mobileQuery.removeListener(this._mobileQueryListener);

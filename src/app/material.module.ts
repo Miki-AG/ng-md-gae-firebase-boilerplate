@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { DialogAddHero } from './components/dialog-add-hero/dialog-add-hero.component';
+import { DialogAuth } from './components/dialog-auth/dialog-auth.component';
 
 import {
     MatButtonModule,
@@ -31,7 +32,7 @@ import {
         MatDialogModule,
         MatSnackBarModule
     ],
-    entryComponents: [DialogAddHero],
+    entryComponents: [DialogAddHero, DialogAuth],
     exports: [
         MatButtonModule,
         MatMenuModule,

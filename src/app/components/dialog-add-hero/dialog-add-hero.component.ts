@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MatSnackBar, MAT_DIALOG_DATA } from '@angular/material';
-import { Hero } from '../hero';
+import { Hero } from '../types';
 import { HeroService } from '../../services/hero.service';
 
 /**
