@@ -27,11 +27,15 @@ export class HeroesComponent implements OnInit {
     ngOnInit(): void {
         this.heroService.subject.subscribe(
             heroes => {
-                if (heroes) {
+                if (heroes.items) {
+                    console.log('HeroesComponent (1)')
                     this.heroes = heroes.items;
                 }
             },
-            error => (this.error = error));
+            error => {
+                console.log('HeroesComponent (2)')
+                this.error = error;
+            });
     }
     openDialog(): void {
         let dialogRef = this.dialog.open(DialogAddHero, {
