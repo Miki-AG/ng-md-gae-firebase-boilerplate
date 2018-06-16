@@ -12,7 +12,6 @@ import { HeroData } from '../components/hero';
 export class HeroService {
     subject: BehaviorSubject<HeroData> = new BehaviorSubject<HeroData>(null);
 
-    _castHeroes: Observable<any> = this.subject.asObservable();
     _heroes: HeroData = { items: [] };
 
     // http://localhost:8081/_ah/api/heroes_api/v1/heroes
@@ -41,7 +40,7 @@ export class HeroService {
     }
 
     getHero(id: string): Observable<Hero> {
-        return this._castHeroes.pipe(
+        return this.subject.asObservable().pipe(
             map(heroes => heroes.items.find(hero => hero.id === id))
         );
     }
