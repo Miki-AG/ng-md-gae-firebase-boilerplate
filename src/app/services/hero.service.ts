@@ -30,10 +30,14 @@ export class HeroService {
             .get<HeroData>(this.heroesUrl)
             .pipe(
                 map(data => {
-                    this._heroes = data || { items: [] };
-                    this.subject.next(this._heroes);
-                    console.log('fetchHeroes ' + this._heroes.items)
-                    return this._heroes.items || [];
+                    let newItems = [];
+                    if (data.items) {
+                        this._heroes = data;
+                        this.subject.next(this._heroes);
+                        newItems = this._heroes.items;
+                    }
+                    this.subject.next(this._heroes || { items: [] });
+                    return newItems;
                 }),
                 catchError(this.handleError),
                 share());

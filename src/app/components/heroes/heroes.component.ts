@@ -27,13 +27,11 @@ export class HeroesComponent implements OnInit {
     ngOnInit(): void {
         this.heroService.subject.subscribe(
             heroes => {
-                if (heroes.items) {
-                    console.log('HeroesComponent (1)')
+                if (heroes && heroes.items) {
                     this.heroes = heroes.items;
                 }
             },
             error => {
-                console.log('HeroesComponent (2)')
                 this.error = error;
             });
     }
