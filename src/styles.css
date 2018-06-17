@@ -37,11 +37,6 @@ body {
     margin: 24px;
 }
 
-.mat-dialog-container {
-    padding: 0!important;
-    margin: 0!important;
-}
-
 .mat-dialog-container .mat-card {
     margin: 0!important;
 }
