@@ -3,6 +3,7 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { DialogAuth } from '../dialog-auth/dialog-auth.component';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { AuthService } from '../../services/auth.service';
+import * as firebase from 'firebase/app';
 
 @Component({
     selector: 'app-side-nav',
@@ -14,7 +15,7 @@ export class SideNavComponent implements OnInit {
     mobileQuery: MediaQueryList;
 
     private _mobileQueryListener: () => void;
-    private user: any;
+    private currentUser: firebase.User;
 
     constructor(
         private authService: AuthService,
@@ -27,11 +28,7 @@ export class SideNavComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.authService.getAuthState().subscribe(user => {
-            this.user = user;
-            console.log(user);
-        });
-
+        this.authService.getUser().subscribe(user => this.currentUser = user);
     }
 
     openDialog(): void {
