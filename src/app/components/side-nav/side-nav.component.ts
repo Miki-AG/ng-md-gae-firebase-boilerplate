@@ -2,6 +2,7 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { DialogAuth } from '../dialog-auth/dialog-auth.component';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
     selector: 'app-side-nav',
@@ -13,8 +14,10 @@ export class SideNavComponent implements OnInit {
     mobileQuery: MediaQueryList;
 
     private _mobileQueryListener: () => void;
+    private user: any;
 
     constructor(
+        private authService: AuthService,
         private changeDetectorRef: ChangeDetectorRef,
         private media: MediaMatcher,
         public dialog: MatDialog) {
@@ -23,7 +26,13 @@ export class SideNavComponent implements OnInit {
         this.mobileQuery.addListener(this._mobileQueryListener);
     }
 
-    ngOnInit() { }
+    ngOnInit() {
+        this.authService.getAuthState().subscribe(user => {
+            this.user = user;
+            console.log(user);
+        });
+
+    }
 
     openDialog(): void {
         let dialogRef = this.dialog.open(DialogAuth, {

@@ -18,6 +18,7 @@ import { HeroesTableComponent } from './components/heroes-table/heroes-table.com
 import { DevBackendInterceptor } from './services/hero-dev-backend';
 import { HeroSearchComponent } from './components/hero-search/hero-search.component';
 import { HeroService } from './services/hero.service';
+import { AuthService } from './services/auth.service';
 import { SideNavComponent } from './components/side-nav/side-nav.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { environment } from '../environments/environment';
@@ -30,7 +31,6 @@ let interceptor = {
     useClass: DevBackendInterceptor,
     multi: true
 };
-console.log(environment)
 @NgModule({
     imports: [
         BrowserModule,
@@ -56,6 +56,7 @@ console.log(environment)
     ],
     providers: [
         HeroService,
+        AuthService,
         // use dev backend in place of Http service for development
         environment.gae ? [] : interceptor
     ],
