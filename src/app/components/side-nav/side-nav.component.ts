@@ -28,7 +28,7 @@ export class SideNavComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.authService.getUser().subscribe(user => this.currentUser = user);
+        this.authService.getCurrentUser().subscribe(user => this.currentUser = user);
     }
 
     openDialog(): void {
