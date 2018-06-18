@@ -10,8 +10,8 @@ See the [demo](https://gae-boilerplate-203602.appspot.com).
 This project utilizes:
 - Angular 6
 - Angular Material 6
-- Backend in Google App Engine using REST Endpoints (TBC)
-- Firebase for authentication (TBC)
+- Backend in Google App Engine using REST Endpoints
+- Firebase for authentication
 - Gulp scripts to automate deployment in GAE
 
 ## Requirements

@@ -1,9 +1,10 @@
 import { MediaMatcher } from '@angular/cdk/layout';
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { DialogAuth } from '../dialog-auth/dialog-auth.component';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { AuthService } from '../../services/auth.service';
 import * as firebase from 'firebase/app';
+import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
     selector: 'app-side-nav',
@@ -11,6 +12,7 @@ import * as firebase from 'firebase/app';
     styleUrls: ['./side-nav.component.css']
 })
 export class SideNavComponent implements OnInit {
+    @ViewChild('snav') sidenav: MatSidenav;
 
     mobileQuery: MediaQueryList;
 
@@ -32,14 +34,10 @@ export class SideNavComponent implements OnInit {
     }
 
     openDialog(): void {
+        this.sidenav.close();
         let dialogRef = this.dialog.open(DialogAuth, {
-            width: '400px',
-            data: {
-                title: 'New hero',
-                description: 'Add a new hero using this dialog'
-            }
+            width: '400px'
         });
-        dialogRef.afterClosed().subscribe(result => { });
     }
 
     ngOnDestroy(): void {
