@@ -5,12 +5,15 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { AuthService } from '../../services/auth.service';
 import * as firebase from 'firebase/app';
 import { MatSidenav } from '@angular/material/sidenav';
+import { LOGIN_OR_REG } from '../enums';
+
 
 @Component({
     selector: 'app-side-nav',
     templateUrl: './side-nav.component.html',
     styleUrls: ['./side-nav.component.css']
 })
+
 export class SideNavComponent implements OnInit {
     @ViewChild('snav') sidenav: MatSidenav;
 
@@ -18,6 +21,8 @@ export class SideNavComponent implements OnInit {
 
     private _mobileQueryListener: () => void;
     private currentUser: firebase.User;
+
+    private lor: typeof LOGIN_OR_REG = LOGIN_OR_REG;
 
     constructor(
         private authService: AuthService,
@@ -32,14 +37,20 @@ export class SideNavComponent implements OnInit {
     ngOnInit() {
         this.authService.getCurrentUser().subscribe(user => this.currentUser = user);
     }
-
-    openDialog(): void {
+    openDialog(type: LOGIN_OR_REG): void {
+        console.log(type)
         this.sidenav.close();
         let dialogRef = this.dialog.open(DialogAuth, {
-            width: '400px'
+            width: '400px',
+            data: {
+                type: type
+            }
         });
     }
-
+    logoff(): void {
+        this.sidenav.close();
+        this.authService.logoff();
+    }
     ngOnDestroy(): void {
         this.mobileQuery.removeListener(this._mobileQueryListener);
     }

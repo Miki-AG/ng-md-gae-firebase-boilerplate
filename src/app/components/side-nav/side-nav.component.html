@@ -22,7 +22,9 @@
                 <a mat-list-item routerLink="/dashboard" routerLinkActive="active" (click)="snav.close()">Dashboard</a>
                 <a mat-list-item routerLink="/heroes" routerLinkActive="active" (click)="snav.close()">Heroes</a>
                 <a mat-list-item routerLink="/heroes-table" routerLinkActive="active" (click)="snav.close()">Table of heroes</a>
-                <a mat-list-item (click)="openDialog()">Login</a>
+                <a mat-list-item *ngIf="!currentUser" (click)="openDialog(lor.LOGIN)">Login</a>
+                <a mat-list-item *ngIf="!currentUser" (click)="openDialog(lor.REGISTER)">Register</a>
+                <a mat-list-item *ngIf="currentUser" (click)="logoff()">Logoff</a>
             </mat-nav-list>
         </mat-sidenav>
         <mat-sidenav-content>
