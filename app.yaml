@@ -7,6 +7,8 @@ libraries:
   version: latest
 - name: endpoints
   version: 1.0
+- name: ssl
+  version: latest
 
 handlers:
 - url: /static
