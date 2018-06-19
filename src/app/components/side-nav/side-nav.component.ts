@@ -1,7 +1,7 @@
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { DialogAuth } from '../dialog-auth/dialog-auth.component';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MatDialogRef, MatSnackBar, MAT_DIALOG_DATA } from '@angular/material';
 import { AuthService } from '../../services/auth.service';
 import * as firebase from 'firebase/app';
 import { MatSidenav } from '@angular/material/sidenav';
@@ -26,6 +26,7 @@ export class SideNavComponent implements OnInit {
 
     constructor(
         private authService: AuthService,
+        public snackBar: MatSnackBar,
         private changeDetectorRef: ChangeDetectorRef,
         private media: MediaMatcher,
         public dialog: MatDialog) {
@@ -48,7 +49,15 @@ export class SideNavComponent implements OnInit {
     }
     logoff(): void {
         this.sidenav.close();
-        this.authService.logoff();
+        this.authService.logoff().then((value: any) => {
+            this.snackBar.open('You have been logged off', 'OK', {
+                duration: 2000,
+            });
+        }).catch((reason: any) => {
+            this.snackBar.open(reason, 'OK', {
+                duration: 2000,
+            });
+        })
     }
     ngOnDestroy(): void {
         this.mobileQuery.removeListener(this._mobileQueryListener);
