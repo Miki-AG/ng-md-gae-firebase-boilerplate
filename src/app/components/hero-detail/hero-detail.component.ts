@@ -31,7 +31,10 @@ export class HeroDetailComponent implements OnInit {
     save(): void {
         this.heroService.save(this.hero).subscribe((hero: Hero) => {
             this.hero = hero;
-            window.history.back();
+            this.goBack();
         }, error => (this.error = error));
+    }
+    goBack(): void {
+        window.history.back();
     }
 }

@@ -3,7 +3,7 @@ import endpoints
 from google.appengine.ext import ndb
 from protorpc import remote
 from endpoints_proto_datastore.ndb import EndpointsModel
-
+#https://stackoverflow.com/questions/45041767/verifying-firebase-auth-token-permission-denied
 class Hero(EndpointsModel):
     """Hero model."""
     _message_fields_schema = ('id', 'name', 'created')

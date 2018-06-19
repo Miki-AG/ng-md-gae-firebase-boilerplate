@@ -38,7 +38,6 @@ export class SideNavComponent implements OnInit {
         this.authService.getCurrentUser().subscribe(user => this.currentUser = user);
     }
     openDialog(type: LOGIN_OR_REG): void {
-        console.log(type)
         this.sidenav.close();
         let dialogRef = this.dialog.open(DialogAuth, {
             width: '400px',
