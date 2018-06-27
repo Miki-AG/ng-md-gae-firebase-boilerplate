@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Hero } from '../types';
 import { HeroService } from '../../services/hero.service';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
     selector: 'my-hero-detail',
@@ -15,7 +16,8 @@ export class HeroDetailComponent implements OnInit {
 
     constructor(
         private heroService: HeroService,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        public snackBar: MatSnackBar
     ) { }
 
     ngOnInit(): void {
@@ -32,7 +34,12 @@ export class HeroDetailComponent implements OnInit {
         this.heroService.save(this.hero).subscribe((hero: Hero) => {
             this.hero = hero;
             this.goBack();
-        }, error => (this.error = error));
+        }, errorResponse => {
+            this.snackBar.open(errorResponse.error.message, 'OK', {
+                duration: 2000,
+            });
+            this.error = errorResponse.error;
+        });
     }
     goBack(): void {
         window.history.back();

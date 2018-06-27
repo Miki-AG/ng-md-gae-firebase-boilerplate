@@ -5,11 +5,15 @@ import { auth } from 'firebase/app';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
+import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
+
+
 
 @Injectable()
 export class AuthService {
 
     private currentUser: firebase.User = null;
+    public tokenId: string;
 
     constructor(
         public afAuth: AngularFireAuth
@@ -25,11 +29,20 @@ export class AuthService {
     getCurrentUser() {
         return this.afAuth.authState;
     }
+    storeTokenId() {
+        firebase.auth().currentUser.getIdToken().then(token => {
+            this.tokenId = token;
+        });
+    }
     loginWithEmail(email: string, pssw: string): Promise<any> {
         let promise = this.afAuth.auth.signInWithEmailAndPassword(email, pssw);
         promise
             .then((response) => {
                 console.log(response)
+                console.log('------------------')
+                console.log(firebase.auth().currentUser.getIdToken())
+                console.log('------------------')
+                this.storeTokenId();
             })
             .catch((reason) => {
             })
@@ -56,9 +69,39 @@ export class AuthService {
     logoff(): Promise<any> {
         let promise = this.afAuth.auth.signOut()
             .then((response) => {
+                this.tokenId = null;
+                console.log('logged off!');
             })
             .catch((reason) => {
+                this.tokenId = null;
+                console.log('logged off (error)!');
             })
         return promise;
+    }
+}
+
+@Injectable()
+export class AuthInterceptor implements HttpInterceptor {
+
+    constructor(
+        public authService: AuthService
+    ) { }
+
+    intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        // const authReq = request.clone({
+        //     headers: request.headers.set('Authorization', this.authService.tokenId)
+        // });
+        // return next.handle(authReq);
+
+
+        request = request.clone({
+            setHeaders: {
+                Authorization: `Bearer ${this.authService.tokenId}`
+            }
+        });
+        return next.handle(request);
+
+        // request.headers.set('Authorization', this.authService.tokenId)
+        // return next.handle(request);
     }
 }

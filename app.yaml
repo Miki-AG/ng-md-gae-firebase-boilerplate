@@ -3,12 +3,22 @@ api_version: 1
 threadsafe: true
 
 libraries:
+# - name: pycrypto
+#   version: latest
+# - name: endpoints
+#   version: 1.0
+# - name: ssl
+#   version: latest
 - name: pycrypto
-  version: latest
-- name: endpoints
-  version: 1.0
+  version: 2.6
 - name: ssl
-  version: latest
+  version: 2.7.11
+
+env_variables:
+  # The following values are to be replaced by information from the output of
+  # 'gcloud endpoints services deploy swagger.json' command.
+  ENDPOINTS_SERVICE_NAME: ng-md-gae-boilerplate.appspot.com
+  # ENDPOINTS_SERVICE_VERSION: 2018-06-21r0
 
 handlers:
 - url: /static
@@ -24,7 +34,11 @@ handlers:
 # url below must be /_ah/spi/.*
 # although the calls are like
 # /_ah/api/.*
-- url: /_ah/spi/.*
+# - url: /_ah/spi/.*
+#   secure: always
+#   script: server.api.application
+
+- url: /_ah/api/.*
   secure: always
   script: server.api.application
 

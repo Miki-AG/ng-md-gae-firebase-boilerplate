@@ -16,6 +16,7 @@ import { HeroDetailComponent } from './components/hero-detail/hero-detail.compon
 import { HeroesComponent } from './components/heroes/heroes.component';
 import { HeroesTableComponent } from './components/heroes-table/heroes-table.component';
 import { DevBackendInterceptor } from './services/hero-dev-backend';
+import { AuthInterceptor } from './services/auth.service';
 import { HeroSearchComponent } from './components/hero-search/hero-search.component';
 import { HeroService } from './services/hero.service';
 import { AuthService } from './services/auth.service';
@@ -26,9 +27,14 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
 
-let interceptor = {
+let apiInterceptor = {
     provide: HTTP_INTERCEPTORS,
     useClass: DevBackendInterceptor,
+    multi: true
+};
+let authInterceptor = {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
     multi: true
 };
 @NgModule({
@@ -58,7 +64,8 @@ let interceptor = {
         HeroService,
         AuthService,
         // use dev backend in place of Http service for development
-        environment.gae ? [] : interceptor
+        // use auth interceptor in prod for server side auth
+        environment.gae ? authInterceptor : apiInterceptor
     ],
     bootstrap: [AppComponent]
 })

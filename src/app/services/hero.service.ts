@@ -17,7 +17,9 @@ export class HeroService {
     private heroesUrl = `${this.rootUrl}/heroes`;
     private heroUrl = `${this.rootUrl}/hero`;
 
-    constructor(private http: HttpClient) { }
+    constructor(
+        private http: HttpClient
+    ) { }
 
     ngOnInit() {
         this.fetchHeroes();
