@@ -6,7 +6,6 @@ from endpoints_proto_datastore.ndb import EndpointsModel
 from google.appengine.api import users
 import os
 import logging
-# import google.oauth2
 import google.oauth2.id_token
 import requests_toolbelt.adapters.appengine
 import google.auth.transport.requests
@@ -80,7 +79,7 @@ class HeroesApi(remote.Service):
         user = self.get_user_from_token()
         if not user:
             raise endpoints.UnauthorizedException(
-                'You have to be logged in to insert new Heroes!')
+                'You have to be logged in to insert new heroes!')
         hero.owner = user
         hero.put()
         return hero
@@ -94,7 +93,7 @@ class HeroesApi(remote.Service):
         user = self.get_user_from_token()
         if user != hero.owner:
             raise endpoints.ForbiddenException(
-                'You cannot change a model you don\'t own!')
+                'You cannot change a hero you don\'t own!')
         hero.put()
         return hero
 
@@ -104,5 +103,9 @@ class HeroesApi(remote.Service):
                  name='hero.delete')
     def hero_delete(self, hero):
         """Delete."""
+        user = self.get_user_from_token()
+        if user != hero.owner:
+            raise endpoints.ForbiddenException(
+                'You cannot delete a hero you don\'t own!')
         hero.key.delete()
         return hero
