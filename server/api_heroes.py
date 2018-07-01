@@ -8,14 +8,15 @@ import os
 import logging
 import google.oauth2.id_token
 from api_helpers import login_required, ownership_required, get_user_from_token
-
+from google.appengine.ext import blobstore
 
 class Hero(EndpointsModel):
     """Hero model."""
-    _message_fields_schema = ('id', 'name', 'owner', 'created')
+    _message_fields_schema = ('id', 'name', 'owner', 'upload_url', 'created')
 
     name = ndb.StringProperty()
     owner = ndb.StringProperty()
+    upload_url = ndb.StringProperty()
     created = ndb.DateTimeProperty(auto_now_add=True)
 
 @endpoints.api(
@@ -35,6 +36,8 @@ class HeroesApi(remote.Service):
                        name='heroes.list')
     def hero_list(self, hero_list):
         """Get list."""
+        for hero in hero_list:
+            hero.upload_url = blobstore.create_upload_url('/upload_photo')
         return hero_list
 
     # GET /_ah/api/heroes_api/v1/hero/{id}

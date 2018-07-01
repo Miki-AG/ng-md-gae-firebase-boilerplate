@@ -18,22 +18,6 @@ input {
     object-fit: contain;
 }
 
-
-/*button {
-  margin-top: 20px;
-  font-family: Arial;
-  background-color: #eee;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 4px;
-  cursor: pointer; cursor: hand;
+.hidden-input {
+    display: none;
 }
-button:hover {
-  background-color: #cfd8dc;
-}
-button:disabled {
-  background-color: #eee;
-  color: #ccc;
-  cursor: auto;
-}
-*/

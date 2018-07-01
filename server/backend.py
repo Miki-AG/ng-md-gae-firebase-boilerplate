@@ -2,6 +2,13 @@
 import webapp2
 import logging
 from webapp2_extras import jinja2 as jinja2_module
+from google.appengine.ext.webapp import blobstore_handlers
+from google.appengine.ext import ndb
+import json
+
+class UserPhoto(ndb.Model):
+    blob_key = ndb.BlobKeyProperty()
+    # pattern_key = ndb.KeyProperty(kind=Project)
 
 class TemplateHandler(webapp2.RequestHandler):
     """Module that provides rendered index.html."""
@@ -30,6 +37,8 @@ class TemplateHandler(webapp2.RequestHandler):
 class TemplateService(TemplateHandler):
     """Returns rendered templates."""
     def get(self):
+        logging.info("---> TemplateService.get")
+
         """Returns template."""
         split = self.request.path_info[1:].split('/')
         logging.info("url: {}".format(self.request.url))
@@ -57,10 +66,36 @@ class TemplateService(TemplateHandler):
         else:
             context = {}
             self.render_response('index.html', **context)
+    def post(self):
+        logging.info("---> TemplateService.post")
 
+
+class PhotoUploadHandler(blobstore_handlers.BlobstoreUploadHandler):
+    def post(self):
+        logging.info("---> PhotoUploadHandler.post")
+
+        upload = self.get_uploads()[0]
+        pattern_id = None
+        body = self.request.body.split()
+        iterator = iter(body)
+        for word in iterator:
+            if word == 'name="id"':
+                pattern_id = next(iterator)
+                logging.info('[body.next()]: {}'.format(pattern_id))
+
+        # pattern = Project.get_by_id(int(pattern_id))
+
+        user_photo = UserPhoto(blob_key=upload.key())
+        # user_photo.pattern_key = pattern.key
+        user_photo.put()
+
+        # now look into this: http://stackoverflow.com/questions/11195388/ndb-query-a-model-based-upon-keyproperty-instance
+        self.response.write(json.dumps({'url':'/view_photo/%s' % upload.key()}))
 
 application = webapp2.WSGIApplication([
-    # ('/upload_file', PhotoUploadHandler),
+    # ('/upload', PhotoUploadHandler),
+    ('/upload_photo', PhotoUploadHandler),
+    # ('/_ah/upload', PhotoUploadHandler),
     # ('/serve_file/([^/]+)?', ViewPhotoHandler),
     ('/.*', TemplateService),
 ], debug=True)

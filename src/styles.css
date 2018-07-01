@@ -1,11 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import 'https://fonts.googleapis.com/icon?family=Material+Icons';
-
-
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
-
-
 
 /*@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';*/
 
@@ -43,4 +39,19 @@ body {
 
 .mat-dialog-container .mat-card .mat-card-header {
     margin-bottom: 8px;
+}
+
+.file-picker {
+    position: absolute;
+    top: 85px;
+    right: 0;
+    cursor: pointer;
+}
+
+.file-picker mat-icon {
+    background: rgba(255, 255, 255, 0.75);
+    color: #ff4081;
+    border-radius: 50%;
+    padding: 5px;
+    cursor: pointer;
 }
