@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Hero } from '../types';
 import { HeroService } from '../../services/hero.service';
 import { DialogAddHero } from '../dialog-add-hero/dialog-add-hero.component';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MatDialogRef, MatSnackBar, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
     selector: 'my-heroes',
@@ -21,6 +21,7 @@ export class HeroesComponent implements OnInit {
 
     constructor(private router: Router,
         public heroService: HeroService,
+        public snackBar: MatSnackBar,
         public dialog: MatDialog) {
     }
 
@@ -58,7 +59,12 @@ export class HeroesComponent implements OnInit {
             if (this.selectedHero === hero) {
                 this.selectedHero = null;
             }
-        }, error => (this.error = error));
+        }, response => {
+            this.error = response.error;
+            this.snackBar.open(response.error.message, 'OK', {
+                duration: 2000,
+            });
+        });
     }
     onSelect(hero: Hero): void {
         this.selectedHero = hero;

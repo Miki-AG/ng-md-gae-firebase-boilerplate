@@ -7,16 +7,12 @@ from google.appengine.api import users
 import os
 import logging
 import google.oauth2.id_token
-import requests_toolbelt.adapters.appengine
-import google.auth.transport.requests
-
-requests_toolbelt.adapters.appengine.monkeypatch()
-HTTP_REQUEST = google.auth.transport.requests.Request()
+from api_helpers import login_required, ownership_required, get_user_from_token
 
 
 class Hero(EndpointsModel):
     """Hero model."""
-    _message_fields_schema = ('id', 'name', 'created')
+    _message_fields_schema = ('id', 'name', 'owner', 'created')
 
     name = ndb.StringProperty()
     owner = ndb.StringProperty()
@@ -33,24 +29,6 @@ class Hero(EndpointsModel):
     allowed_client_ids=["firebase_auth"])
 class HeroesApi(remote.Service):
     """Def of endpoints."""
-
-    def get_user_from_token(self):
-        # Returns the owner extracting it from the token
-        headers = self.request_state.headers.get('authorization')
-        if headers:
-            id_token = headers.split(' ').pop()
-            logging.info("----------> id_token: {}".format(headers))
-
-            if id_token == 'undefined':
-                return 'Unauthorized', 401
-            claims = google.oauth2.id_token.verify_firebase_token(
-                id_token, HTTP_REQUEST)
-            if not claims:
-                return 'Unauthorized', 401
-            logging.info("----------> user: {}".format(claims))
-            return claims.get('email')
-        else:
-            return 'Unauthorized', 401
 
     # GET /_ah/api/heroes_api/v1/heroes
     @Hero.query_method(path='heroes',
@@ -74,12 +52,10 @@ class HeroesApi(remote.Service):
     @Hero.method(path='heroes',
                  http_method='POST',
                  name='heroes.insert')
+    @login_required('You have to be logged in to insert new heroes!')
     def hero_insert(self, hero):
         """Insert."""
-        user = self.get_user_from_token()
-        if not user:
-            raise endpoints.UnauthorizedException(
-                'You have to be logged in to insert new heroes!')
+        user = get_user_from_token(self)
         hero.owner = user
         hero.put()
         return hero
@@ -88,12 +64,10 @@ class HeroesApi(remote.Service):
     @Hero.method(path='hero/{id}',
                  http_method='PUT',
                  name='hero.update')
+    @ownership_required('You cannot change a hero you don\'t own!')
+    @login_required('You have to be logged in to change a hero!')
     def hero_update(self, hero):
         """Update."""
-        user = self.get_user_from_token()
-        if user != hero.owner:
-            raise endpoints.ForbiddenException(
-                'You cannot change a hero you don\'t own!')
         hero.put()
         return hero
 
@@ -101,11 +75,9 @@ class HeroesApi(remote.Service):
     @Hero.method(path='hero/{id}',
                  http_method='DELETE',
                  name='hero.delete')
+    @ownership_required('You cannot delete a hero you don\'t own!')
+    @login_required('You have to be logged in to delete a hero!')
     def hero_delete(self, hero):
         """Delete."""
-        user = self.get_user_from_token()
-        if user != hero.owner:
-            raise endpoints.ForbiddenException(
-                'You cannot delete a hero you don\'t own!')
         hero.key.delete()
         return hero

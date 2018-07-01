@@ -25,14 +25,16 @@ export class DialogAddHero {
     }
 
     save(): void {
-        this.heroService.save(this.hero).subscribe(hero => {
-            this.dialogRef.close();
-            return hero;
-        }, errorResponse => {
-            this.error = errorResponse;
-            this.snackBar.open(errorResponse.message, 'OK', {
-                duration: 2000,
+        this.heroService.save(this.hero).subscribe(
+            hero => {
+                this.dialogRef.close();
+                return hero;
+            },
+            response => {
+                this.error = response.error;
+                this.snackBar.open(response.error.message, 'OK', {
+                    duration: 2000,
+                });
             });
-        });
     }
 }
