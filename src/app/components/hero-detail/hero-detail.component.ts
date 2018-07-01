@@ -45,58 +45,37 @@ export class HeroDetailComponent implements OnInit {
             this.error = errorResponse.error;
         });
     }
-    selectFile(files: any): void {
-        console.log(files[0])
+    fileSelected(files: any): void {
+        const httpOptions = {
+            headers: new HttpHeaders({
+                'Content-Disposition': 'attachment',
+                'filename': 'your-file.docx'
+            })
+        };
+        this.httpCient.get('/get_upload_url', httpOptions)
+            .subscribe(
+                result => {
+                    console.log(result);
+                    this.uploadFile(files, result[0].upload_url);
+                },
+                error => {
+                    console.log('There was an error: ')
+                    console.log(error)
+                });
+    }
+    uploadFile(files: any, upload_url: string): void {
         let file = files[0];
         var data = new FormData();
         data.append('file', file);
         data.append('name', file.name);
-        let httpOptions2 = {
-            // transformRequest: angular.identity,
-            headers: {
-                'Content-Type': undefined
-                //'Content-Type': 'application/x-www-form-urlencoded'
-                //'Content-Type': 'multipart/form-data'
-                //'Content-Type': 'multipart/related'
-            }
-        }
-
-        // this.httpCient.post(
-        //     this.hero.upload_url,
-        //     data,
-        //     httpOptions)
-        //     .pipe(
-        //         catchError(this.handleError)
-        //     );
-
         const httpOptions = {
             headers: new HttpHeaders({
-                // 'Content-Type': 'application/json'
-                // 'Content-Type': 'undefined',
-                // 'Content-Disposition': 'form-data'
-                // 'Content-Type': 'multipart/form-data'
-
-                // THis does something
-                // 'Content-Type': 'application/x-www-form-urlencoded'
-
                 'Content-Disposition': 'attachment',
                 'filename': 'your-file.docx'
-
             })
         };
-        // this.httpCient.post(this.hero.upload_url,
-        //     data,
-        //     httpOptions).subscribe(
-        //         result => {
-        //             console.log(result);
-        //         },
-        //         error => {
-        //             console.log('There was an error: ')
-        //             console.log(error)
-        //         });
-        // console.log(this.hero.upload_url)
-        // this.httpCient.post('/_ah/upload',{},
-        this.httpCient.post(this.hero.upload_url, data, httpOptions)
+
+        this.httpCient.post(upload_url, data, httpOptions)
             .subscribe(
                 result => {
                     console.log(result);
@@ -105,7 +84,6 @@ export class HeroDetailComponent implements OnInit {
                     console.log('There was an error: ')
                     console.log(error)
                 });
-
     }
     handleError(error: HttpErrorResponse) {
         if (error.error instanceof ErrorEvent) {

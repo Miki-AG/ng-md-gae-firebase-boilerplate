@@ -5,6 +5,7 @@ from webapp2_extras import jinja2 as jinja2_module
 from google.appengine.ext.webapp import blobstore_handlers
 from google.appengine.ext import ndb
 import json
+from google.appengine.ext import blobstore
 
 class UserPhoto(ndb.Model):
     blob_key = ndb.BlobKeyProperty()
@@ -92,9 +93,21 @@ class PhotoUploadHandler(blobstore_handlers.BlobstoreUploadHandler):
         # now look into this: http://stackoverflow.com/questions/11195388/ndb-query-a-model-based-upon-keyproperty-instance
         self.response.write(json.dumps({'url':'/view_photo/%s' % upload.key()}))
 
+class GenerateUploadUrlHandler(webapp2.RequestHandler):
+    def get(self):
+        response = []
+
+        url = blobstore.create_upload_url('/upload_photo')
+        item = {}
+        item['upload_url'] = url
+        response.append(item)
+        self.response.write(json.dumps(response))
+
+
 application = webapp2.WSGIApplication([
     # ('/upload', PhotoUploadHandler),
     ('/upload_photo', PhotoUploadHandler),
+    ('/get_upload_url', GenerateUploadUrlHandler),
     # ('/_ah/upload', PhotoUploadHandler),
     # ('/serve_file/([^/]+)?', ViewPhotoHandler),
     ('/.*', TemplateService),

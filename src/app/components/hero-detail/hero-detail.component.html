@@ -6,7 +6,7 @@
                   <mat-icon>edit</mat-icon>
               </label>
               <input type="file" id="{{'upload-picture-' + hero.id}}" class="hidden-input" accept="image/jpeg, .jpeg, image/png, .png, image/pjpeg, .jpg"
-                (change)="selectFile($event.target.files)">
+                (change)="fileSelected($event.target.files)">
             </span>
             <mat-card-header>
                 <img mat-card-avatar src="https://source.unsplash.com/user/erondu/200x200?username={{hero.id || 'new'}}">
