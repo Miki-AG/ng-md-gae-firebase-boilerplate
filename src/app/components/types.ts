@@ -2,7 +2,7 @@ export class Hero {
     id: string;
     name: string;
     owner?: string;
-    upload_url?: string;
+    blob_key?: string;
     created?: string;
 }
 export class HeroData {

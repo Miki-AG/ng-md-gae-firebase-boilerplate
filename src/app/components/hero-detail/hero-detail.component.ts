@@ -16,6 +16,7 @@ export class HeroDetailComponent implements OnInit {
     @Input() hero: Hero;
     @Output() close = new EventEmitter();
     error: any;
+    imgUrl: string;
 
     constructor(
         private heroService: HeroService,
@@ -79,6 +80,8 @@ export class HeroDetailComponent implements OnInit {
         this.httpCient.post(upload_url, data, httpOptions)
             .subscribe(
                 result => {
+                    this.hero.blob_key = result['blob_key'];
+                    this.imgUrl = result['url'];
                     console.log(result);
                 },
                 error => {

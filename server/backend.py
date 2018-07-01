@@ -36,8 +36,6 @@ class TemplateHandler(webapp2.RequestHandler):
 class TemplateService(TemplateHandler):
     """Returns rendered templates."""
     def get(self):
-        logging.info("---> TemplateService.get")
-
         """Returns template."""
         split = self.request.path_info[1:].split('/')
         logging.info("url: {}".format(self.request.url))
@@ -65,46 +63,45 @@ class TemplateService(TemplateHandler):
         else:
             context = {}
             self.render_response('index.html', **context)
-    def post(self):
-        logging.info("---> TemplateService.post")
-
-
-class PhotoUploadHandler(blobstore_handlers.BlobstoreUploadHandler):
-    def post(self):
-        logging.info("---> PhotoUploadHandler.post")
-
-        upload = self.get_uploads()[0]
-        pattern_id = None
-        body = self.request.body.split()
-        iterator = iter(body)
-        for word in iterator:
-            logging.info("---> {}".format(word))
-            if word == 'name="hero-id"':
-                heroId = int(next(iterator))
-                logging.info('[heroId]: {}'.format(heroId))
-                hero = Hero.get_by_id(heroId)
-                if hero is not None:
-                    hero.blob_key = upload.key()
-                    hero.put()
-
-        # now look into this: http://stackoverflow.com/questions/11195388/ndb-query-a-model-based-upon-keyproperty-instance
-        self.response.write(json.dumps({'url':'/view_photo/%s' % upload.key()}))
 
 class GenerateUploadUrlHandler(webapp2.RequestHandler):
     def get(self):
         response = []
-
         url = blobstore.create_upload_url('/upload_photo')
         item = {}
         item['upload_url'] = url
         response.append(item)
         self.response.write(json.dumps(response))
 
+class PhotoUploadHandler(blobstore_handlers.BlobstoreUploadHandler):
+    def post(self):
+        upload = self.get_uploads()[0]
+        body = self.request.body.split()
+        iterator = iter(body)
+        for word in iterator:
+            if word == 'name="hero-id"':
+                heroId = int(next(iterator))
+                hero = Hero.get_by_id(heroId)
+                hero.blob_key = upload.key()
+                hero.put()
+        self.response.write(json.dumps({
+            'url':'/view_photo/%s' % upload.key(),
+            'blob_key' : '%s' % upload.key()
+            }))
+
+class ViewPhotoHandler(blobstore_handlers.BlobstoreDownloadHandler):
+    def get(self, blob_key):
+        if not blobstore.get(blob_key):
+            self.error(404)
+        else:
+            self.send_blob(blob_key)
 
 application = webapp2.WSGIApplication([
     # ('/upload', PhotoUploadHandler),
     ('/upload_photo', PhotoUploadHandler),
     ('/get_upload_url', GenerateUploadUrlHandler),
+    ('/view_photo/([^/]+)?', ViewPhotoHandler),
+
     # ('/_ah/upload', PhotoUploadHandler),
     # ('/serve_file/([^/]+)?', ViewPhotoHandler),
     ('/.*', TemplateService),
