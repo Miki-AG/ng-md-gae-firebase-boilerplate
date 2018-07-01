@@ -12,11 +12,11 @@ from google.appengine.ext import blobstore
 
 class Hero(EndpointsModel):
     """Hero model."""
-    _message_fields_schema = ('id', 'name', 'owner', 'upload_url', 'created')
+    _message_fields_schema = ('id', 'name', 'owner', 'blob_key', 'created')
 
     name = ndb.StringProperty()
     owner = ndb.StringProperty()
-    upload_url = ndb.StringProperty()
+    blob_key = ndb.BlobKeyProperty()
     created = ndb.DateTimeProperty(auto_now_add=True)
 
 @endpoints.api(
@@ -36,8 +36,6 @@ class HeroesApi(remote.Service):
                        name='heroes.list')
     def hero_list(self, hero_list):
         """Get list."""
-        for hero in hero_list:
-            hero.upload_url = blobstore.create_upload_url('/upload_photo')
         return hero_list
 
     # GET /_ah/api/heroes_api/v1/hero/{id}
@@ -60,6 +58,7 @@ class HeroesApi(remote.Service):
         """Insert."""
         user = get_user_from_token(self)
         hero.owner = user
+        hero.blob_key = None
         hero.put()
         return hero
 

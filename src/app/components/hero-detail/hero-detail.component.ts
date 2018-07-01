@@ -68,6 +68,7 @@ export class HeroDetailComponent implements OnInit {
         var data = new FormData();
         data.append('file', file);
         data.append('name', file.name);
+        data.append('hero-id', this.hero.id);
         const httpOptions = {
             headers: new HttpHeaders({
                 'Content-Disposition': 'attachment',

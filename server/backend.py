@@ -6,10 +6,8 @@ from google.appengine.ext.webapp import blobstore_handlers
 from google.appengine.ext import ndb
 import json
 from google.appengine.ext import blobstore
+from api_heroes import Hero
 
-class UserPhoto(ndb.Model):
-    blob_key = ndb.BlobKeyProperty()
-    # pattern_key = ndb.KeyProperty(kind=Project)
 
 class TemplateHandler(webapp2.RequestHandler):
     """Module that provides rendered index.html."""
@@ -80,15 +78,14 @@ class PhotoUploadHandler(blobstore_handlers.BlobstoreUploadHandler):
         body = self.request.body.split()
         iterator = iter(body)
         for word in iterator:
-            if word == 'name="id"':
-                pattern_id = next(iterator)
-                logging.info('[body.next()]: {}'.format(pattern_id))
-
-        # pattern = Project.get_by_id(int(pattern_id))
-
-        user_photo = UserPhoto(blob_key=upload.key())
-        # user_photo.pattern_key = pattern.key
-        user_photo.put()
+            logging.info("---> {}".format(word))
+            if word == 'name="hero-id"':
+                heroId = int(next(iterator))
+                logging.info('[heroId]: {}'.format(heroId))
+                hero = Hero.get_by_id(heroId)
+                if hero is not None:
+                    hero.blob_key = upload.key()
+                    hero.put()
 
         # now look into this: http://stackoverflow.com/questions/11195388/ndb-query-a-model-based-upon-keyproperty-instance
         self.response.write(json.dumps({'url':'/view_photo/%s' % upload.key()}))
