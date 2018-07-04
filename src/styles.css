@@ -3,6 +3,9 @@
 @import 'https://fonts.googleapis.com/icon?family=Material+Icons';
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 
+
+
+
 /*@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';*/
 
 
@@ -54,4 +57,23 @@ body {
     border-radius: 50%;
     padding: 5px;
     cursor: pointer;
+}
+
+.cover-photo {
+    object-fit: cover;
+    height: 25vw;
+}
+
+.tile-25 {
+    height: 25vw;
+    margin-bottom: 16px;
+    position: relative;
+    margin:1px solid gray;
+}
+
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }

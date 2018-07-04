@@ -29,7 +29,10 @@ export class HeroDetailComponent implements OnInit {
         this.route.params.forEach((params: Params) => {
             if (params['id'] !== undefined) {
                 let id: string = params['id'];
-                this.heroService.getHero(id).subscribe(hero => (this.hero = hero));
+                this.heroService.getHero(id).subscribe(hero => {
+                    this.hero = hero;
+                    this.imgUrl = '/view_photo/' + this.hero.blob_key;
+                });
             } else {
                 this.hero = new Hero();
             }

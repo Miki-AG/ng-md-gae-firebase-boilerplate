@@ -17,7 +17,6 @@
             <img *ngIf="hero.blob_key" mat-card-image [src]="imgUrl">
             <mat-card-content>
                 <p>ID: {{hero.id}}</p>
-                <p>URL: {{hero.upload_url}}</p>
                 <form>
                     <mat-form-field>
                         <input matInput placeholder="Favorite hero" [(ngModel)]="hero.name" name="something">
