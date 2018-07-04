@@ -17,9 +17,9 @@ import { LOGIN_OR_REG } from '../enums';
 
 export class DialogAuth {
     private error: any;
-    private user: User;
+    public user: User;
 
-    private lor: typeof LOGIN_OR_REG = LOGIN_OR_REG;
+    public lor: typeof LOGIN_OR_REG = LOGIN_OR_REG;
 
     constructor(
         public dialogRef: MatDialogRef<DialogAuth>,

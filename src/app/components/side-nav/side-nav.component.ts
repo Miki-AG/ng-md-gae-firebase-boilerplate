@@ -20,7 +20,7 @@ export class SideNavComponent implements OnInit {
     mobileQuery: MediaQueryList;
 
     private _mobileQueryListener: () => void;
-    private currentUser: firebase.User;
+    public currentUser: firebase.User;
 
     private lor: typeof LOGIN_OR_REG = LOGIN_OR_REG;
 
