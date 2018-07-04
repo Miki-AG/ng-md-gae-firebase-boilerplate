@@ -16,13 +16,16 @@
             <div class="error margin-24" *ngIf="error">{{error.message}}</div>
         </div>
         <div fxLayout='column' fxFlex="50">
-            <mat-card *ngIf="selectedHero" class="margin-24">
+            <mat-card *ngIf="selectedHero" class="margin-24 col-1-4">
                 <mat-card-header>
                     <img mat-card-avatar src="https://source.unsplash.com/user/erondu/200x200?username={{selectedHero.name}}">
                     <mat-card-title>{{selectedHero.name}}</mat-card-title>
                     <mat-card-subtitle>Really, they are!</mat-card-subtitle>
                 </mat-card-header>
-                <img mat-card-image src="https://source.unsplash.com/user/erondu/800x600?username={{selectedHero.name}}">
+                <img *ngIf="selectedHero.blob_key" class="cover-photo" mat-card-image [src]="'/view_photo/' + selectedHero.blob_key">
+                <div *ngIf="!selectedHero.blob_key" class="tile-25">
+                    <div class="centered">No photo</div>
+                </div>
                 <mat-card-content>
                     <p>Something pretty...</p>
                 </mat-card-content>

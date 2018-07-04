@@ -6,6 +6,12 @@
 
 
 
+
+
+
+
+
+
 /*@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';*/
 
 
@@ -65,10 +71,11 @@ body {
 }
 
 .tile-25 {
+    background: #e8e8e8;
     height: 25vw;
-    margin-bottom: 16px;
     position: relative;
-    margin:1px solid gray;
+    width: calc(100% + 48px);
+    margin: 0 -24px 19px -24px;
 }
 
 .centered {
@@ -76,4 +83,14 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    color: white;
+    font-size: large;
+}
+
+div.grid-pad {
+    padding-top: 0!important;
+}
+
+.col-1-4 {
+    width: 25vw;
 }

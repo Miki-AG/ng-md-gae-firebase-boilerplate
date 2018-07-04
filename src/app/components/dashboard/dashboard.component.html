@@ -6,7 +6,6 @@
                 <mat-card-title>{{hero.name}}</mat-card-title>
                 <mat-card-subtitle>Really, they are!</mat-card-subtitle>
             </mat-card-header>
-            <!-- <img *ngIf="!hero.blob_key" class="cover-photo" mat-card-image src="https://source.unsplash.com/user/erondu/800x600?username={{hero.name}}"> -->
             <img *ngIf="hero.blob_key" class="cover-photo" mat-card-image [src]="'/view_photo/' + hero.blob_key">
             <div *ngIf="!hero.blob_key" class="tile-25">
                 <div class="centered">No photo</div>
