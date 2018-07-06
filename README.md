@@ -24,7 +24,9 @@ This project utilizes:
 
 ## Environments
 1. Make sure to rename all files under src/environments (i.e. sample.environment.ts -> environment.ts). The reason for this is that .gitignore will exclude those files in order to avoid exposing sensitive attributes within your project repo.
-2. Provide environment properties by environment file. Currently Google Analytics and Firebase are supported.
+2. Provide environment properties by environment file. Integrations currently supported:
+    * Google Analytics
+    * Firebase
 
 ## Development server (no GAE)
 
