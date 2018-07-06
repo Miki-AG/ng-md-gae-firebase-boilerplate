@@ -38,13 +38,13 @@ This project utilizes:
 * Create a project in google cloud. You will need the project ID, it must exists in your console (https://console.cloud.google.com), if it does not exists, create it beforehand.
     * Make sure your Google account is setup locally
     `gcloud auth list`
--- Use gcloud to point to the newly created project. Set current project:
+    * Use gcloud to point to the newly created project. Set current project:
     `gcloud config set project <project-id>`
--- Make sure gcloud points to your project
-    --- List all projects in your account:
-    `gcloud projects list`
-    --- You can check current project with:
-    `gcloud config get-value project`
+    * Make sure gcloud points to your project
+        * List all projects in your account:
+            `gcloud projects list`
+        * You can check current project with:
+            `gcloud config get-value project`
 
 
 - Build for prod
