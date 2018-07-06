@@ -40,15 +40,15 @@ This project supports developer and production environments.
 ### Development server (local, no GAE)
 environment.dev.ts
 
-    * Run `ng serve` for a simple dev server. (it will use `ng build --configuration devmem`)
-    * API data calls will be intercepted and data will be served from a mock backend (app/services/hero-dev-backend.ts)
+* Run `ng serve` for a simple dev server. (it will use `ng build --configuration devmem`)
+* API data calls will be intercepted and data will be served from a mock backend (app/services/hero-dev-backend.ts)
 
 ### Development server (Build and run GAE local)
 environment.devgae.ts
 
-    * Run `ng build --configuration devgae` to rebuild the /dist directory.
-    * Run `gulp run` to launch the app and GAE.
-    * Data will be pulled from the local GAE Datastore.
+* Run `ng build --configuration devgae` to rebuild the /dist directory.
+* Run `gulp run` to launch the app and GAE.
+* Data will be pulled from the local GAE Datastore.
 
 ### Production environment: Deploy on Google App Engine
 environment.prod.tsprod
