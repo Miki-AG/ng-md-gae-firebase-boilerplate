@@ -1,7 +1,7 @@
 
 # Material Design Tour of Heroes | [feedback](https://docs.google.com/forms/d/e/1FAIpQLSfTMycGQFr6HJWNiGQRU3d9vLyEt2OX8n_gdo_kvYr7IEqZnQ/viewform) | [demo](https://gae-boilerplate-203602.appspot.com)
 
-Adaptation of the popular angular demo app [Tour of Heroes](https://angular.io/tutorial) to Material Design.
+Adaptation of the popular angular demo app [Tour of Heroes](https://angular.io/tutorial) to Material Design and Google Cloud Endpoints.
 
 Looking for your [feedback!](https://docs.google.com/forms/d/e/1FAIpQLSfTMycGQFr6HJWNiGQRU3d9vLyEt2OX8n_gdo_kvYr7IEqZnQ/viewform)
 
