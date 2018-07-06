@@ -35,8 +35,8 @@ This project utilizes:
 - Data will be pulled from the local GAE Datastore.
 
 ## Deploy on Google App Engine
-- Create a project in google cloud. You will need the project ID, it must exists in your console (https://console.cloud.google.com), if it does not exists, create it beforehand.
--- Make sure your Google account is setup locally
+* Create a project in google cloud. You will need the project ID, it must exists in your console (https://console.cloud.google.com), if it does not exists, create it beforehand.
+    * Make sure your Google account is setup locally
     `gcloud auth list`
 -- Use gcloud to point to the newly created project. Set current project:
     `gcloud config set project <project-id>`
