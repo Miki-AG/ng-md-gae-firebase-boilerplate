@@ -23,7 +23,7 @@ This project utilizes:
 - Gulp 4.0.0-alpha.3
 
 ## Environments
-1. Make sure to rename all files under src/environments (i.e. sample.environment.ts -> environment.ts). The reason for this is that .gitignore will exclude those files every time you check-in code within your repo in order to avoid exposing sensitive attributes.
+1. Make sure to rename all files under src/environments (i.e. sample.environment.ts -> environment.ts). The reason for this is that .gitignore will exclude those files every time you check-in code, avoiding exposing sensitive attributes.
 2. Provide environment properties by environment file. Integrations currently supported:
     * Google Analytics - Just simply add your `GA Tracking ID` to the proper environment file.
     * Firebase - Add `apiKey, authDomain, databaseURL, projectId, storageBucket, messagingSenderId` to the proper environment file.
@@ -61,6 +61,6 @@ NOTE: Once deployed for the first time, only steps 3 and 4 are required.
 
 
 
-Please help me improve AMToH by answering a few questions in this [survey](https://docs.google.com/forms/d/e/1FAIpQLSfTMycGQFr6HJWNiGQRU3d9vLyEt2OX8n_gdo_kvYr7IEqZnQ/viewform). See the [demo](https://gae-boilerplate-203602.appspot.com).
+Please help me improve AMToH by answering a few questions in this [survey](https://docs.google.com/forms/d/e/1FAIpQLSfTMycGQFr6HJWNiGQRU3d9vLyEt2OX8n_gdo_kvYr7IEqZnQ/viewform).
 
 
