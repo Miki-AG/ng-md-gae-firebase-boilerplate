@@ -51,6 +51,7 @@ This project utilizes:
 4. Deploy the app to Google Cloud
     * `gcloud app deploy`
 
+NOTE: Once deployed for the first time, only steps 3 and 4 are required.
 
 
 ## Environments
