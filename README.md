@@ -43,13 +43,13 @@ This project utilizes:
         * You can check current project with `gcloud config get-value project`
 
 2. To deploy your service configuration file (Open API):
-    `gcloud endpoints services deploy api-def.yaml`
+    * `gcloud endpoints services deploy api-def.yaml`
 
-* Build for prod
+3. Build for prod
     * `ng build --configuration production` [aot](https://angular.io/guide/aot-compiler) compilation + browser cache busting, etc...
 
-* To deploy the app
-    `gcloud app deploy`
+4. To deploy the app to Google Cloud
+    * `gcloud app deploy`
 
 
 
