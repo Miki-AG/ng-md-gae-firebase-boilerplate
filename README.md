@@ -29,7 +29,7 @@ Tech stack:
 ![Screenshot](https://raw.githubusercontent.com/Miki-AG/md-tour-of-heroes/master/static/img/screenshot2.png)
 
 
-## Environments
+# Environments
 1. Make sure to rename all files under src/environments (i.e. sample.environment.ts -> environment.ts). The reason for this is that .gitignore will exclude those files every time you check-in code, avoiding exposing sensitive attributes.
 2. Provide environment properties by environment file. Integrations currently supported:
     * Google Analytics - Just simply add your `GA Tracking ID` to the proper environment file.
@@ -37,21 +37,21 @@ Tech stack:
 
 This project supports developer and production environments.
 
-### Development server (local, no GAE)
-#### environment.dev.ts
+## Development server (local, no GAE)
+### environment.dev.ts
 
 * Run `ng serve` for a simple dev server. (it will use `ng build --configuration devmem`)
 * API data calls will be intercepted and data will be served from a mock backend (app/services/hero-dev-backend.ts)
 
-### Development server (Build and run GAE local)
-#### environment.devgae.ts
+## Development server (Build and run GAE local)
+### environment.devgae.ts
 
 * Run `ng build --configuration devgae` to rebuild the /dist directory.
 * Run `gulp run` to launch the app and GAE.
 * Data will be pulled from the local GAE Datastore.
 
-### Production environment: Deploy on Google App Engine
-#### environment.prod.tsprod
+## Production environment: Deploy on Google App Engine
+### environment.prod.tsprod
 
 1. Create a project in [Google Cloud](https://console.cloud.google.com). You will need the project ID.
     * Make sure your Google account is setup locally `gcloud auth list`
