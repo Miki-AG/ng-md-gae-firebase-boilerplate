@@ -1,8 +1,9 @@
 
 # Angular Material Tour of Heroes
+Adaptation of the popular angular demo app [Tour of Heroes](https://angular.io/tutorial) to [Angular Material](https://material.angular.io/) and [Google Cloud Endpoints](https://cloud.google.com/endpoints/).
+
 ## [feedback](https://docs.google.com/forms/d/e/1FAIpQLSfTMycGQFr6HJWNiGQRU3d9vLyEt2OX8n_gdo_kvYr7IEqZnQ/viewform) | [demo](https://gae-boilerplate-203602.appspot.com)
 
-Adaptation of the popular angular demo app [Tour of Heroes](https://angular.io/tutorial) to [Angular Material](https://material.angular.io/) and [Google Cloud Endpoints](https://cloud.google.com/endpoints/).
 
 Looking for your [feedback!](https://docs.google.com/forms/d/e/1FAIpQLSfTMycGQFr6HJWNiGQRU3d9vLyEt2OX8n_gdo_kvYr7IEqZnQ/viewform)
 
