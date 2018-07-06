@@ -44,14 +44,14 @@ This project supports developer and production environments.
 * API data calls will be intercepted and data will be served from a mock backend (app/services/hero-dev-backend.ts)
 
 ### Development server (Build and run GAE local)
-environment.devgae.ts
+#### environment.devgae.ts
 
 * Run `ng build --configuration devgae` to rebuild the /dist directory.
 * Run `gulp run` to launch the app and GAE.
 * Data will be pulled from the local GAE Datastore.
 
 ### Production environment: Deploy on Google App Engine
-environment.prod.tsprod
+#### environment.prod.tsprod
 
 1. Create a project in [Google Cloud](https://console.cloud.google.com). You will need the project ID.
     * Make sure your Google account is setup locally `gcloud auth list`
