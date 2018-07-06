@@ -35,12 +35,17 @@ Tech stack:
     * Google Analytics - Just simply add your `GA Tracking ID` to the proper environment file.
     * Firebase - Add `apiKey, authDomain, databaseURL, projectId, storageBucket, messagingSenderId` to the proper environment file.
 
-## Development server (no GAE)
+This project supports developer and production environments.
+* Developer environments (local):
+    * dev: Development server (no GAE)
+        * Run `ng serve` for a simple dev server. (it will use `ng build --configuration devmem`)
+        * API data calls will be intercepted and data will be served from a mock backend (app/services/hero-dev-backend.ts)
+    * devgae: Development server (Build and run GAE local)
+        * Run `ng build --configuration devgae` to rebuild the /dist directory.
+        * Run `gulp run` to launch the app and GAE.
+        * Data will be pulled from the local GAE Datastore.
 
-- Run `ng serve` for a simple dev server. (it will use `ng build --configuration devmem`)
-- API data calls will be intercepted and data will be served from a mock backend (app/services/hero-dev-backend.ts)
-
-## Deploy on Google App Engine
+* Production environment: Deploy on Google App Engine
 1. Create a project in [Google Cloud](https://console.cloud.google.com). You will need the project ID.
     * Make sure your Google account is setup locally `gcloud auth list`
     * Use gcloud to point to the newly created project. Set current project `gcloud config set project <project-id>`
@@ -58,14 +63,6 @@ Tech stack:
     * `gcloud app deploy`
 
 NOTE: Once deployed for the first time, only steps 3 and 4 are required.
-
-## Build and run GAE local
-
-- Run `ng build --configuration devgae` to rebuild the /dist directory.
-- Run `gulp run` to launch the app and GAE.
-- Data will be pulled from the local GAE Datastore.
-
-
 
 
 Please help me improve AMToH by answering a few questions in this [survey](https://docs.google.com/forms/d/e/1FAIpQLSfTMycGQFr6HJWNiGQRU3d9vLyEt2OX8n_gdo_kvYr7IEqZnQ/viewform).
