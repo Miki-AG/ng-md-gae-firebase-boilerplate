@@ -7,9 +7,11 @@ I love Google technologies and tech stack. Google docs and tutorials are great, 
 - Backend storage (Google App Engine + Endpoints)
 - Authentication (Firebase, which supports social login and email workflows for email verification and password recovery)
 
-![Screenshot](https://raw.githubusercontent.com/Miki-AG/md-tour-of-heroes/master/static/img/screenshot2.png)
+I also usually have to add some gulp scripts to the mix for deployment to the Google Cloud and/or housekeeping work. Those are also included.
 
-This project utilizes:
+This project is my attempt to generate all the boilerplate I usually require when I start a new project.
+
+Tech stack:
 - Angular 6
 - Angular Material 6
 - Backend in Google App Engine using REST Endpoints
@@ -21,6 +23,9 @@ This project utilizes:
 - Node v8.9.4
 - Npm 5.6.0
 - Gulp 4.0.0-alpha.3
+
+![Screenshot](https://raw.githubusercontent.com/Miki-AG/md-tour-of-heroes/master/static/img/screenshot2.png)
+
 
 ## Environments
 1. Make sure to rename all files under src/environments (i.e. sample.environment.ts -> environment.ts). The reason for this is that .gitignore will exclude those files every time you check-in code, avoiding exposing sensitive attributes.
