@@ -46,7 +46,7 @@ This project utilizes:
     * `gcloud endpoints services deploy api-def.yaml`
 
 3. Build the Angular app for prod
-    * `ng build --configuration production` [aot](https://angular.io/guide/aot-compiler) compilation + browser cache busting, etc...
+    * `ng build --configuration production` ([aot](https://angular.io/guide/aot-compiler) compilation + browser cache busting, etc...)
 
 4. Deploy the app to Google Cloud
     * `gcloud app deploy`
