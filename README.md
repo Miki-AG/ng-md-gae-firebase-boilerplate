@@ -11,7 +11,7 @@ However, when I have to create a new project from the scratch, I find myself spe
 
 I also usually have to add some gulp scripts to the mix for deployment to the Google Cloud and/or housekeeping work. Those are also included.
 
-This project is my attempt to generate all the boilerplate I usually require when I start a new project.
+This is my attempt to generate all the boilerplate I usually require when I start a new project.
 
 Tech stack:
 - Angular 6
