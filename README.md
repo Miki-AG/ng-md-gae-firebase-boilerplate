@@ -49,7 +49,7 @@ This project supports developer and production environments.
 * Run `gulp run` to launch the app and GAE.
 * Data will be pulled from the local GAE Datastore.
 
-## Production environment: Deploy on Google App Engine
+## Production environment: Deploy to Google App Engine
 ### environment.prod.tsprod
 
 1. Create a project in [Google Cloud](https://console.cloud.google.com). You will need the project ID.
