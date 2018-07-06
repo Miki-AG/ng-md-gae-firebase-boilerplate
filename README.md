@@ -1,5 +1,5 @@
 
-# Angular Material Tour of Heroes - [feedback](https://docs.google.com/forms/d/e/1FAIpQLSfTMycGQFr6HJWNiGQRU3d9vLyEt2OX8n_gdo_kvYr7IEqZnQ/viewform) | [demo](https://gae-boilerplate-203602.appspot.com)
+# Angular Material Tour of Heroes [Demo](https://gae-boilerplate-203602.appspot.com) | [Feedback](https://docs.google.com/forms/d/e/1FAIpQLSfTMycGQFr6HJWNiGQRU3d9vLyEt2OX8n_gdo_kvYr7IEqZnQ/viewform)
 Adaptation of the popular angular demo app [Tour of Heroes](https://angular.io/tutorial) to [Angular Material](https://material.angular.io/) and [Google Cloud Endpoints](https://cloud.google.com/endpoints/).
 
 I love Google technologies and tech stack. Google docs and tutorials are great, specially the archi-popular Angular tutorial which includes the demo app [Tour of Heroes](https://angular.io/tutorial). However, I find myself spending hours to no end creating new projects from the scratch, as I have to put together multiple modules and libraries that not always play nicely together. Those pieces usually are:
