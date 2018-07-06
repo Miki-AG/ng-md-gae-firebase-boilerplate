@@ -35,20 +35,20 @@ This project utilizes:
 - Data will be pulled from the local GAE Datastore.
 
 ## Deploy on Google App Engine
-1. Create a project in google cloud. You will need the project ID, it must exists in your console (https://console.cloud.google.com), if it does not exists, create it beforehand.
+1. Create a project in [Google Cloud](https://console.cloud.google.com). You will need the project ID.
     * Make sure your Google account is setup locally `gcloud auth list`
     * Use gcloud to point to the newly created project. Set current project `gcloud config set project <project-id>`
     * Make sure gcloud points to your project
         * List all projects in your account `gcloud projects list`
         * You can check current project with `gcloud config get-value project`
 
-2. To deploy your service configuration file (Open API):
+2. Then deploy the service configuration file (Open API):
     * `gcloud endpoints services deploy api-def.yaml`
 
-3. Build for prod
+3. Build the Angular app for prod
     * `ng build --configuration production` [aot](https://angular.io/guide/aot-compiler) compilation + browser cache busting, etc...
 
-4. To deploy the app to Google Cloud
+4. Deploy the app to Google Cloud
     * `gcloud app deploy`
 
 
