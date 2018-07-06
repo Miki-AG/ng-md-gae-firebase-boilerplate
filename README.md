@@ -38,7 +38,7 @@ Tech stack:
 This project supports developer and production environments.
 
 ### Development server (local, no GAE)
-environment.dev.ts
+#### environment.dev.ts
 
 * Run `ng serve` for a simple dev server. (it will use `ng build --configuration devmem`)
 * API data calls will be intercepted and data will be served from a mock backend (app/services/hero-dev-backend.ts)
