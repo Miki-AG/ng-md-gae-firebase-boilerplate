@@ -25,7 +25,7 @@ This project utilizes:
 ## Environments
 1. Make sure to rename all files under src/environments (i.e. sample.environment.ts -> environment.ts). The reason for this is that .gitignore will exclude those files in order to avoid exposing sensitive attributes within your project repo.
 2. Provide environment properties by environment file. Integrations currently supported:
-    * Google Analytics
+    * Google Analytics - Google Analytics works out of the box. Just simply add your GA Tracking ID to your production environment file.
     * Firebase
 
 ## Development server (no GAE)
@@ -59,8 +59,7 @@ NOTE: Once deployed for the first time, only steps 3 and 4 are required.
 - Data will be pulled from the local GAE Datastore.
 
 
-## Google Analytics
-Google Analytics works out of the box. Just simply add your GA Tracking ID to your production environment file.
+
 
 Please help me improve AMToH by answering a few questions in this [survey](https://docs.google.com/forms/d/e/1FAIpQLSfTMycGQFr6HJWNiGQRU3d9vLyEt2OX8n_gdo_kvYr7IEqZnQ/viewform). See the [demo](https://gae-boilerplate-203602.appspot.com).
 
