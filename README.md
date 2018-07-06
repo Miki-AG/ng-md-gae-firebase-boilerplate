@@ -37,15 +37,22 @@ Tech stack:
 
 This project supports developer and production environments.
 
-### Development server (local, no GAE) [environment.dev.ts]
-        * Run `ng serve` for a simple dev server. (it will use `ng build --configuration devmem`)
-        * API data calls will be intercepted and data will be served from a mock backend (app/services/hero-dev-backend.ts)
-### Development server (Build and run GAE local) [environment.devgae.ts]
-        * Run `ng build --configuration devgae` to rebuild the /dist directory.
-        * Run `gulp run` to launch the app and GAE.
-        * Data will be pulled from the local GAE Datastore.
+### Development server (local, no GAE)
+environment.dev.ts
 
-### Production environment: Deploy on Google App Engine [environment.prod.tsprod]
+    * Run `ng serve` for a simple dev server. (it will use `ng build --configuration devmem`)
+    * API data calls will be intercepted and data will be served from a mock backend (app/services/hero-dev-backend.ts)
+
+### Development server (Build and run GAE local)
+environment.devgae.ts
+
+    * Run `ng build --configuration devgae` to rebuild the /dist directory.
+    * Run `gulp run` to launch the app and GAE.
+    * Data will be pulled from the local GAE Datastore.
+
+### Production environment: Deploy on Google App Engine
+environment.prod.tsprod
+
 1. Create a project in [Google Cloud](https://console.cloud.google.com). You will need the project ID.
     * Make sure your Google account is setup locally `gcloud auth list`
     * Use gcloud to point to the newly created project. Set current project `gcloud config set project <project-id>`
