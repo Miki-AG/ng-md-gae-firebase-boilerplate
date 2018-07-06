@@ -180,6 +180,7 @@ from webob.compat import (
 from webob.request import Request
 from webob.response import Response
 from webob.util import html_escape
+import logging
 
 tag_re = re.compile(r'<.*?>', re.S)
 br_re = re.compile(r'<br.*?>', re.I | re.S)
@@ -268,7 +269,9 @@ ${body}''')
                           **kw)
         Exception.__init__(self, detail)
         if headers:
-            self.headers.extend(headers)
+            logging.info("-------------------- NEW NEW headers: {}".format(headers))
+            pass
+            #self.headers.extend(headers)
         self.detail = detail
         self.comment = comment
         if body_template is not None:

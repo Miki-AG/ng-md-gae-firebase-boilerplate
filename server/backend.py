@@ -42,27 +42,28 @@ class TemplateService(TemplateHandler):
         logging.info("path_info: {}".format(self.request.path_info))
         logging.info("split: {}".format(split))
 
-        user_agent = self.request.headers['user-agent']
+        #user_agent = self.request.headers['user-agent']
 
         # Bot
-        if ('google' in user_agent or
-                'facebookexternalhit' in user_agent or
-                'Facebot' in user_agent):
-            if split[0] == 'share':
-                tags = '#tag1, #tag2, #tag3'
-                context = {
-                    'tags': tags,
-                    'image': '/static/img/family_pants.jpg',
-                    'share_url': '/share/{}/{}'.format(split[1], split[2])
-                }
-                self.render_response('share_template.html', **context)
-            else:
-                return 'Unauthorized', 401
+        #if ('google' in user_agent or
+        #        'facebookexternalhit' in user_agent or
+        #        'Facebot' in user_agent):
+        #    if split[0] == 'share':
+        #        tags = '#tag1, #tag2, #tag3'
+        #        context = {
+        #            'tags': tags,
+        #            'image': '/static/img/family_pants.jpg',
+        #            'share_url': '/share/{}/{}'.format(split[1], split[2])
+        #        }
+        #        self.render_response('share_template.html', **context)
+        #    else:
+        #        return 'Unauthorized', 401
 
         # Not bot
-        else:
-            context = {}
-            self.render_response('index.html', **context)
+        #else:
+        context = {}
+        logging.info("-------------------- rendering: index.html")
+        self.render_response('index.html', **context)
 
 class GenerateUploadUrlHandler(webapp2.RequestHandler):
     def get(self):

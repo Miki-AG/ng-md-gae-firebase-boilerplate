@@ -1,14 +1,11 @@
 """Api for Heroes model."""
-import endpoints
-from google.appengine.ext import ndb
-from protorpc import remote
-from endpoints_proto_datastore.ndb import EndpointsModel
-from google.appengine.api import users
-import os
-import logging
-import google.oauth2.id_token
 from api_helpers import login_required, ownership_required, get_user_from_token
-from google.appengine.ext import blobstore
+from endpoints_proto_datastore.ndb import EndpointsModel
+from google.appengine.api import users, ndb
+from protorpc import remote
+import endpoints
+import logging
+import os
 
 class Hero(EndpointsModel):
     """Hero model."""
@@ -35,6 +32,7 @@ class HeroesApi(remote.Service):
     @Hero.query_method(path='heroes',
                        name='heroes.list')
     def hero_list(self, hero_list):
+        logging.info("-------------------- hero_list: {}".format(hero_list))
         """Get list."""
         return hero_list
 

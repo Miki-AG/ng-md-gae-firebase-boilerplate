@@ -12,8 +12,8 @@ def get_user_from_token(service):
     headers = service.request_state.headers.get('authorization')
     if headers:
         id_token = headers.split(' ').pop()
-        logging.info("----------> headers: {}".format(headers))
-        logging.info("----------> id_token: {}".format(id_token))
+        # logging.info("----------> headers: {}".format(headers))
+        # logging.info("----------> id_token: {}".format(id_token))
 
         if id_token == 'undefined' or id_token == 'null':
             return None
@@ -21,7 +21,7 @@ def get_user_from_token(service):
             id_token, HTTP_REQUEST)
         if not claims:
             return None
-        logging.info("----------> user: {}".format(claims))
+        # logging.info("----------> user: {}".format(claims))
         return claims.get('email')
     else:
         return None

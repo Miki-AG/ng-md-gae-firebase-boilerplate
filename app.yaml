@@ -2,6 +2,12 @@ runtime: python27
 api_version: 1
 threadsafe: true
 
+# Changed from F1 to B1
+# instance_class: B1
+# basic_scaling:
+#   max_instances: 1
+#   idle_timeout: 10m
+
 libraries:
 # - name: pycrypto
 #   version: latest
@@ -14,11 +20,13 @@ libraries:
 - name: ssl
   version: 2.7.11
 
+# gcloud endpoints services deploy openapi.yaml
+# https://developers.google.com/apis-explorer/?base=https://ng-md-gae-boilerplate.appspot.com/_ah/api#p/
 env_variables:
   # The following values are to be replaced by information from the output of
   # 'gcloud endpoints services deploy swagger.json' command.
   ENDPOINTS_SERVICE_NAME: ng-md-gae-boilerplate.appspot.com
-  # ENDPOINTS_SERVICE_VERSION: 2018-06-21r0
+  ENDPOINTS_SERVICE_VERSION: 2018-07-05r2
 
 handlers:
 - url: /static
