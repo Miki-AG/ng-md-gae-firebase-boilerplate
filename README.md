@@ -1,5 +1,6 @@
 
-# Material Design Tour of Heroes | [feedback](https://docs.google.com/forms/d/e/1FAIpQLSfTMycGQFr6HJWNiGQRU3d9vLyEt2OX8n_gdo_kvYr7IEqZnQ/viewform) | [demo](https://gae-boilerplate-203602.appspot.com)
+# Angular Material Tour of Heroes
+## [feedback](https://docs.google.com/forms/d/e/1FAIpQLSfTMycGQFr6HJWNiGQRU3d9vLyEt2OX8n_gdo_kvYr7IEqZnQ/viewform) | [demo](https://gae-boilerplate-203602.appspot.com)
 
 Adaptation of the popular angular demo app [Tour of Heroes](https://angular.io/tutorial) to [Angular Material](https://material.angular.io/) and [Google Cloud Endpoints](https://cloud.google.com/endpoints/).
 
@@ -50,6 +51,11 @@ This project utilizes:
 - To deploy the app
     `gcloud app deploy`
 
+## Environments
+
+
 ## Google Analytics
 Google Analytics works out of the box. Just simply add your GA Tracking ID to your production environment file.
+
+
 
