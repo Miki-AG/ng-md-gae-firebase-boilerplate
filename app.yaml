@@ -20,7 +20,7 @@ libraries:
 - name: ssl
   version: 2.7.11
 
-# gcloud endpoints services deploy openapi.yaml
+# gcloud endpoints services deploy api-def.yaml
 # https://developers.google.com/apis-explorer/?base=https://ng-md-gae-boilerplate.appspot.com/_ah/api#p/
 env_variables:
   # The following values are to be replaced by information from the output of
