@@ -8,12 +8,15 @@
             <input matInput placeholder="Username" [(ngModel)]="user.username" name="username">
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="Password" [(ngModel)]="user.password" name="password">
+            <input matInput placeholder="Password" type="password" [(ngModel)]="user.password" name="password">
+        </mat-form-field>
+        <mat-form-field *ngIf="data.type==lor.REGISTER">
+            <input matInput placeholder="Repeat Password" type="password" [(ngModel)]="user.passwordRepeat" name="password">
         </mat-form-field>
     </form>
 </div>
 <div mat-dialog-actions>
     <button mat-button mat-dialog-close>Cancel</button>
     <button *ngIf="data.type==lor.LOGIN" mat-button color="accent" (click)="login()">Login</button>
-    <button *ngIf="data.type==lor.REGISTER" mat-button color="accent" (click)="register()">Register</button>
+    <button *ngIf="data.type==lor.REGISTER" mat-button color="accent" (click)="register()" [disabled]="!user.password || user.passwordRepeat!=user.password">Register</button>
 </div>
