@@ -4,6 +4,7 @@ import { DialogAuth } from './components/dialog-auth/dialog-auth.component';
 
 import {
     MatButtonModule,
+    MatButtonToggleModule,
     MatMenuModule,
     MatToolbarModule,
     MatIconModule,
@@ -20,6 +21,7 @@ import {
 @NgModule({
     imports: [
         MatButtonModule,
+        MatButtonToggleModule,
         MatMenuModule,
         MatToolbarModule,
         MatIconModule,
@@ -35,6 +37,7 @@ import {
     entryComponents: [DialogAddHero, DialogAuth],
     exports: [
         MatButtonModule,
+        MatButtonToggleModule,
         MatMenuModule,
         MatToolbarModule,
         MatIconModule,

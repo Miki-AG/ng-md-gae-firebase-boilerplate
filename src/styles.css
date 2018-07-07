@@ -8,10 +8,6 @@
 
 
 
-
-
-
-
 /*@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';*/
 
 
@@ -40,6 +36,11 @@ body {
 
 .margin-24 {
     margin: 24px;
+}
+
+.margin-around-header {
+    margin-top: 24px!important;
+    margin-bottom: 14px!important;
 }
 
 .mat-dialog-container .mat-card {
@@ -93,4 +94,29 @@ div.grid-pad {
 
 .col-1-4 {
     width: 25vw;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.italic {
+    font-style: italic;
+}
+
+.highlight-section {
+    background-color: #ffc7c7;
+    padding: 24px;
+    margin: 16px;
+    border-radius: 4px;
+    font-size: large;
+}
+
+.highlight-section p {
+    margin: 0;
+    padding: 0;
+}
+
+code {
+    background-color: #ffffa0;
 }

@@ -18,4 +18,118 @@
             </mat-card-actions>
         </mat-card>
     </div>
+    <div fxFlex fxLayout='column' class="margin-24 mat-typography">
+        <div fxFlex fxLayout='row' fxLayoutAlign="start center">
+            <div class="mat-display-2">Angular Material Tour of Heroes</div>
+            <div fxFlex></div>
+            <div class="mat-display-1">
+                <a mat-button href="https://gae-boilerplate-203602.appspot.com">
+                    <mat-icon>share</mat-icon>
+                    Github
+                </a>
+                <a mat-button href="https://docs.google.com/forms/d/e/1FAIpQLSfTMycGQFr6HJWNiGQRU3d9vLyEt2OX8n_gdo_kvYr7IEqZnQ/viewform">
+                    <mat-icon>feedback</mat-icon>
+                    Feedback</a>
+            </div>
+        </div>
+        <p>Adaptation of the popular angular demo app <a href="https://angular.io/tutorial">Tour of Heroes</a> to <a href="https://material.angular.io/">Angular Material</a> and <a href="https://cloud.google.com/endpoints/">Google Cloud Endpoints</a>.</p>
+        <p>I love Google technologies and tech stack. Google docs and tutorials are great, specially the archi-popular Angular tutorial which includes the demo app <a href="https://angular.io/tutorial">Tour of Heroes</a>.</p>
+        <p>However, when I have to create a new project from the scratch, I find myself spending hours to no end integrating multiple modules and libraries that are frequenlty updated/changed/decommisioned by Google, and that not always play nicely together. Those pieces usually are:</p>
+        <ul>
+            <li>Front End framework of choice (Angular + Angular Material)</li>
+            <li>Backend storage (Google App Engine + Endpoints)</li>
+            <li>Authentication (Firebase, which supports social login and email workflows for email verification and password recovery)</li>
+        </ul>
+        <p>I also usually have to add some gulp scripts to the mix for deployment to the Google Cloud and/or housekeeping work. Those are also included.</p>
+        <p>This is my attempt to generate all the boilerplate I usually require when I start a new project.</p>
+        <div fxFlex fxLayout='row' fxLayoutAlign="center center" class="highlight-section">
+            <p>Please help me improve this demo project by answering a few questions in this <a href="https://docs.google.com/forms/d/e/1FAIpQLSfTMycGQFr6HJWNiGQRU3d9vLyEt2OX8n_gdo_kvYr7IEqZnQ/viewform">survey</a>.</p>
+        </div>
+        <div class="mat-display-1 margin-around-header">Tech stack</div>
+        <ul>
+            <li>Angular 6</li>
+            <li>Angular Material 6</li>
+            <li>Backend in Google App Engine using REST Endpoints</li>
+            <li>Firebase for authentication</li>
+            <li>Gulp scripts to automate deployment in GAE</li>
+        </ul>
+        <div class="mat-display-1 margin-around-header">Requirements</div>
+        <p>Make sure you use/have installed the packages/versions below:</p>
+        <ul>
+            <li>Google Cloud SDK 200.0.0</li>
+            <li>Node v8.9.4</li>
+            <li>Npm 5.6.0</li>
+            <li>Gulp 4.0.0-alpha.3</li>
+        </ul>
+        <div class="mat-display-2 margin-around-header">Environments</div>
+        <p>Make sure to rename all files under src/environments (i.e. sample.environment.ts -> environment.ts). The reason for this is that .gitignore will exclude those files every time you check-in code, avoiding exposing sensitive attributes.</p>
+        <p>Provide environment properties by environment file. Integrations currently supported:</p>
+        <ul>
+            <li>Google Analytics - Just simply add your <code>GA Tracking ID</code> to the proper environment file.</li>
+            <li>Firebase - Add <code>apiKey, authDomain, databaseURL, projectId, storageBucket, messagingSenderId</code> to the proper environment file.</li>
+        </ul>
+        <p>This project supports developer and production environments.</p>
+        <div class="mat-display-1 margin-around-header">Development server</div>
+        <p class="bold italic">environment.dev.ts (Local, no GAE)</p>
+        <ul>
+            <li>Run <code>ng serve</code> for a simple dev server. (it will use <code>ng build --configuration devmem</code> under the hood)</li>
+            <li>API data calls will be intercepted and data will be served from a mock backend (app/services/hero-dev-backend.ts)</li>
+        </ul>
+        <p class="bold italic"> environment.devgae.ts (Build and run GAE local)</p>
+        <ul>
+            <li>Run <code>ng build --configuration devgae</code> to rebuild the /dist directory.</li>
+            <li>Run <code>gulp run</code> to launch the app and GAE.</li>
+            <li>Data will be pulled from the local GAE Datastore.</li>
+        </ul>
+        <div class="mat-display-1 margin-around-header">Production environment: Deploy to Google Cloud</div>
+        <p class="bold italic">environment.prod.tsprod</p>
+        <ol>
+            <li>Create a project in <a href="https://console.cloud.google.com">Google Cloud</a>. You will need the project ID.
+                <ul>
+                    <li>Make sure your Google account is setup locally
+                        <ul>
+                            <li><code>gcloud auth list</code></li>
+                        </ul>
+                    </li>
+                    <li>Use gcloud to point to the newly created project. Set current project
+                        <ul>
+                            <li><code>gcloud config set project project-id</code></li>
+                        </ul>
+                    </li>
+                    <li>Make sure gcloud points to your project
+                        <ul>
+                            <li>List all projects in your account
+                                <ul>
+                                    <li><code>gcloud projects list</code></li>
+                                </ul>
+                            </li>
+                            <li>You can check current project with
+                                <ul>
+                                    <li><code>gcloud config get-value project</code></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>Then deploy the service configuration file (Open API):
+                <ul>
+                    <li><code>gcloud endpoints services deploy api-def.yaml</code>
+                    </li>
+                </ul>
+            </li>
+            <li>Build the Angular app for prod (<a href="https://angular.io/guide/aot-compiler">aot</a> compilation + browser cache busting, etc...)
+                <ul>
+                    <li><code>ng build --configuration production</code> </li>
+                </ul>
+            </li>
+            <li>Deploy the app to Google Cloud
+                <ul>
+                    <li><code>gcloud app deploy</code>
+                    </li>
+                </ul>
+            </li>
+        </ol>
+        <p>NOTE: Once deployed for the first time, only steps 3 and 4 are required.</p>
+    </div>
 </div>
