@@ -6,6 +6,8 @@ import { User } from '../types';
 import { AuthService } from '../../services/auth.service';
 import { LOGIN_OR_REG } from '../enums';
 
+const EMAIL_REGEXP = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
+
 /**
  * @title Dialog Overview
  */
@@ -18,7 +20,6 @@ import { LOGIN_OR_REG } from '../enums';
 export class DialogAuth {
     private error: any;
     public user: User;
-
     public lor: typeof LOGIN_OR_REG = LOGIN_OR_REG;
 
     constructor(
@@ -31,22 +32,29 @@ export class DialogAuth {
     }
 
     login(): void {
-        this.authService.loginWithEmail(
-            this.user.email,
-            this.user.password)
-            .then((response: any) => {
-                console.log(response)
-                this.snackBar.open('Welcome back ' + response.user.displayName + '!', 'OK', {
-                    duration: 2000,
-                });
-                this.dialogRef.close();
-            })
-            .catch((reason: any) => {
-                console.log(reason)
-                this.snackBar.open(reason, 'OK', {
-                    duration: 2000,
-                });
-            })
+        if ((this.user.email.length === 0) && (!EMAIL_REGEXP.test(this.user.email))) {
+            this.snackBar.open('Please provide a valid email!', 'OK', {
+                duration: 2000,
+            });
+        }
+        else {
+            this.authService.loginWithEmail(
+                this.user.email,
+                this.user.password)
+                .then((response: any) => {
+                    console.log(response)
+                    this.snackBar.open('Welcome back ' + response.user.displayName + '!', 'OK', {
+                        duration: 2000,
+                    });
+                    this.dialogRef.close();
+                })
+                .catch((reason: any) => {
+                    console.log(reason)
+                    this.snackBar.open(reason, 'OK', {
+                        duration: 2000,
+                    });
+                })
+        }
     }
     loginWithFacebook(): void {
         this.authService.facebookLogin()

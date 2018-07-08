@@ -25,7 +25,7 @@ export class SideNavComponent implements OnInit {
     private lor: typeof LOGIN_OR_REG = LOGIN_OR_REG;
 
     constructor(
-        private authService: AuthService,
+        public authService: AuthService,
         public snackBar: MatSnackBar,
         private changeDetectorRef: ChangeDetectorRef,
         private media: MediaMatcher,
@@ -36,7 +36,10 @@ export class SideNavComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.authService.getCurrentUser().subscribe(user => this.currentUser = user);
+        this.authService.getCurrentUser().subscribe(user => {
+            console.log(user)
+            this.currentUser = user
+        });
     }
     openDialog(type: LOGIN_OR_REG): void {
         this.sidenav.close();

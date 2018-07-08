@@ -1,4 +1,5 @@
 export enum LOGIN_OR_REG {
     LOGIN,
-    REGISTER
+    REGISTER,
+    RESET_PASSWORD
 }

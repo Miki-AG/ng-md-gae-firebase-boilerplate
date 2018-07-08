@@ -36,6 +36,11 @@ export class AuthService {
             this.tokenId = token;
         });
     }
+    passwordReset(email: string): Promise<any> {
+        return this.afAuth.auth.sendPasswordResetEmail(email)
+            .then(() => console.log('sent Password Reset Email!'))
+            .catch((error) => console.log(error))
+    }
     loginWithEmail(email: string, pssw: string): Promise<any> {
         let promise = this.afAuth.auth.signInWithEmailAndPassword(email, pssw);
         promise
@@ -58,7 +63,6 @@ export class AuthService {
             .catch(error => console.log(error));
         return promise;
     }
-
     facebookLogin() {
         const provider = new firebase.auth.FacebookAuthProvider()
         let promise = this.afAuth.auth.signInWithPopup(provider);
@@ -70,7 +74,6 @@ export class AuthService {
             .catch(error => console.log(error));
         return promise;
     }
-
     registerWithEmail(email: string, username: string, pssw: string): Promise<any> {
         let promise = this.afAuth.auth.createUserWithEmailAndPassword(email, pssw)
             .then((response) => {
