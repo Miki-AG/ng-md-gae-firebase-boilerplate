@@ -16,9 +16,24 @@
             </mat-form-field>
         </form>
     </div>
-    <div mat-dialog-actions>
+    <div mat-dialog-actions fxFlex fxLayout='row' fxLayoutAlign="end end">
         <button mat-button mat-dialog-close>Cancel</button>
+        <div fxFlex></div>
         <button *ngIf="data.type==lor.LOGIN" mat-button color="accent" (click)="login()">Login</button>
         <button *ngIf="data.type==lor.REGISTER" mat-button color="accent" (click)="register()" [disabled]="!user.password || user.passwordRepeat!=user.password">Register</button>
+    </div>
+    <div mat-dialog-actions *ngIf="data.type==lor.LOGIN">
+        <div fxFlex fxLayout='column'>
+            <div fxFlex fxLayout='row' fxLayoutAlign="center center" style="margin:64px;">⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯ OR ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯</div>
+            <div fxFlex fxLayout='row' fxLayoutAlign="start center">
+                <a mat-button color="accent" class="facebook-button" (click)="login()">
+                Login with Facebook
+            </a>
+                <div fxFlex></div>
+                <a mat-button color="accent" class="google-button" (click)="login()">
+                Login with Google
+            </a>
+            </div>
+        </div>
     </div>
 </div>

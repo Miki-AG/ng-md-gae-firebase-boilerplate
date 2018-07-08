@@ -6,3 +6,13 @@
 .example-container>* {
     width: 100%;
 }
+
+.facebook-button {
+    background-color: #4266b2;
+    color: white;
+}
+
+.google-button {
+    background-color: #dd4b39;
+    color: white;
+}

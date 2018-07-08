@@ -18,6 +18,8 @@ export class AuthService {
     constructor(
         public afAuth: AngularFireAuth
     ) {
+        // Called when app loads
+        // Retrieves the user
         this.afAuth.authState.subscribe(user => {
             if (user) {
                 this.currentUser = user;
@@ -38,13 +40,10 @@ export class AuthService {
         let promise = this.afAuth.auth.signInWithEmailAndPassword(email, pssw);
         promise
             .then((response) => {
-                console.log(response)
-                console.log('------------------')
-                console.log(firebase.auth().currentUser.getIdToken())
-                console.log('------------------')
                 this.storeTokenId();
             })
             .catch((reason) => {
+                console.log(reason)
             })
         return promise;
     }
@@ -55,9 +54,7 @@ export class AuthService {
                 if (username) {
                     this.currentUser.updateProfile({ displayName: username, photoURL: '' })
                         .then(() => {
-                            //Success
                         }, (error) => {
-                            //Error
                             console.log(error);
                         });
                 }
@@ -70,11 +67,9 @@ export class AuthService {
         let promise = this.afAuth.auth.signOut()
             .then((response) => {
                 this.tokenId = null;
-                console.log('logged off!');
             })
             .catch((reason) => {
                 this.tokenId = null;
-                console.log('logged off (error)!');
             })
         return promise;
     }
@@ -88,20 +83,14 @@ export class AuthInterceptor implements HttpInterceptor {
     ) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        // const authReq = request.clone({
-        //     headers: request.headers.set('Authorization', this.authService.tokenId)
-        // });
-        // return next.handle(authReq);
-
-
+        // Add firebase auth token to all request headers
+        // so authentication can be performed on the server side
+        // (i.e. when calling the Endpoints API)
         request = request.clone({
             setHeaders: {
                 Authorization: `Bearer ${this.authService.tokenId}`
             }
         });
         return next.handle(request);
-
-        // request.headers.set('Authorization', this.authService.tokenId)
-        // return next.handle(request);
     }
 }
