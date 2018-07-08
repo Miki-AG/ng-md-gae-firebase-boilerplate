@@ -1,5 +1,6 @@
 <div class="margin-24">
-    <h2 mat-dialog-title>{{data.type==lor.REGISTER ? 'Register' : 'Login'}}</h2>
+    <h2 mat-dialog-title>{{data.type==lor.REGISTER ? 'Register' : (data.type==lor.RESET_PASSWORD ? 'Reset password' : 'Login')}}</h2>
+    <p *ngIf="data.type==lor.RESET_PASSWORD">We will send you an email containing instructions for resetting your password. Please make sure to check your spam folder, as emails of this type are occasionally flagged as spam.</p>
     <div mat-dialog-content>
         <form class="example-container">
             <mat-form-field>
@@ -8,7 +9,7 @@
             <mat-form-field *ngIf="data.type==lor.REGISTER">
                 <input matInput placeholder="Username" [(ngModel)]="user.username" name="username">
             </mat-form-field>
-            <mat-form-field>
+            <mat-form-field *ngIf="data.type!=lor.RESET_PASSWORD">
                 <input matInput placeholder="Password" type="password" [(ngModel)]="user.password" name="password">
             </mat-form-field>
             <mat-form-field *ngIf="data.type==lor.REGISTER">
@@ -21,6 +22,7 @@
         <div fxFlex></div>
         <button *ngIf="data.type==lor.LOGIN" mat-button color="accent" (click)="login()">Login</button>
         <button *ngIf="data.type==lor.REGISTER" mat-button color="accent" (click)="register()" [disabled]="!user.password || user.passwordRepeat!=user.password">Register</button>
+        <button *ngIf="data.type==lor.RESET_PASSWORD" mat-button color="accent" (click)="resetPassword()">Forgot password</button>
     </div>
     <div mat-dialog-actions *ngIf="data.type==lor.LOGIN">
         <div fxFlex fxLayout='column'>

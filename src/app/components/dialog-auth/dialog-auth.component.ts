@@ -32,12 +32,7 @@ export class DialogAuth {
     }
 
     login(): void {
-        if ((this.user.email.length === 0) && (!EMAIL_REGEXP.test(this.user.email))) {
-            this.snackBar.open('Please provide a valid email!', 'OK', {
-                duration: 2000,
-            });
-        }
-        else {
+        if (this.isEmailValid()) {
             this.authService.loginWithEmail(
                 this.user.email,
                 this.user.password)
@@ -87,6 +82,33 @@ export class DialogAuth {
                     duration: 2000,
                 });
             })
+    }
+    resetPassword(): void {
+        if (!this.isEmailValid()) {
+            this.authService.passwordReset(this.user.email)
+                .then((response: any) => {
+                    console.log(response)
+                    this.snackBar.open('Email sent to' + this.user.email + '!', 'OK', {
+                        duration: 2000,
+                    });
+                    this.dialogRef.close();
+                })
+                .catch((reason: any) => {
+                    console.log(reason)
+                    this.snackBar.open(reason, 'OK', {
+                        duration: 2000,
+                    });
+                })
+        }
+    }
+    isEmailValid(): boolean {
+        let isValid = !((this.user.email.length === 0) && (!EMAIL_REGEXP.test(this.user.email)));
+        if (!isValid) {
+            this.snackBar.open('Please provide a valid email!', 'OK', {
+                duration: 2000,
+            });
+        }
+        return isValid;
     }
     register(): void {
         this.authService.registerWithEmail(
