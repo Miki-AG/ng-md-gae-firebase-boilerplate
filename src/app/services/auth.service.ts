@@ -47,6 +47,30 @@ export class AuthService {
             })
         return promise;
     }
+    googleLogin() {
+        const provider = new firebase.auth.GoogleAuthProvider()
+        let promise = this.afAuth.auth.signInWithPopup(provider);
+        promise
+            .then((credential) => {
+                this.storeTokenId();
+                // this.authState = credential.user
+            })
+            .catch(error => console.log(error));
+        return promise;
+    }
+
+    facebookLogin() {
+        const provider = new firebase.auth.FacebookAuthProvider()
+        let promise = this.afAuth.auth.signInWithPopup(provider);
+        promise
+            .then((credential) => {
+                this.storeTokenId();
+                // this.authState = credential.user
+            })
+            .catch(error => console.log(error));
+        return promise;
+    }
+
     registerWithEmail(email: string, username: string, pssw: string): Promise<any> {
         let promise = this.afAuth.auth.createUserWithEmailAndPassword(email, pssw)
             .then((response) => {

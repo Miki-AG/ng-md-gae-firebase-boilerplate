@@ -34,19 +34,51 @@ export class DialogAuth {
         this.authService.loginWithEmail(
             this.user.email,
             this.user.password)
-                .then((response: any) => {
-                    console.log(response)
-                    this.snackBar.open('Welcome back ' + response.user.displayName + '!', 'OK', {
-                        duration: 2000,
-                    });
-                    this.dialogRef.close();
-                })
-                .catch((reason: any) => {
-                    console.log(reason)
-                    this.snackBar.open(reason, 'OK', {
-                        duration: 2000,
-                    });
-                })
+            .then((response: any) => {
+                console.log(response)
+                this.snackBar.open('Welcome back ' + response.user.displayName + '!', 'OK', {
+                    duration: 2000,
+                });
+                this.dialogRef.close();
+            })
+            .catch((reason: any) => {
+                console.log(reason)
+                this.snackBar.open(reason, 'OK', {
+                    duration: 2000,
+                });
+            })
+    }
+    loginWithFacebook(): void {
+        this.authService.facebookLogin()
+            .then((response: any) => {
+                console.log(response)
+                this.snackBar.open('Welcome back ' + response.user.displayName + '!', 'OK', {
+                    duration: 2000,
+                });
+                this.dialogRef.close();
+            })
+            .catch((reason: any) => {
+                console.log(reason)
+                this.snackBar.open(reason, 'OK', {
+                    duration: 2000,
+                });
+            })
+    }
+    loginWithGoogle(): void {
+        this.authService.googleLogin()
+            .then((response: any) => {
+                console.log(response)
+                this.snackBar.open('Welcome back ' + response.user.displayName + '!', 'OK', {
+                    duration: 2000,
+                });
+                this.dialogRef.close();
+            })
+            .catch((reason: any) => {
+                console.log(reason)
+                this.snackBar.open(reason, 'OK', {
+                    duration: 2000,
+                });
+            })
     }
     register(): void {
         this.authService.registerWithEmail(
