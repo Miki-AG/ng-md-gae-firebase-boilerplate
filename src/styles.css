@@ -114,6 +114,10 @@ div.grid-pad {
 
 code {
     background-color: #ffffa0;
+    padding: 1px 4px 1px 4px;
+    border-radius: 2px;
+    border: 1px #ffffa0 solid;
+    color: #707301;
 }
 
 mat-dialog-container {

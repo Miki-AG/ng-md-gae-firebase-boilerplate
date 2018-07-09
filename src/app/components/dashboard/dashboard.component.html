@@ -72,8 +72,8 @@
         <div class="mat-display-1 margin-around-header">Development server</div>
         <p class="bold italic">environment.dev.ts (Local, no GAE)</p>
         <ul>
-            <li>Run <code>ng serve</code> for a simple dev server. (it will use <code>ng build --configuration devmem</code> under the hood)</li>
-            <li>API data calls will be intercepted and data will be served from a mock backend (app/services/hero-dev-backend.ts)</li>
+            <li>Run <code>ng serve</code> for a simple dev server (it will use <code>ng build --configuration devmem</code> under the hood)</li>
+            <li>API data calls will be intercepted and data will be served from a mocked backend (app/services/hero-dev-backend.ts)</li>
         </ul>
         <p class="bold italic"> environment.devgae.ts (Build and run GAE local)</p>
         <ul>
@@ -87,47 +87,31 @@
             <li>Create a project in <a href="https://console.cloud.google.com">Google Cloud</a>. You will need the project ID.
                 <ul>
                     <li>Make sure your Google account is setup locally
-                        <ul>
-                            <li><code>gcloud auth list</code></li>
-                        </ul>
+                        <code>gcloud auth list</code>
                     </li>
                     <li>Use gcloud to point to the newly created project. Set current project
-                        <ul>
-                            <li><code>gcloud config set project project-id</code></li>
-                        </ul>
+                        <code>gcloud config set project project-id</code>
                     </li>
                     <li>Make sure gcloud points to your project
                         <ul>
                             <li>List all projects in your account
-                                <ul>
-                                    <li><code>gcloud projects list</code></li>
-                                </ul>
+                                <code>gcloud projects list</code>
                             </li>
                             <li>You can check current project with
-                                <ul>
-                                    <li><code>gcloud config get-value project</code></li>
-                                </ul>
+                                <code>gcloud config get-value project</code>
                             </li>
                         </ul>
                     </li>
                 </ul>
             </li>
             <li>Then deploy the service configuration file (Open API):
-                <ul>
-                    <li><code>gcloud endpoints services deploy api-def.yaml</code>
-                    </li>
-                </ul>
+                <code>gcloud endpoints services deploy api-def.yaml</code>
             </li>
             <li>Build the Angular app for prod (<a href="https://angular.io/guide/aot-compiler">aot</a> compilation + browser cache busting, etc...)
-                <ul>
-                    <li><code>ng build --configuration production</code> </li>
-                </ul>
+                <code>ng build --configuration production</code>
             </li>
             <li>Deploy the app to Google Cloud
-                <ul>
-                    <li><code>gcloud app deploy</code>
-                    </li>
-                </ul>
+                <code>gcloud app deploy</code>
             </li>
         </ol>
         <p>NOTE: Once deployed for the first time, only steps 3 and 4 are required.</p>
