@@ -21,7 +21,6 @@
                 <a mat-list-item class="name-holder" *ngIf="currentUser">Welcome {{ currentUser.displayName }}!</a>
                 <a mat-list-item routerLink="/dashboard" routerLinkActive="active" (click)="snav.close()">Dashboard</a>
                 <a mat-list-item routerLink="/heroes" routerLinkActive="active" (click)="snav.close()">Heroes</a>
-                <a mat-list-item routerLink="/heroes-table" routerLinkActive="active" (click)="snav.close()">Table of heroes</a>
                 <a mat-list-item *ngIf="!currentUser" (click)="openDialog(lor.LOGIN)">Login</a>
                 <a mat-list-item *ngIf="!currentUser" (click)="openDialog(lor.REGISTER)">Register</a>
                 <a mat-list-item *ngIf="!currentUser" (click)="openDialog(lor.RESET_PASSWORD)">Reset Password</a>

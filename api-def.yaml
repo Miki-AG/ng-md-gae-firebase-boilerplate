@@ -1,0 +1,21 @@
+swagger: "2.0"
+info:
+  title: AMToH API
+  description: Angular Material Tour of Heroes API.
+  version: 1.0.0
+host: ng-md-gae-boilerplate.appspot.com
+# https://ng-md-gae-boilerplate.appspot.com/_ah/api/heroes_api/v1/heroes
+basePath: /_ah/api/heroes_api/v1
+schemes:
+  - https
+paths:
+  /heroes:
+    get:
+      summary: Returns a list of users.
+      description: Optional extended description in Markdown.
+      operationId: getHeroes
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
