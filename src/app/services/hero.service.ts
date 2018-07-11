@@ -10,9 +10,7 @@ import { Hero, HeroData } from '../components/types';
 export class HeroService {
     private status;
     subject: BehaviorSubject<HeroData> = new BehaviorSubject<HeroData>(null);
-
-    // subjectStatus: BehaviorSubject<HeroData> = new BehaviorSubject<HeroData>(null);
-    subjectStatus: BehaviorSubject<string> = new BehaviorSubject<string>('init');
+    subjectStatus: BehaviorSubject<string> = new BehaviorSubject<string>('');
     subjectStatusObservable = this.subjectStatus.asObservable();
 
     _heroes: HeroData = { items: [] };
