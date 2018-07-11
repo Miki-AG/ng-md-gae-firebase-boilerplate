@@ -19,7 +19,7 @@
                 <p>ID: {{hero.id}}</p>
                 <form>
                     <mat-form-field>
-                        <input matInput placeholder="Favorite hero" [(ngModel)]="hero.name" name="something">
+                        <input matInput placeholder="Favorite hero" [(ngModel)]="hero.name" name="something" (input)="onValueChange($event.target.value)">
                     </mat-form-field>
                 </form>
             </mat-card-content>

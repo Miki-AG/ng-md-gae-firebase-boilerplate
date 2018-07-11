@@ -8,7 +8,12 @@ import { Hero, HeroData } from '../components/types';
 
 @Injectable()
 export class HeroService {
+    private status;
     subject: BehaviorSubject<HeroData> = new BehaviorSubject<HeroData>(null);
+
+    // subjectStatus: BehaviorSubject<HeroData> = new BehaviorSubject<HeroData>(null);
+    subjectStatus: BehaviorSubject<string> = new BehaviorSubject<string>('init');
+    subjectStatusObservable = this.subjectStatus.asObservable();
 
     _heroes: HeroData = { items: [] };
 
@@ -50,6 +55,7 @@ export class HeroService {
     }
 
     save(hero: Hero) {
+        this.subjectStatus.next('SAVING_IN_PROGRESS');
         if (!hero.name) {
             return new Observable(subscriber => {
                 subscriber.error('You have to provide a name!');
@@ -74,6 +80,7 @@ export class HeroService {
             .post<Hero>(this.heroesUrl, hero)
             .pipe(
                 map(data => {
+                    this.subjectStatus.next('SAVING_COMPLETE');
                     this.updateHeroInList(data);
                     console.log(data)
                     return data;
@@ -88,6 +95,7 @@ export class HeroService {
             .put<Hero>(url, hero)
             .pipe(
                 map(data => {
+                    this.subjectStatus.next('SAVING_COMPLETE');
                     this.updateHeroInList(data);
                     return data;
                 }),

@@ -14,7 +14,7 @@ import { DialogAddHero } from './components/dialog-add-hero/dialog-add-hero.comp
 import { DialogAuth } from './components/dialog-auth/dialog-auth.component';
 import { HeroDetailComponent } from './components/hero-detail/hero-detail.component';
 import { HeroesComponent } from './components/heroes/heroes.component';
-import { HeroesTableComponent } from './components/heroes-table/heroes-table.component';
+import { AutosaveComponent } from './components/autosave/autosave.component';
 import { DevBackendInterceptor } from './services/hero-dev-backend';
 import { AuthInterceptor } from './services/auth.service';
 import { HeroSearchComponent } from './components/hero-search/hero-search.component';
@@ -54,7 +54,7 @@ let authInterceptor = {
         DashboardComponent,
         HeroSearchComponent,
         HeroesComponent,
-        HeroesTableComponent,
+        AutosaveComponent,
         HeroDetailComponent,
         SideNavComponent,
         DialogAddHero,

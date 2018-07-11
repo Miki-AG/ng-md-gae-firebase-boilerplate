@@ -3,6 +3,7 @@ import { DialogAddHero } from './components/dialog-add-hero/dialog-add-hero.comp
 import { DialogAuth } from './components/dialog-auth/dialog-auth.component';
 
 import {
+    MatProgressSpinnerModule,
     MatButtonModule,
     MatButtonToggleModule,
     MatMenuModule,
@@ -20,6 +21,7 @@ import {
 
 @NgModule({
     imports: [
+        MatProgressSpinnerModule,
         MatButtonModule,
         MatButtonToggleModule,
         MatMenuModule,
@@ -34,8 +36,12 @@ import {
         MatDialogModule,
         MatSnackBarModule
     ],
-    entryComponents: [DialogAddHero, DialogAuth],
+    entryComponents: [
+        DialogAddHero,
+        DialogAuth
+    ],
     exports: [
+        MatProgressSpinnerModule,
         MatButtonModule,
         MatButtonToggleModule,
         MatMenuModule,

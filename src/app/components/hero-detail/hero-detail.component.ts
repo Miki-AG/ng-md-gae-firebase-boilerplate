@@ -4,7 +4,7 @@ import { Hero } from '../types';
 import { HeroService } from '../../services/hero.service';
 import { MatSnackBar } from '@angular/material';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { catchError, retry } from 'rxjs/operators';
+import { catchError, retry, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 
 @Component({
@@ -15,8 +15,13 @@ import { Observable, throwError } from 'rxjs';
 export class HeroDetailComponent implements OnInit {
     @Input() hero: Hero;
     @Output() close = new EventEmitter();
+    @Output() autosaveStart: EventEmitter<any> = new EventEmitter();
+    @Output() autosaveEnd: EventEmitter<any> = new EventEmitter();
+    @Output() autosaveError: EventEmitter<any> = new EventEmitter();
+
     error: any;
     imgUrl: string;
+    valueChangeObserver;
 
     constructor(
         private heroService: HeroService,
@@ -38,11 +43,27 @@ export class HeroDetailComponent implements OnInit {
             }
         });
     }
+    onValueChange(newValue: string) {
+        if (!this.valueChangeObserver) {
+            Observable.create(observer => {
+                this.valueChangeObserver = observer;
+            }).pipe(debounceTime(1000))
+                .pipe(distinctUntilChanged())
+                .subscribe(() => {
+                    console.log('saving...')
+                    this.save();
+                });
+        }
+        this.valueChangeObserver.next(newValue);
+    }
     save(): void {
+        this.autosaveStart.emit();
         this.heroService.save(this.hero).subscribe((hero: Hero) => {
+            this.autosaveEnd.emit();
             this.hero = hero;
-            this.goBack();
+            // this.goBack();
         }, errorResponse => {
+            this.autosaveError.emit();
             this.snackBar.open(errorResponse.error.message, 'OK', {
                 duration: 2000,
             });
