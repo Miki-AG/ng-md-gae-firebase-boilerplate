@@ -34,7 +34,7 @@ Tech stack:
 * Npm 5.6.0
 * Gulp 4.0.0-alpha.3
 
-![Screenshot](https://raw.githubusercontent.com/Miki-AG/md-tour-of-heroes/master/static/img/screenshot2.png | width=100)
+![Screenshot](https://raw.githubusercontent.com/Miki-AG/md-tour-of-heroes/master/static/img/screenshot2.png) <!-- .element height="50%" width="50%" -->
 
 
 # Environments
