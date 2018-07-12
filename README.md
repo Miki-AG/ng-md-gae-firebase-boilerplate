@@ -33,14 +33,8 @@ Tech stack:
 * Node v8.9.4
 * Npm 5.6.0
 * Gulp 4.0.0-alpha.3
-<style>
-.test {
-    text-align:center
-}
-</style>
-<div class="test" style="text-align:center">
-    <img width="300px" src ="https://raw.githubusercontent.com/Miki-AG/md-tour-of-heroes/master/static/img/screenshot2.png" />
-</div>
+
+<img width="300px" src ="https://raw.githubusercontent.com/Miki-AG/md-tour-of-heroes/master/static/img/screenshot2.png" />
 
 # Environments
 1. Make sure to rename all files under src/environments (i.e. sample.environment.ts -> environment.ts). The reason for this is that .gitignore will exclude those files every time you check-in code, avoiding exposing sensitive attributes.
