@@ -35,7 +35,7 @@ Tech stack:
 * Gulp 4.0.0-alpha.3
 
 ![Screenshot](https://raw.githubusercontent.com/Miki-AG/md-tour-of-heroes/master/static/img/screenshot2.png) <!-- .element height="50%" width="50%" -->
-
+<div style="text-align:center"><img src ="https://raw.githubusercontent.com/Miki-AG/md-tour-of-heroes/master/static/img/screenshot2.png" /></div>
 
 # Environments
 1. Make sure to rename all files under src/environments (i.e. sample.environment.ts -> environment.ts). The reason for this is that .gitignore will exclude those files every time you check-in code, avoiding exposing sensitive attributes.
