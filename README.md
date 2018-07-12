@@ -34,9 +34,8 @@ Tech stack:
 * Npm 5.6.0
 * Gulp 4.0.0-alpha.3
 
-![Screenshot](https://raw.githubusercontent.com/Miki-AG/md-tour-of-heroes/master/static/img/screenshot2.png) <!-- .element height="50%" width="50%" -->
 <div style="text-align:center">
-    <img width="100px" src ="https://raw.githubusercontent.com/Miki-AG/md-tour-of-heroes/master/static/img/screenshot2.png" />
+    <img width="300px" src ="https://raw.githubusercontent.com/Miki-AG/md-tour-of-heroes/master/static/img/screenshot2.png" />
 </div>
 
 # Environments
