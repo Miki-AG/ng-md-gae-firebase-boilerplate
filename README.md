@@ -35,7 +35,9 @@ Tech stack:
 * Gulp 4.0.0-alpha.3
 
 <div style="text-align:center">
+<div style="text-align:center">
     <img width="300px" src ="https://raw.githubusercontent.com/Miki-AG/md-tour-of-heroes/master/static/img/screenshot2.png" />
+</div>
 </div>
 
 # Environments
