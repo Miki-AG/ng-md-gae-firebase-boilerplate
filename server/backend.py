@@ -8,7 +8,6 @@ import json
 from google.appengine.ext import blobstore
 from api_heroes import Hero
 
-
 class TemplateHandler(webapp2.RequestHandler):
     """Module that provides rendered index.html."""
 
@@ -16,7 +15,6 @@ class TemplateHandler(webapp2.RequestHandler):
     def jinja2(self):
         """Returns a Jinja2 renderer cached in the app registry."""
         return jinja2_module.get_jinja2(app=self.app)
-
 
     def render_response(self, _template, **context):
         """Renders a template and writes the result to the response.
@@ -32,7 +30,6 @@ class TemplateHandler(webapp2.RequestHandler):
         rendered = self.jinja2.render_template(template, **context)
         self.response.write(rendered)
 
-
 class TemplateService(TemplateHandler):
     """Returns rendered templates."""
     def get(self):
@@ -41,9 +38,7 @@ class TemplateService(TemplateHandler):
         logging.info("url: {}".format(self.request.url))
         logging.info("path_info: {}".format(self.request.path_info))
         logging.info("split: {}".format(split))
-
         #user_agent = self.request.headers['user-agent']
-
         # Bot
         #if ('google' in user_agent or
         #        'facebookexternalhit' in user_agent or
