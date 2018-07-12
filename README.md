@@ -33,11 +33,13 @@ Tech stack:
 * Node v8.9.4
 * Npm 5.6.0
 * Gulp 4.0.0-alpha.3
-
-<div style="text-align:center">
-<div style="text-align:center">
+<style>
+.test {
+    text-align:center
+}
+</style>
+<div class="test" style="text-align:center">
     <img width="300px" src ="https://raw.githubusercontent.com/Miki-AG/md-tour-of-heroes/master/static/img/screenshot2.png" />
-</div>
 </div>
 
 # Environments
