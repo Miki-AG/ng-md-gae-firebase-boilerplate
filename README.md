@@ -22,6 +22,8 @@ Tech stack:
 
 ## Features
 * Autosave
+<img width="600px" src ="https://raw.githubusercontent.com/Miki-AG/md-tour-of-heroes/master/static/img/autosave.gif" />
+
 * Environments management
 * Mock database for development
 * Server side Jinja templating

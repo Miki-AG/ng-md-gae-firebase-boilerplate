@@ -1,0 +1,9 @@
+<div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="10px">
+    <mat-progress-spinner *ngIf="status == 'SAVING_IN_PROGRESS'" diameter="24" color="accent" mode="indeterminate"></mat-progress-spinner>
+    <button *ngIf="status == 'SAVING_COMPLETE'" mat-icon-button>
+        <mat-icon>cloud</mat-icon>
+    </button>
+    <button *ngIf="status == 'SAVING_CHECK'" mat-icon-button>
+        <mat-icon>cloud_done</mat-icon>
+    </button>
+</div>

@@ -1,0 +1,7 @@
+mat-progress-spinner {
+    z-index: 10;
+}
+
+mat-progress-spinner.mat-progress-spinner svg circle {
+    stroke: white!important;
+}
