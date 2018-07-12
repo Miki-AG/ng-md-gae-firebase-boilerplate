@@ -25,7 +25,7 @@ Tech stack:
 * Environments management
 * Mock database for development
 * Serever side Jinja templating
-Not required for Angular apps, but it is sometimes helpful when the application has to render a different version of the page when sharing content in social media. When you share a page with Facebook for example, the Facebook bot visits the url you have provided in order to collect data and images. If the application responds sending the Angular bundles, then the process fails. The application has to recognize these bots and render a different version of the page for them, hence the server side templating.
+** Not required for Angular apps, but it is sometimes helpful when the application has to render a different version of the page when sharing content in social media. When you share a page with Facebook for example, the Facebook bot visits the url you have provided in order to collect data and images. If the application responds sending the Angular bundles, then the process fails. The application has to recognize these bots and render a different version of the page for them, hence the server side templating.
 
 ## Requirements
 * Google Cloud SDK 200.0.0
