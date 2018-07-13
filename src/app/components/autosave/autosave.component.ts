@@ -2,7 +2,8 @@ import { Component, OnInit, EventEmitter, Output, ViewChild } from '@angular/cor
 import { MatSpinner } from '@angular/material';
 import { HeroService } from '../../services/hero.service';
 import { interval } from 'rxjs';
-import { map } from 'rxjs/operators'
+import { map } from 'rxjs/operators';
+import { AUTOSAVE } from '../enums';
 
 @Component({
     selector: 'autosave',
@@ -10,7 +11,8 @@ import { map } from 'rxjs/operators'
     styleUrls: ['./autosave.component.css']
 })
 export class AutosaveComponent implements OnInit {
-    status: string;
+    public status: any;
+    public autosave: typeof AUTOSAVE = AUTOSAVE;
 
     constructor(
         public heroService: HeroService
@@ -19,12 +21,12 @@ export class AutosaveComponent implements OnInit {
     ngOnInit(): void {
         this.heroService.subjectStatusObservable.subscribe(
             status => {
-                this.status = status;
+                this.status = this.autosave.SAVING_COMPLETE;
                 let countdown1 = interval(200).subscribe(() => {
-                    this.status = 'SAVING_CHECK';
+                    this.status = this.autosave.SAVING_CHECK;
                     countdown1.unsubscribe();
                     let countdown2 = interval(1000).subscribe(() => {
-                        this.status = '';
+                        this.status = this.autosave.IDLE;
                         countdown2.unsubscribe();
                     });
                 });

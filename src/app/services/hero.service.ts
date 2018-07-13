@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { of, Observable, BehaviorSubject, throwError as observableThrowError } from 'rxjs';
 import { catchError, map, share } from 'rxjs/operators';
+import { AUTOSAVE } from '../components/enums';
 
 import { Hero, HeroData } from '../components/types';
 
@@ -9,17 +10,16 @@ import { Hero, HeroData } from '../components/types';
 @Injectable()
 export class HeroService {
     private status;
-    subject: BehaviorSubject<HeroData> = new BehaviorSubject<HeroData>(null);
-    subjectStatus: BehaviorSubject<string> = new BehaviorSubject<string>('');
-    subjectStatusObservable = this.subjectStatus.asObservable();
-
-    _heroes: HeroData = { items: [] };
-
-    // http://localhost:8081/_ah/api/heroes_api/v1/heroes
     private rootUrl = '_ah/api/heroes_api/v1';
     private heroesUrl = `${this.rootUrl}/heroes`;
     private heroUrl = `${this.rootUrl}/hero`;
+    public autosave: typeof AUTOSAVE = AUTOSAVE;
 
+    subject: BehaviorSubject<HeroData> = new BehaviorSubject<HeroData>(null);
+    subjectStatus: BehaviorSubject<AUTOSAVE> = new BehaviorSubject<AUTOSAVE>(this.autosave.IDLE);
+    subjectStatusObservable = this.subjectStatus.asObservable();
+
+    _heroes: HeroData = { items: [] };
     constructor(
         private http: HttpClient
     ) { }
@@ -53,7 +53,7 @@ export class HeroService {
     }
 
     save(hero: Hero) {
-        this.subjectStatus.next('SAVING_IN_PROGRESS');
+        this.subjectStatus.next(this.autosave.SAVING_IN_PROGRESS);
         if (!hero.name) {
             return new Observable(subscriber => {
                 subscriber.error('You have to provide a name!');
