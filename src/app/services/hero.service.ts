@@ -78,9 +78,8 @@ export class HeroService {
             .post<Hero>(this.heroesUrl, hero)
             .pipe(
                 map(data => {
-                    this.subjectStatus.next('SAVING_COMPLETE');
+                    this.subjectStatus.next(this.autosave.SAVING_COMPLETE);
                     this.updateHeroInList(data);
-                    console.log(data)
                     return data;
                 }),
                 catchError(this.handleError),
@@ -93,7 +92,7 @@ export class HeroService {
             .put<Hero>(url, hero)
             .pipe(
                 map(data => {
-                    this.subjectStatus.next('SAVING_COMPLETE');
+                    this.subjectStatus.next(this.autosave.SAVING_COMPLETE);
                     this.updateHeroInList(data);
                     return data;
                 }),

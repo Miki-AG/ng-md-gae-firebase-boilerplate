@@ -21,14 +21,19 @@ export class AutosaveComponent implements OnInit {
     ngOnInit(): void {
         this.heroService.subjectStatusObservable.subscribe(
             status => {
-                this.status = this.autosave.SAVING_COMPLETE;
-                let countdown1 = interval(200).subscribe(() => {
-                    this.status = this.autosave.SAVING_CHECK;
-                    countdown1.unsubscribe();
-                    let countdown2 = interval(1000).subscribe(() => {
-                        this.status = this.autosave.IDLE;
-                        countdown2.unsubscribe();
+                this.status = status;
+                let countdown0 = interval(2000).subscribe(() => {
+
+                    let countdown1 = interval(200).subscribe(() => {
+                        this.status = this.autosave.SAVING_CHECK;
+                        countdown1.unsubscribe();
+                        let countdown2 = interval(1000).subscribe(() => {
+                            this.status = this.autosave.IDLE;
+                            countdown2.unsubscribe();
+                        });
                     });
+
+                    countdown0.unsubscribe();
                 });
             },
             error => {
