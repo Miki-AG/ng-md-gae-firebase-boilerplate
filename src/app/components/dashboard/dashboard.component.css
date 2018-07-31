@@ -31,3 +31,36 @@
 .grid-pad>[class*='col-']:last-of-type {
     padding-right: 20px;
 }
+
+p,
+li {
+    font-style: normal;
+    font-size: 21px;
+}
+
+p {
+    line-height: 1.5;
+    margin-top: 0px!important;
+    margin-bottom: 10px!important;
+}
+
+ul {
+    margin-top: 0px!important;
+    margin-bottom: 10px!important;
+}
+
+li {
+    line-height: 1.5;
+    margin-top: 0px!important;
+    margin-bottom: 0px!important;
+}
+
+
+.readme-box {
+    margin: 36px 20% 24px 20%;
+}
+
+.readme-box .mat-display-1,
+.readme-box .mat-display-2 {
+    margin: 0 0 10px 0;
+}

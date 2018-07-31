@@ -3,6 +3,11 @@
 @import 'https://fonts.googleapis.com/icon?family=Material+Icons';
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 
+
+
+
+
+
 /*@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';*/
 
 
@@ -15,6 +20,8 @@ body {
     margin: 0;
     font-family: Roboto, Arial, sans-serif;
 }
+
+
 
 .fill-remaining-space {
     /* This fills the remaining space, by using flexbox.
@@ -110,6 +117,14 @@ div.grid-pad {
 .highlight-section p {
     margin: 0;
     padding: 0;
+}
+
+.highlighted-link {
+    background-color: #dcdcff;
+    padding: 1px 4px 1px 4px;
+    border-radius: 2px;
+    border: 1px #dcdcff solid;
+    color: #0000EE;
 }
 
 code {
