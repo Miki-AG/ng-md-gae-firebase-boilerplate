@@ -8,7 +8,11 @@ const readlineSync = require('readline-sync');
 // gulp gae-serve --local
 gulp.task('gae-serve', gulp.series(done => {
     gulp.src('app.yaml')
-        .pipe(gae('dev_appserver.py', [], {
+        .pipe(gae('dev_appserver.py', [
+            // https://cloud.google.com/appengine/docs/standard/python/tools/migrate-cloud-datastore-emulator
+            // Enable cloud-datastore-emulator
+            // '--support_datastore_emulator=true'
+            ], {
             port: 8081,
             host: '0.0.0.0',
             admin_port: 8001,

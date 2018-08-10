@@ -1,28 +1,29 @@
 """Helper functions and decorators."""
 import endpoints
 import logging
-import google.auth.transport.requests
 import requests_toolbelt.adapters.appengine
+from google.oauth2 import id_token
+from google.auth.transport import requests
+
+import pkgutil
+import google
+import inspect
 
 requests_toolbelt.adapters.appengine.monkeypatch()
-HTTP_REQUEST = google.auth.transport.requests.Request()
+HTTP_REQUEST = requests.Request()
 
 def get_user_from_token(service):
     # Returns the owner extracting it from the token
     headers = service.request_state.headers.get('authorization')
     if headers:
-        id_token = headers.split(' ').pop()
-        # logging.info("----------> headers: {}".format(headers))
-        # logging.info("----------> id_token: {}".format(id_token))
-
-        if id_token == 'undefined' or id_token == 'null':
+        id_token_from_firebase = headers.split(' ').pop()
+        if id_token_from_firebase == 'undefined' or id_token_from_firebase == 'null':
             return None
-        claims = google.oauth2.id_token.verify_firebase_token(
-            id_token, HTTP_REQUEST)
-        if not claims:
+        firebaseUser = id_token.verify_firebase_token(
+            id_token_from_firebase, HTTP_REQUEST)
+        if not firebaseUser:
             return None
-        # logging.info("----------> user: {}".format(claims))
-        return claims.get('email')
+        return firebaseUser.get('email')
     else:
         return None
 

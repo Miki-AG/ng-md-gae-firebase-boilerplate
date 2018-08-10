@@ -3,7 +3,7 @@ import webapp2
 import logging
 from webapp2_extras import jinja2 as jinja2_module
 from google.appengine.ext.webapp import blobstore_handlers
-from google.appengine.ext import ndb
+# from google.appengine.ext import ndb
 import json
 from google.appengine.ext import blobstore
 from api_heroes import Hero
@@ -62,6 +62,7 @@ class TemplateService(TemplateHandler):
 
 class GenerateUploadUrlHandler(webapp2.RequestHandler):
     def get(self):
+        logging.info('GenerateUploadUrlHandler')
         response = []
         url = blobstore.create_upload_url('/upload_photo')
         item = {}

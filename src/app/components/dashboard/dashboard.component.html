@@ -72,14 +72,14 @@
         <div class="mat-display-1 margin-around-header">Development server</div>
         <p class="bold italic">environment.dev.ts (Local, no GAE)</p>
         <ul>
-            <li>Run <code>ng serve</code> for a simple dev server (it will use <code>ng build --configuration devmem</code> under the hood)</li>
-            <li>API data calls will be intercepted and data will be served from a mocked backend (app/services/hero-dev-backend.ts)</li>
+            <li>Run <code>ng serve</code> for a simple dev server (it will use <code>ng build --configuration devmem</code> under the hood).</li>
+            <li>API data calls will be intercepted and data will be served from a mocked backend (app/services/hero-dev-backend.ts), no data save and no image store, but hot reloading!</li>
         </ul>
         <p class="bold italic"> environment.devgae.ts (Build and run GAE local)</p>
         <ul>
             <li>Run <code>ng build --configuration devgae</code> to rebuild the /dist directory.</li>
             <li>Run <code>gulp run</code> to launch the app and GAE.</li>
-            <li>Data will be pulled from the local GAE Datastore.</li>
+            <li>Data will be pulled from the local GAE Datastore. The application will be served as a bundle, so no hot reloading.</li>
         </ul>
         <div class="mat-display-1 margin-around-header">Production environment: Deploy to Google Cloud</div>
         <p class="bold italic">environment.prod.tsprod</p>
@@ -115,5 +115,17 @@
             </li>
         </ol>
         <p>NOTE: Once deployed for the first time, only steps 3 and 4 are required.</p>
+        <div class="mat-display-1 margin-around-header">TODO</div>
+        <p>Check [example](https://github.com/GoogleCloudPlatform/python-docs-samples/tree/master/appengine/standard/endpoints-frameworks-v2)</p>
+        <ul>
+            <li>Create a lib directory in which to install the Endpoints Frameworks v2 library. For more info, see Installing a library.</li>
+            <li>
+                <ul>
+                    <li>Install the Endpoints Frameworks v2 library:</li>
+                    <li>$ pip install -t lib -r requirements.txt</li>
+                </ul>
+            </li>
+            <li>Incorporate [tests](python-docs-samples/appengine/standard/endpoints-frameworks-v2/quickstart/main_test.py)</li>
+        </ul>
     </div>
 </div>

@@ -1,7 +1,11 @@
 """Api for Heroes model."""
 from api_helpers import login_required, ownership_required, get_user_from_token
 from endpoints_proto_datastore.ndb import EndpointsModel
-from google.appengine.api import users, ndb
+from google.appengine.api import users
+# from google.appengine.api import ndb
+from google.appengine.ext import ndb
+
+
 from protorpc import remote
 import endpoints
 import logging
