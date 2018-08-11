@@ -32,7 +32,6 @@ export class AuthService {
                     duration: 2000,
                 });
             }
-            console.log('loading user!', this.currentUser)
         });
     }
     getCurrentUser() {
@@ -65,7 +64,6 @@ export class AuthService {
         promise
             .then((credential) => {
                 this.storeTokenId();
-                // this.authState = credential.user
             })
             .catch(error => console.log(error));
         return promise;
@@ -76,7 +74,6 @@ export class AuthService {
         promise
             .then((credential) => {
                 this.storeTokenId();
-                // this.authState = credential.user
             })
             .catch(error => console.log(error));
         return promise;
@@ -120,14 +117,11 @@ export class AuthInterceptor implements HttpInterceptor {
         // Add firebase auth token to all request headers
         // so authentication can be performed on the server side
         // (i.e. when calling the Endpoints API)
-        console.log('Ading token!')
-        // this.authService.getCurrentUser().subscribe(user => {
         request = request.clone({
             setHeaders: {
                 Authorization: `Bearer ${this.authService.tokenId}`
             }
         });
-        // });
         return next.handle(request);
     }
 }
