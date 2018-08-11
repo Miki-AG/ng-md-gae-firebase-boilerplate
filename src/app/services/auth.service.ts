@@ -28,9 +28,6 @@ export class AuthService {
                 this.storeTokenId();
             } else {
                 this.currentUser = null;
-                this.snackBar.open('You have been logged off', 'OK', {
-                    duration: 2000,
-                });
             }
         });
     }

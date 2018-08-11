@@ -2,10 +2,12 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Hero } from '../types';
 import { HeroService } from '../../services/hero.service';
+import { AuthService } from '../../services/auth.service';
 import { MatSnackBar } from '@angular/material';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { catchError, retry, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
+import * as firebase from 'firebase/app';
 
 @Component({
     selector: 'my-hero-detail',
@@ -22,9 +24,11 @@ export class HeroDetailComponent implements OnInit {
     error: any;
     imgUrl: string;
     valueChangeObserver;
+    public currentUser: firebase.User;
 
     constructor(
         private heroService: HeroService,
+        public authService: AuthService,
         private route: ActivatedRoute,
         public snackBar: MatSnackBar,
         private httpCient: HttpClient
@@ -42,6 +46,9 @@ export class HeroDetailComponent implements OnInit {
                 this.hero = new Hero();
             }
         });
+        this.authService.getCurrentUser().subscribe(user => {
+            this.currentUser = user
+        });
     }
     onValueChange(newValue: string) {
         if (!this.valueChangeObserver) {
@@ -50,25 +57,31 @@ export class HeroDetailComponent implements OnInit {
             }).pipe(debounceTime(1000))
                 .pipe(distinctUntilChanged())
                 .subscribe(() => {
-                    console.log('saving...')
                     this.save();
                 });
         }
         this.valueChangeObserver.next(newValue);
     }
     save(): void {
-        this.autosaveStart.emit();
-        this.heroService.save(this.hero).subscribe((hero: Hero) => {
-            this.autosaveEnd.emit();
-            this.hero = hero;
-            // this.goBack();
-        }, errorResponse => {
-            this.autosaveError.emit();
-            this.snackBar.open(errorResponse.error.message, 'OK', {
+        if (this.currentUser) {
+            this.autosaveStart.emit();
+            this.heroService.save(this.hero).subscribe((hero: Hero) => {
+                this.autosaveEnd.emit();
+                this.hero = hero;
+                // this.goBack();
+            }, errorResponse => {
+                this.autosaveError.emit();
+                this.snackBar.open(errorResponse.error.message, 'OK', {
+                    duration: 2000,
+                });
+                this.error = errorResponse.error;
+            });
+        }
+        else {
+            this.snackBar.open('Can\'t save! You are not logged in!', 'OK', {
                 duration: 2000,
             });
-            this.error = errorResponse.error;
-        });
+        }
     }
     fileSelected(files: any): void {
         const httpOptions = {

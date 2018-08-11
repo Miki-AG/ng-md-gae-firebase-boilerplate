@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Hero } from '../types';
 import { HeroService } from '../../services/hero.service';
+import { AuthService } from '../../services/auth.service';
 import { DialogAddHero } from '../dialog-add-hero/dialog-add-hero.component';
 import { MatDialog, MatDialogRef, MatSnackBar, MAT_DIALOG_DATA } from '@angular/material';
+import * as firebase from 'firebase/app';
 
 @Component({
     selector: 'my-heroes',
@@ -18,9 +20,11 @@ export class HeroesComponent implements OnInit {
     error: any;
     dataSource = [];
     displayedColumns = ['id', 'name'];
+    public currentUser: firebase.User;
 
     constructor(private router: Router,
         public heroService: HeroService,
+        public authService: AuthService,
         public snackBar: MatSnackBar,
         public dialog: MatDialog) {
     }
@@ -35,6 +39,9 @@ export class HeroesComponent implements OnInit {
             error => {
                 this.error = error;
             });
+        this.authService.getCurrentUser().subscribe(user => {
+            this.currentUser = user
+        });
     }
     openDialog(): void {
         let dialogRef = this.dialog.open(DialogAddHero, {
@@ -54,17 +61,24 @@ export class HeroesComponent implements OnInit {
     }
     deleteHero(hero: Hero, event: any): void {
         event.stopPropagation();
-        this.heroService.delete(hero).subscribe(res => {
-            this.heroes = this.heroes.filter(h => h !== hero);
-            if (this.selectedHero === hero) {
-                this.selectedHero = null;
-            }
-        }, response => {
-            this.error = response.error;
-            this.snackBar.open(response.error.message, 'OK', {
+        if (this.currentUser) {
+            this.heroService.delete(hero).subscribe(res => {
+                this.heroes = this.heroes.filter(h => h !== hero);
+                if (this.selectedHero === hero) {
+                    this.selectedHero = null;
+                }
+            }, response => {
+                this.error = response.error;
+                this.snackBar.open(response.error.message, 'OK', {
+                    duration: 2000,
+                });
+            });
+        }
+        else {
+            this.snackBar.open('You are not logged in!', 'OK', {
                 duration: 2000,
             });
-        });
+        }
     }
     onSelect(hero: Hero): void {
         this.selectedHero = hero;
