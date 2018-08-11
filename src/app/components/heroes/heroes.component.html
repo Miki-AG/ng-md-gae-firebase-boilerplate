@@ -7,7 +7,7 @@
                     <img matListAvatar class="blank-avatar" *ngIf="!hero.blob_key" mat-card-image>
                     <h3 matLine>{{hero.name}}</h3>
                     <p matLine>
-                        <span>{{hero.id}}</span>
+                        <span>One of our favorite heroes</span>
                     </p>
                     <button mat-icon-button (click)="deleteHero(hero, $event)">
                         <mat-icon>delete</mat-icon>
@@ -20,7 +20,7 @@
                 <mat-card-header>
                     <img mat-card-avatar src="https://source.unsplash.com/user/erondu/200x200?username={{selectedHero.name}}">
                     <mat-card-title>{{selectedHero.name}}</mat-card-title>
-                    <mat-card-subtitle>Really, they are!</mat-card-subtitle>
+                    <mat-card-subtitle>Really, they are the best!</mat-card-subtitle>
                 </mat-card-header>
                 <img *ngIf="selectedHero.blob_key" class="cover-photo" mat-card-image [src]="'/view_photo/' + selectedHero.blob_key">
                 <div *ngIf="!selectedHero.blob_key" class="tile-25">
