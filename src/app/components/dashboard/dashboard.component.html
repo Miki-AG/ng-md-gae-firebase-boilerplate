@@ -10,9 +10,7 @@
             <div *ngIf="!hero.blob_key" class="tile-25">
                 <div class="centered">No photo</div>
             </div>
-            <mat-card-content>
-                <p>ID: {{hero.id}}</p>
-            </mat-card-content>
+            <!-- <mat-card-content></mat-card-content> -->
             <mat-card-actions>
                 <button mat-button color="accent" (click)="gotoDetail(hero)">See detail</button>
             </mat-card-actions>
@@ -73,7 +71,7 @@
         <p class="bold italic">environment.dev.ts (Local, no GAE)</p>
         <ul>
             <li>Run <code>ng serve</code> for a simple dev server (it will use <code>ng build --configuration devmem</code> under the hood).</li>
-            <li>API data calls will be intercepted and data will be served from a mocked backend (app/services/hero-dev-backend.ts), no data save and no image store, but hot reloading!</li>
+            <li>API data calls will be intercepted and data will be served from a mocked backend (app/services/hero-dev-backend.ts), no real data save and no image store, but hot reloading!</li>
         </ul>
         <p class="bold italic"> environment.devgae.ts (Build and run GAE local)</p>
         <ul>
