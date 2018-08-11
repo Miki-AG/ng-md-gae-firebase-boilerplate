@@ -1,13 +1,13 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import * as firebase from 'firebase/app';
 import { ActivatedRoute, Params } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+import { catchError, retry, debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Hero } from '../types';
 import { HeroService } from '../../services/hero.service';
-import { AuthService } from '../../services/auth.service';
-import { MatSnackBar } from '@angular/material';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { catchError, retry, debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { MatSnackBar } from '@angular/material';
 import { Observable, throwError } from 'rxjs';
-import * as firebase from 'firebase/app';
 
 @Component({
     selector: 'my-hero-detail',

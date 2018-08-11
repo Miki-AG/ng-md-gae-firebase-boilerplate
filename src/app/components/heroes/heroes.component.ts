@@ -1,11 +1,12 @@
+import * as firebase from 'firebase/app';
+import { AuthService } from '../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { DialogAddHero } from '../dialog-add-hero/dialog-add-hero.component';
 import { Hero } from '../types';
 import { HeroService } from '../../services/hero.service';
-import { AuthService } from '../../services/auth.service';
-import { DialogAddHero } from '../dialog-add-hero/dialog-add-hero.component';
 import { MatDialog, MatDialogRef, MatSnackBar, MAT_DIALOG_DATA } from '@angular/material';
-import * as firebase from 'firebase/app';
+import { Router } from '@angular/router';
+import { AppConsts } from '../consts';
 
 @Component({
     selector: 'my-heroes',
@@ -26,7 +27,8 @@ export class HeroesComponent implements OnInit {
         public heroService: HeroService,
         public authService: AuthService,
         public snackBar: MatSnackBar,
-        public dialog: MatDialog) {
+        public dialog: MatDialog,
+        public C: AppConsts) {
     }
 
     ngOnInit(): void {
@@ -48,7 +50,7 @@ export class HeroesComponent implements OnInit {
             width: '400px',
             data: {
                 title: 'New hero',
-                description: 'Add a new hero using this dialog'
+                description: this.C.MESSAGES.ADD_HERO
             }
         });
         dialogRef.afterClosed().subscribe(result => { });
@@ -75,7 +77,7 @@ export class HeroesComponent implements OnInit {
             });
         }
         else {
-            this.snackBar.open('You are not logged in!', 'OK', {
+            this.snackBar.open(this.C.MESSAGES.LOGGED_IN_SUCCESS, 'OK', {
                 duration: 2000,
             });
         }

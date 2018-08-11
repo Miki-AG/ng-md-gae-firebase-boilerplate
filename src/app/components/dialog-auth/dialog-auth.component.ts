@@ -1,10 +1,10 @@
-import { Component, Inject } from '@angular/core';
-import { MatDialog, MatDialogRef, MatSnackBar, MAT_DIALOG_DATA } from '@angular/material';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { auth } from 'firebase/app';
-import { User } from '../types';
 import { AuthService } from '../../services/auth.service';
+import { Component, Inject } from '@angular/core';
 import { LOGIN_OR_REG } from '../enums';
+import { MatDialog, MatDialogRef, MatSnackBar, MAT_DIALOG_DATA } from '@angular/material';
+import { User } from '../types';
 
 const EMAIL_REGEXP = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
 
@@ -37,14 +37,12 @@ export class DialogAuth {
                 this.user.email,
                 this.user.password)
                 .then((response: any) => {
-                    console.log(response)
                     this.snackBar.open('Welcome back ' + response.user.displayName + '!', 'OK', {
                         duration: 2000,
                     });
                     this.dialogRef.close();
                 })
                 .catch((reason: any) => {
-                    console.log(reason)
                     this.snackBar.open(reason, 'OK', {
                         duration: 2000,
                     });
@@ -54,14 +52,12 @@ export class DialogAuth {
     loginWithFacebook(): void {
         this.authService.facebookLogin()
             .then((response: any) => {
-                console.log(response)
                 this.snackBar.open('Welcome back ' + response.user.displayName + '!', 'OK', {
                     duration: 2000,
                 });
                 this.dialogRef.close();
             })
             .catch((reason: any) => {
-                console.log(reason)
                 this.snackBar.open(reason, 'OK', {
                     duration: 2000,
                 });
@@ -70,35 +66,36 @@ export class DialogAuth {
     loginWithGoogle(): void {
         this.authService.googleLogin()
             .then((response: any) => {
-                console.log(response)
                 this.snackBar.open('Welcome back ' + response.user.displayName + '!', 'OK', {
                     duration: 2000,
                 });
                 this.dialogRef.close();
             })
             .catch((reason: any) => {
-                console.log(reason)
                 this.snackBar.open(reason, 'OK', {
                     duration: 2000,
                 });
             })
     }
     resetPassword(): void {
-        if (!this.isEmailValid()) {
+        if (this.isEmailValid()) {
             this.authService.passwordReset(this.user.email)
                 .then((response: any) => {
-                    console.log(response)
-                    this.snackBar.open('Email sent to' + this.user.email + '!', 'OK', {
+                    this.snackBar.open('Email sent to ' + this.user.email + '!', 'OK', {
                         duration: 2000,
                     });
                     this.dialogRef.close();
                 })
                 .catch((reason: any) => {
-                    console.log(reason)
                     this.snackBar.open(reason, 'OK', {
                         duration: 2000,
                     });
                 })
+        }
+        else {
+            this.snackBar.open('Please provide a valid email!', 'OK', {
+                duration: 2000,
+            });
         }
     }
     isEmailValid(): boolean {

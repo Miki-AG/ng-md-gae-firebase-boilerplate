@@ -25,7 +25,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { environment } from '../environments/environment';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
-
+import { AppConsts } from './components/consts'
 
 let apiInterceptor = {
     provide: HTTP_INTERCEPTORS,
@@ -63,6 +63,7 @@ let authInterceptor = {
     providers: [
         HeroService,
         AuthService,
+        AppConsts,
         // use dev backend in place of Http service for development
         // use auth interceptor in prod for server side auth
         environment.gae ? authInterceptor : apiInterceptor

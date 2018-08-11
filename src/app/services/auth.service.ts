@@ -2,13 +2,11 @@ import * as firebase from 'firebase/app';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { auth } from 'firebase/app';
+import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { MatSnackBar } from '@angular/material';
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
-import { MatSnackBar } from '@angular/material';
-
-
 
 @Injectable()
 export class AuthService {
@@ -42,7 +40,11 @@ export class AuthService {
     passwordReset(email: string): Promise<any> {
         return this.afAuth.auth.sendPasswordResetEmail(email)
             .then(() => console.log('sent Password Reset Email!'))
-            .catch((error) => console.log(error))
+            .catch(error => {
+                this.snackBar.open(error, 'OK', {
+                    duration: 2000,
+                });
+            })
     }
     loginWithEmail(email: string, pssw: string): Promise<any> {
         let promise = this.afAuth.auth.signInWithEmailAndPassword(email, pssw);
@@ -50,8 +52,10 @@ export class AuthService {
             .then((response) => {
                 this.storeTokenId();
             })
-            .catch((reason) => {
-                console.log(reason)
+            .catch(error => {
+                this.snackBar.open(error, 'OK', {
+                    duration: 2000,
+                });
             })
         return promise;
     }
@@ -62,7 +66,11 @@ export class AuthService {
             .then((credential) => {
                 this.storeTokenId();
             })
-            .catch(error => console.log(error));
+            .catch(error => {
+                this.snackBar.open(error, 'OK', {
+                    duration: 2000,
+                });
+            });
         return promise;
     }
     facebookLogin() {
@@ -72,7 +80,11 @@ export class AuthService {
             .then((credential) => {
                 this.storeTokenId();
             })
-            .catch(error => console.log(error));
+            .catch(error => {
+                this.snackBar.open(error, 'OK', {
+                    duration: 2000,
+                });
+            });
         return promise;
     }
     registerWithEmail(email: string, username: string, pssw: string): Promise<any> {
@@ -83,7 +95,9 @@ export class AuthService {
                     this.currentUser.updateProfile({ displayName: username, photoURL: '' })
                         .then(() => {
                         }, (error) => {
-                            console.log(error);
+                            this.snackBar.open(error, 'OK', {
+                                duration: 2000,
+                            });
                         });
                 }
             })
@@ -105,7 +119,6 @@ export class AuthService {
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-
     constructor(
         public authService: AuthService
     ) { }

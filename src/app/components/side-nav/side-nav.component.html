@@ -24,7 +24,7 @@
                 <a mat-list-item routerLink="/heroes" routerLinkActive="active" (click)="snav.close()">Heroes</a>
                 <a mat-list-item *ngIf="!currentUser" (click)="openDialog(lor.LOGIN)">Login</a>
                 <a mat-list-item *ngIf="!currentUser" (click)="openDialog(lor.REGISTER)">Register</a>
-                <a mat-list-item *ngIf="!currentUser" (click)="openDialog(lor.RESET_PASSWORD)">Reset Password</a>
+                <a mat-list-item (click)="openDialog(lor.RESET_PASSWORD)">Reset Password</a>
                 <a mat-list-item *ngIf="currentUser" (click)="logoff()">Logoff</a>
             </mat-nav-list>
         </mat-sidenav>
