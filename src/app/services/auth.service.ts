@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
+import { MatSnackBar } from '@angular/material';
 
 
 
@@ -16,16 +17,22 @@ export class AuthService {
     public tokenId: string;
 
     constructor(
-        public afAuth: AngularFireAuth
+        public afAuth: AngularFireAuth,
+        public snackBar: MatSnackBar
     ) {
         // Called when app loads
         // Retrieves the user
         this.afAuth.authState.subscribe(user => {
             if (user) {
                 this.currentUser = user;
+                this.storeTokenId();
             } else {
                 this.currentUser = null;
+                this.snackBar.open('You have been logged off', 'OK', {
+                    duration: 2000,
+                });
             }
+            console.log('loading user!', this.currentUser)
         });
     }
     getCurrentUser() {
@@ -113,11 +120,14 @@ export class AuthInterceptor implements HttpInterceptor {
         // Add firebase auth token to all request headers
         // so authentication can be performed on the server side
         // (i.e. when calling the Endpoints API)
+        console.log('Ading token!')
+        // this.authService.getCurrentUser().subscribe(user => {
         request = request.clone({
             setHeaders: {
                 Authorization: `Bearer ${this.authService.tokenId}`
             }
         });
+        // });
         return next.handle(request);
     }
 }
