@@ -3,7 +3,8 @@
         <div fxLayout='column' fxFlex="50">
             <mat-list class="margin-24">
                 <mat-list-item *ngFor="let hero of heroes" (click)="onSelect(hero)" [class.selected]="hero === selectedHero">
-                    <img matListAvatar src="https://source.unsplash.com/user/erondu/200x200?username={{hero.name}}">
+                    <img matListAvatar *ngIf="hero.blob_key" mat-card-image [src]="'/view_photo/' + hero.blob_key">
+                    <img matListAvatar class="blank-avatar" *ngIf="!hero.blob_key" mat-card-image>
                     <h3 matLine>{{hero.name}}</h3>
                     <p matLine>
                         <span>{{hero.id}}</span>
