@@ -16,10 +16,9 @@
             <img *ngIf="!hero.blob_key" mat-card-image src="https://source.unsplash.com/user/erondu/800x600?username={{hero.id || 'new'}}">
             <img *ngIf="hero.blob_key" mat-card-image [src]="imgUrl">
             <mat-card-content>
-                <p>ID: {{hero.id}}</p>
                 <form>
                     <mat-form-field>
-                        <input matInput placeholder="Favorite hero" [(ngModel)]="hero.name" name="something" (input)="onValueChange($event.target.value)">
+                        <input matInput placeholder="Favorite hero" [(ngModel)]="hero.name" name="name" (input)="onValueChange($event.target.value)">
                     </mat-form-field>
                 </form>
             </mat-card-content>
