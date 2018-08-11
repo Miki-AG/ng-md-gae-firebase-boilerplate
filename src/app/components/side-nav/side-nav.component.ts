@@ -22,7 +22,7 @@ export class SideNavComponent implements OnInit {
     private _mobileQueryListener: () => void;
     public currentUser: firebase.User;
 
-    private lor: typeof LOGIN_OR_REG = LOGIN_OR_REG;
+    public lor: typeof LOGIN_OR_REG = LOGIN_OR_REG;
 
     constructor(
         public authService: AuthService,
