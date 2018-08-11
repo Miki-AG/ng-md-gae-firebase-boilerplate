@@ -93,49 +93,57 @@ export class HeroDetailComponent implements OnInit {
         this.httpCient.get('/get_upload_url', httpOptions)
             .subscribe(
                 result => {
-                    console.log(result);
                     this.uploadFile(files, result[0].upload_url);
                 },
                 error => {
-                    console.log('There was an error: ')
-                    console.log(error)
+                    this.snackBar.open(error, 'OK', {
+                        duration: 2000,
+                    });
                 });
     }
     uploadFile(files: any, upload_url: string): void {
-        let file = files[0];
-        var data = new FormData();
-        data.append('file', file);
-        data.append('name', file.name);
-        data.append('hero-id', this.hero.id);
-        const httpOptions = {
-            headers: new HttpHeaders({
-                'Content-Disposition': 'attachment',
-                'filename': 'your-file.docx'
-            })
-        };
-
-        this.httpCient.post(upload_url, data, httpOptions)
-            .subscribe(
-                result => {
-                    this.hero.blob_key = result['blob_key'];
-                    this.imgUrl = result['url'];
-                    console.log(result);
-                },
-                error => {
-                    console.log('There was an error: ')
-                    console.log(error)
-                });
+        if (this.currentUser) {
+            let file = files[0];
+            var data = new FormData();
+            data.append('file', file);
+            data.append('name', file.name);
+            data.append('hero-id', this.hero.id);
+            const httpOptions = {
+                headers: new HttpHeaders({
+                    'Content-Disposition': 'attachment',
+                    'filename': 'your-file.docx'
+                })
+            };
+            this.httpCient.post(upload_url, data, httpOptions)
+                .subscribe(
+                    result => {
+                        this.hero.blob_key = result['blob_key'];
+                        this.imgUrl = result['url'];
+                    },
+                    error => {
+                        this.snackBar.open(error, 'OK', {
+                            duration: 2000,
+                        });
+                    });
+        }
+        else {
+            this.snackBar.open('Can\'t save! You are not logged in!', 'OK', {
+                duration: 2000,
+            });
+        }
     }
     handleError(error: HttpErrorResponse) {
         if (error.error instanceof ErrorEvent) {
             // A client-side or network error occurred. Handle it accordingly.
-            console.error('An error occurred:', error.error.message);
+            this.snackBar.open(error.error.message, 'OK', {
+                duration: 2000,
+            });
         } else {
             // The backend returned an unsuccessful response code.
             // The response body may contain clues as to what went wrong,
-            console.error(
-                `Backend returned code ${error.status}, ` +
-                `body was: ${error.error}`);
+            this.snackBar.open(`Backend returned code ${error.status}, body was: ${error.error}`, 'OK', {
+                duration: 2000,
+            });
         }
         // return an observable with a user-facing error message
         return throwError(
