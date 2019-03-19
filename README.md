@@ -77,7 +77,7 @@ This project supports developer and production environments.
 4. Deploy the app to Google Cloud
     * `gcloud app deploy`
 
-NOTE: Once deployed for the first time, only steps 3 and 4 are required!.
+NOTE: Once deployed for the first time, only steps 3 and 4 are required!!.
 
 
 Please help me improve AMToH by answering a few questions in this [survey](https://docs.google.com/forms/d/e/1FAIpQLSfTMycGQFr6HJWNiGQRU3d9vLyEt2OX8n_gdo_kvYr7IEqZnQ/viewform).
